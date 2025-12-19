@@ -11,6 +11,10 @@
 
 [🚀 Quick Start](#-quick-start) • [📂 Table of Contents](#-table-of-contents) • [🎯 Why Azure Wiki](#-why-azure-wiki) • [🤝 Contribute](#-contribute)
 
+| 📧 Newsletter | 💼 LinkedIn | 🐙 GitHub |
+|:-------------:|:-----------:|:---------:|
+| [Subscribe to Check1Minute](https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7001119707667832832) | [Connect](https://linkedin.com/in/pavleenbali) | [@gitpavleenbali](https://github.com/gitpavleenbali) |
+
 ---
 
 </div>
@@ -104,49 +108,6 @@ cd azure-wiki
 
 ---
 
-## 💻 Code Snippet Preview
-
-### 🔧 Quick Azure CLI Commands
-
-```bash
-# 🚀 Create a resource group
-az group create --name myResourceGroup --location eastus
-
-# 🌐 Deploy a web app
-az webapp create --resource-group myResourceGroup \
-    --plan myAppServicePlan \
-    --name myUniqueAppName \
-    --runtime "DOTNET|6.0"
-
-# 🔐 Create a Key Vault
-az keyvault create --name myKeyVault \
-    --resource-group myResourceGroup \
-    --location eastus
-```
-
-### 🏗️ Bicep Infrastructure as Code
-
-```bicep
-// 🎯 Deploy a secure web app with Key Vault integration
-resource webApp 'Microsoft.Web/sites@2022-03-01' = {
-  name: 'mySecureWebApp'
-  location: resourceGroup().location
-  properties: {
-    serverFarmId: appServicePlan.id
-    httpsOnly: true
-    siteConfig: {
-      minTlsVersion: '1.2'
-      ftpsState: 'Disabled'
-    }
-  }
-  identity: {
-    type: 'SystemAssigned'
-  }
-}
-```
-
----
-
 ## 🗺️ Roadmap
 
 | Status | Topic | ETA |
@@ -190,17 +151,7 @@ We welcome contributions! Here's how you can help:
 
 ---
 
-## 📬 Connect
-
 <div align="center">
-
-| Platform | Link |
-|----------|------|
-| 📧 Newsletter | [Subscribe to Check1Minute](https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7001119707667832832) |
-| 💼 LinkedIn | [Connect](https://linkedin.com/in/pavleenbali) |
-| 🐙 GitHub | [@gitpavleenbali](https://github.com/gitpavleenbali) |
-
----
 
 ### ⭐ If this helps you, give it a star!
 
