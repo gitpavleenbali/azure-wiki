@@ -26,6 +26,7 @@
 | 1 | 📁 [azure-ai-foundry](./azure-ai-foundry/) | **AI & ML** | Azure AI Foundry cross-region architecture patterns |
 | 2 | 📁 [azure-storage](./azure-storage/) | **Storage** | ADLS Gen2 strategy and data lake guidance |
 | 3 | 📁 [devsecops](./devsecops/) | **Security** | DevSecOps best practices and CI/CD security |
+| 4 | 📁 [Unified Monitoring Solution](./Unified%20Monitoring%20Solution/) | **Monitoring** | Enterprise observability and monitoring patterns |
 
 ### 📄 Quick Links to Guides
 
@@ -34,6 +35,10 @@
 | [AI Foundry Cross-Region Architecture](./azure-ai-foundry/AI-Foundry-Cross-Region-Architecture.md) | 🤖 AI/ML | Multi-region AI deployment patterns |
 | [ADLS Gen2 Strategy Guidance](./azure-storage/ADLS-Gen2-Strategy-Guidance.md) | 💾 Storage | Data lake storage best practices |
 | [DevSecOps Best Practices](./devsecops/DEVSECOPS_BEST_PRACTICES_GUIDE.md) | 🔐 Security | Complete security integration guide |
+| [Architecture Overview](./Unified%20Monitoring%20Solution/01-architecture-overview.md) | 📊 Monitoring | Unified monitoring architecture |
+| [Operations Runbook](./Unified%20Monitoring%20Solution/02-operations-runbook.md) | 📊 Monitoring | Operational procedures and runbooks |
+| [Advanced Topics](./Unified%20Monitoring%20Solution/03-advanced-topics.md) | 📊 Monitoring | Advanced monitoring configurations |
+| [Platform Observability Scenarios](./Unified%20Monitoring%20Solution/04-platform-observability-scenarios.md) | 📊 Monitoring | End-to-end observability scenarios |
 
 ---
 
@@ -115,6 +120,7 @@ cd azure-wiki
 | ✅ | DevSecOps Best Practices | Available |
 | ✅ | Azure AI Foundry Architecture | Available |
 | ✅ | ADLS Gen2 Strategy | Available |
+| ✅ | Unified Monitoring Solution | Available |
 | 🔄 | Azure Networking Deep Dive | Coming Soon |
 | 📋 | AKS Production Patterns | Planned |
 | 📋 | Cost Optimization Guide | Planned |
