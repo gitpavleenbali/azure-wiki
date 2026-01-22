@@ -4,7 +4,7 @@
 [![APIM](https://img.shields.io/badge/Azure-API%20Management-orange)](https://learn.microsoft.com/azure/api-management/)
 [![WAF Service Guide](https://img.shields.io/badge/WAF-Service%20Guide-green)](https://learn.microsoft.com/azure/well-architected/service-guides/azure-api-management)
 
-> **Production-Ready Architecture Guide** | Based on Microsoft Well-Architected Framework, Cloud Adoption Framework, and real-world implementation from Data Mesh Infrastructure
+> **Production-Ready Architecture Guide** | Based on Microsoft Well-Architected Framework, Cloud Adoption Framework, and real-world customer scenarios
 
 ---
 
@@ -154,21 +154,21 @@ flowchart TB
 
 ---
 
-## 📂 Repository Context
+## 📂 Implementation Context
 
-This guide incorporates patterns from the **Data Mesh Infrastructure** repository:
+This guide incorporates patterns from **customer scenarios** and production implementations:
 
 ```
-data-mesh-infrastructure/
+customer-infrastructure/
 ├── modules/
-│   ├── api-management.bicep      # Core APIM deployment
-│   ├── function-app-to-apim.bicep # Function App integration
-│   └── keyvault-*.bicep          # Secret management
+│   ├── api-management-core.bicep      # Core APIM deployment
+│   ├── function-integration.bicep     # Function App integration
+│   └── secrets-management.bicep       # Secret management
 ├── scenarios/
-│   └── apim.bicep                # Complete APIM scenario
+│   └── apim-complete.bicep           # Complete APIM scenario
 ├── pipelines/
-│   └── deploy-apim.yml           # Azure DevOps pipeline
-└── APIM-best-practices/          # This documentation
+│   └── deploy-infrastructure.yml     # Azure DevOps pipeline
+└── APIM-best-practices/              # This documentation
 ```
 
 ---

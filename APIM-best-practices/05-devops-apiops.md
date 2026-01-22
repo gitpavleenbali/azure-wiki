@@ -202,17 +202,17 @@ flowchart LR
 
 ```
 modules/
-├── api-management.bicep         # Core APIM resource
-├── api-management-api.bicep     # API definitions
-├── api-management-product.bicep # Products
-├── api-management-policy.bicep  # Policies
-├── keyvault-generic.bicep       # Key Vault
-├── private-endpoint-*.bicep     # Private endpoints
+├── api-management-core.bicep         # Core APIM resource
+├── api-management-api.bicep          # API definitions
+├── api-management-product.bicep      # Products
+├── api-management-policy.bicep       # Policies
+├── keyvault-generic.bicep            # Key Vault
+├── private-endpoint-*.bicep          # Private endpoints
 └── roles/
     └── roles-keyvaultsecretsuser.bicep
 
 scenarios/
-└── apim.bicep                   # Complete deployment scenario
+└── apim-complete.bicep               # Complete deployment scenario
 
 parameters/
 ├── apim.dev.json
@@ -330,7 +330,7 @@ trigger:
   paths:
     include:
       - 'modules/api-management*.bicep'
-      - 'scenarios/apim.bicep'
+      - 'scenarios/apim-complete.bicep'
       - 'parameters/apim.*.json'
 
 parameters:
@@ -367,7 +367,7 @@ stages:
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
-                az bicep build --file scenarios/apim.bicep
+                az bicep build --file scenarios/apim-complete.bicep
           
           - task: AzureCLI@2
             displayName: 'What-If Deployment'
@@ -378,7 +378,7 @@ stages:
               inlineScript: |
                 az deployment sub what-if \
                   --location $(location) \
-                  --template-file scenarios/apim.bicep \
+                  --template-file scenarios/apim-complete.bicep \
                   --parameters @parameters/apim.${{ parameters.environment }}.json \
                   --parameters phase=${{ parameters.environment }}
 
@@ -407,7 +407,7 @@ stages:
                     inlineScript: |
                       az deployment sub create \
                         --location $(location) \
-                        --template-file scenarios/apim.bicep \
+                        --template-file scenarios/apim-complete.bicep \
                         --parameters @parameters/apim.${{ parameters.environment }}.json \
                         --parameters phase=${{ parameters.environment }} \
                         --name "apim-$(Build.BuildId)"

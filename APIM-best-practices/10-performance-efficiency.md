@@ -206,7 +206,7 @@ flowchart LR
 ### Redis Cache Configuration (Bicep)
 
 ```bicep
-// From your repository: modules/api-management.bicep
+// From customer scenario: modules/api-management-core.bicep
 resource apim 'Microsoft.ApiManagement/service@2023-05-01-preview' = {
   name: apimName
   location: location

@@ -134,7 +134,7 @@ az apic api update \
   --service-name apic-enterprise-prod \
   --api-name dataset-api \
   --custom-properties '{
-    "owner": "data-mesh-team",
+    "owner": "customer-platform-team",
     "team": "Platform",
     "dataClassification": "Internal",
     "slaTarget": "99.9%"
