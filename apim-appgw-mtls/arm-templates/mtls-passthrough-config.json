@@ -1,0 +1,105 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "ARM Template to enable MTLS PASSTHROUGH mode on Application Gateway listener",
+    "author": "Pavleen Bali, Microsoft CSA",
+    "dateCreated": "2026-02-16",
+    "notes": "This template adds SSL profile with PASSTHROUGH configuration and updates the listener"
+  },
+  "parameters": {
+    "applicationGatewayName": {
+      "type": "string",
+      "defaultValue": "hub-uni-apim-npd-appgwv2-001",
+      "metadata": {
+        "description": "Name of the Application Gateway"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location of the Application Gateway"
+      }
+    },
+    "sslProfileName": {
+      "type": "string",
+      "defaultValue": "mtls-passthrough-profile",
+      "metadata": {
+        "description": "Name for the MTLS SSL profile"
+      }
+    },
+    "sslPolicyName": {
+      "type": "string",
+      "defaultValue": "AppGwSslPolicy20220101S",
+      "allowedValues": [
+        "AppGwSslPolicy20150501",
+        "AppGwSslPolicy20170401",
+        "AppGwSslPolicy20170401S",
+        "AppGwSslPolicy20220101",
+        "AppGwSslPolicy20220101S"
+      ],
+      "metadata": {
+        "description": "Predefined SSL policy to use"
+      }
+    },
+    "targetListenerName": {
+      "type": "string",
+      "defaultValue": "uniperapis-dev-gateway-listener-001",
+      "metadata": {
+        "description": "Name of the listener to enable MTLS on"
+      }
+    }
+  },
+  "variables": {
+    "appGwResourceId": "[resourceId('Microsoft.Network/applicationGateways', parameters('applicationGatewayName'))]",
+    "sslProfileResourceId": "[concat(variables('appGwResourceId'), '/sslProfiles/', parameters('sslProfileName'))]"
+  },
+  "resources": [],
+  "outputs": {
+    "sslProfileConfiguration": {
+      "type": "object",
+      "metadata": {
+        "description": "SSL Profile configuration to add to Application Gateway sslProfiles array"
+      },
+      "value": {
+        "name": "[parameters('sslProfileName')]",
+        "id": "[variables('sslProfileResourceId')]",
+        "properties": {
+          "clientAuthConfiguration": {
+            "verifyClientCertIssuerDN": false,
+            "verifyClientRevocation": "None"
+          },
+          "sslPolicy": {
+            "policyType": "Predefined",
+            "policyName": "[parameters('sslPolicyName')]"
+          }
+        }
+      }
+    },
+    "listenerSslProfileUpdate": {
+      "type": "object",
+      "metadata": {
+        "description": "SSL Profile reference to add to the target listener"
+      },
+      "value": {
+        "sslProfile": {
+          "id": "[variables('sslProfileResourceId')]"
+        }
+      }
+    },
+    "deploymentInstructions": {
+      "type": "object",
+      "metadata": {
+        "description": "Instructions for manual deployment"
+      },
+      "value": {
+        "step1": "Export current Application Gateway ARM template",
+        "step2": "Add the sslProfileConfiguration output to the sslProfiles array",
+        "step3": "Add the listenerSslProfileUpdate output to the target listener's properties",
+        "step4": "Deploy the updated ARM template",
+        "step5": "Verify SSL profile and listener configuration"
+      }
+    }
+  }
+}

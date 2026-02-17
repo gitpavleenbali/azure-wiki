@@ -1,0 +1,144 @@
+================================================================================
+  MTLS VALIDATION LOG - Application Gateway + API Management
+  Microsoft CSA Proof of Concept
+================================================================================
+
+Date:           January 23, 2026
+Author:         Pavleen Bali, Cloud Solution Architect, Microsoft
+Environment:    West Europe
+
+Test Resources:
+  - Application Gateway:  appgw-mtls-test (IP: 4.180.136.34)
+  - API Management:       apim-mtls-7842.azure-api.net
+  - Resource Group:       rg-mtls-validation-test
+
+================================================================================
+TEST 1: Request WITHOUT Client Certificate
+================================================================================
+Purpose: Verify MTLS enforcement - requests without certificate should be rejected
+
+Command:
+  Invoke-WebRequest -Uri "https://4.180.136.34/" -SkipCertificateCheck
+
+Result:
+  Status Code:    400 Bad Request
+  
+Conclusion:     PASS - MTLS is enforced. App Gateway rejects requests without 
+                client certificate.
+
+================================================================================
+TEST 2: Request WITH Valid Client Certificate
+================================================================================
+Purpose: Verify certificate is validated and request reaches APIM
+
+Client Certificate Used:
+  Subject:        CN=MTLS-Test-Client, O=Test Client, C=US
+  Issuer:         CN=MTLS-Test-CA, O=Microsoft CSA, C=US
+  Thumbprint:     FFE43BDBA76C79E7811D6D23D7157B697050CF08
+
+Command:
+  $cert = [X509Certificate2]::new("client-certificate.pfx", $password)
+  Invoke-WebRequest -Uri "https://4.180.136.34/" -Certificate $cert
+
+Result:
+  Status Code:    404 Not Found
+  Response Body:  {"statusCode": 404, "message": "Resource not found"}
+  
+Conclusion:     PASS - Certificate validated by App Gateway. Request forwarded 
+                to APIM successfully. (404 = no API at root path, expected)
+
+================================================================================
+TEST 3: Verify Application Gateway SSL Profile Configuration
+================================================================================
+Purpose: Confirm MTLS SSL Profile is correctly configured
+
+Command:
+  az network application-gateway ssl-profile list -g rg-mtls-validation-test 
+     --gateway-name appgw-mtls-test --query "[].{Name:name, VerifyClientCert:
+     clientAuthConfiguration.verifyClientCertIssuerDN}" -o table
+
+Result:
+  Name              VerifyClientCert
+  ----------------  ------------------
+  mtls-ssl-profile  True
+
+Conclusion:     PASS - SSL Profile configured with verifyClientCertIssuerDN=True
+
+================================================================================
+TEST 4: Verify APIM Client Certificate Negotiation
+================================================================================
+Purpose: Confirm APIM is configured to request client certificates
+
+Command:
+  az apim show -n apim-mtls-7842 -g rg-mtls-validation-test 
+     --query "hostnameConfigurations[0].{HostName:hostName, 
+     NegotiateClientCert:negotiateClientCertificate}" -o table
+
+Result:
+  HostName                      NegotiateClientCert
+  ----------------------------  ---------------------
+  apim-mtls-7842.azure-api.net  True
+
+Conclusion:     PASS - APIM negotiateClientCertificate=True
+
+================================================================================
+TEST 5: Backend Health Status
+================================================================================
+Purpose: Verify App Gateway can reach APIM backend
+
+Command:
+  az network application-gateway show-backend-health -g rg-mtls-validation-test 
+     -n appgw-mtls-test --query "backendAddressPools[0].
+     backendHttpSettingsCollection[0].servers[0].{Backend:address, Health:health}"
+
+Result:
+  Backend                       Health
+  ----------------------------  --------
+  apim-mtls-7842.azure-api.net  Healthy
+
+Conclusion:     PASS - Backend is healthy, App Gateway can reach APIM
+
+================================================================================
+VALIDATION SUMMARY
+================================================================================
+
+  [PASS] Test 1: Without cert = 400 (MTLS enforced)
+  [PASS] Test 2: With cert = 404 (request reached APIM, certificate validated)
+  [PASS] Test 3: SSL Profile verifyClientCertIssuerDN = True
+  [PASS] Test 4: APIM negotiateClientCertificate = True
+  [PASS] Test 5: Backend Health = Healthy
+
+  OVERALL RESULT: ALL TESTS PASSED
+
+================================================================================
+KEY FINDINGS - Customer Configuration Issues
+================================================================================
+
+The customer's current configuration has the following issues:
+
+1. Application Gateway (mainAPINW.bicep):
+   - trustedClientCertificates: []     <-- EMPTY (should contain CA cert)
+   - sslProfiles: []                   <-- EMPTY (should have MTLS profile)
+   - Listener not bound to SSL Profile
+
+2. API Management (APIMHub.bicep):
+   - negotiateClientCertificate: false <-- Should be TRUE
+
+Result of these issues:
+   - Server variables return NULL
+   - context.Request.Certificate is NULL in APIM policy
+   - API returns 403 Forbidden
+
+================================================================================
+RECOMMENDED CUSTOMER ACTIONS
+================================================================================
+
+1. Upload trusted client CA certificate to Application Gateway
+2. Create SSL Profile with clientAuthConfiguration.verifyClientCertIssuerDN=true
+3. Bind SSL Profile to HTTPS listener (gateway-dev)
+4. Set negotiateClientCertificate=true on APIM hostname configuration
+5. Run validation tests (see commands above)
+
+================================================================================
+END OF LOG
+================================================================================

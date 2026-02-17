@@ -1,0 +1,143 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "ARM Template to deploy MTLS PASSTHROUGH mode on Application Gateway. This template uses the Export-Update-Deploy pattern.",
+    "author": "Pavleen Bali, Microsoft CSA",
+    "dateCreated": "2026-02-16",
+    "usage": "1. Export current App Gateway config, 2. Merge SSL profile and listener update, 3. Deploy"
+  },
+  "parameters": {
+    "applicationGatewayName": {
+      "type": "string",
+      "defaultValue": "hub-uni-apim-npd-appgwv2-001",
+      "metadata": {
+        "description": "Name of the Application Gateway"
+      }
+    },
+    "resourceGroupName": {
+      "type": "string",
+      "defaultValue": "APINW-iaas-HUB-rgp-001",
+      "metadata": {
+        "description": "Resource group containing the Application Gateway"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "westeurope",
+      "metadata": {
+        "description": "Location of the Application Gateway"
+      }
+    },
+    "existingVnetResourceId": {
+      "type": "string",
+      "defaultValue": "/subscriptions/3f63aec6-3eb8-41a5-8343-803ff18e9fb7/resourceGroups/hub-uni-rgp-001/providers/Microsoft.Network/virtualNetworks/hub-uni-inet-vnet-001",
+      "metadata": {
+        "description": "Resource ID of the existing VNet"
+      }
+    },
+    "existingPublicIpResourceId": {
+      "type": "string",
+      "defaultValue": "/subscriptions/3f63aec6-3eb8-41a5-8343-803ff18e9fb7/resourceGroups/APINW-iaas-HUB-rgp-001/providers/Microsoft.Network/publicIPAddresses/hub-uni-apim-npd-appgwv2-pip-001",
+      "metadata": {
+        "description": "Resource ID of the existing Public IP"
+      }
+    },
+    "sslProfileName": {
+      "type": "string",
+      "defaultValue": "mtls-passthrough-profile",
+      "metadata": {
+        "description": "Name for the MTLS PASSTHROUGH SSL profile"
+      }
+    },
+    "targetListenerName": {
+      "type": "string",
+      "defaultValue": "uniperapis-dev-gateway-listener-001",
+      "metadata": {
+        "description": "Name of the listener to enable MTLS on"
+      }
+    },
+    "enablePassthrough": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "Set to true to enable PASSTHROUGH, false to disable (rollback)"
+      }
+    }
+  },
+  "variables": {
+    "appGwId": "[resourceId('Microsoft.Network/applicationGateways', parameters('applicationGatewayName'))]",
+    "sslProfileConfig": {
+      "name": "[parameters('sslProfileName')]",
+      "id": "[concat(variables('appGwId'), '/sslProfiles/', parameters('sslProfileName'))]",
+      "properties": {
+        "clientAuthConfiguration": {
+          "verifyClientCertIssuerDN": false,
+          "verifyClientRevocation": "None"
+        },
+        "sslPolicy": {
+          "policyType": "Predefined",
+          "policyName": "AppGwSslPolicy20220101S"
+        }
+      }
+    },
+    "sslProfileReference": {
+      "id": "[concat(variables('appGwId'), '/sslProfiles/', parameters('sslProfileName'))]"
+    }
+  },
+  "resources": [],
+  "outputs": {
+    "sslProfileToAdd": {
+      "type": "object",
+      "condition": "[parameters('enablePassthrough')]",
+      "value": "[variables('sslProfileConfig')]"
+    },
+    "listenerSslProfileReference": {
+      "type": "object",
+      "condition": "[parameters('enablePassthrough')]",
+      "value": {
+        "sslProfile": "[variables('sslProfileReference')]"
+      }
+    },
+    "deploymentScript": {
+      "type": "string",
+      "value": "[concat('# PowerShell Deployment Commands\n',
+        '\n# Step 1: Export current App Gateway configuration\n',
+        '$appGw = Get-AzApplicationGateway -ResourceGroupName \"', parameters('resourceGroupName'), '\" -Name \"', parameters('applicationGatewayName'), '\"\n',
+        '\n# Step 2: Add SSL Profile with PASSTHROUGH mode\n',
+        '$clientAuthConfig = New-AzApplicationGatewayClientAuthConfiguration -VerifyClientCertIssuerDN:$false\n',
+        '$sslPolicy = New-AzApplicationGatewaySslPolicy -PolicyType Predefined -PolicyName AppGwSslPolicy20220101S\n',
+        'Add-AzApplicationGatewaySslProfile -ApplicationGateway $appGw -Name \"', parameters('sslProfileName'), '\" -SslPolicy $sslPolicy -ClientAuthConfiguration $clientAuthConfig\n',
+        '\n# Step 3: Update listener to reference SSL profile\n',
+        '$sslProfile = $appGw.SslProfiles | Where-Object { $_.Name -eq \"', parameters('sslProfileName'), '\" }\n',
+        '$listener = $appGw.HttpListeners | Where-Object { $_.Name -eq \"', parameters('targetListenerName'), '\" }\n',
+        '$listener.SslProfile = New-Object Microsoft.Azure.Commands.Network.Models.PSResourceId\n',
+        '$listener.SslProfile.Id = $sslProfile.Id\n',
+        '\n# Step 4: Apply changes\n',
+        'Set-AzApplicationGateway -ApplicationGateway $appGw\n')]"
+    },
+    "rollbackScript": {
+      "type": "string",
+      "value": "[concat('# PowerShell Rollback Commands\n',
+        '\n# Step 1: Get App Gateway\n',
+        '$appGw = Get-AzApplicationGateway -ResourceGroupName \"', parameters('resourceGroupName'), '\" -Name \"', parameters('applicationGatewayName'), '\"\n',
+        '\n# Step 2: Remove SSL profile reference from listener\n',
+        '$listener = $appGw.HttpListeners | Where-Object { $_.Name -eq \"', parameters('targetListenerName'), '\" }\n',
+        '$listener.SslProfile = $null\n',
+        '\n# Step 3: Apply changes\n',
+        'Set-AzApplicationGateway -ApplicationGateway $appGw\n',
+        '\n# Step 4 (Optional): Remove SSL profile\n',
+        '# Remove-AzApplicationGatewaySslProfile -ApplicationGateway $appGw -Name \"', parameters('sslProfileName'), '\"\n',
+        '# Set-AzApplicationGateway -ApplicationGateway $appGw\n')]"
+    },
+    "azureCliCommands": {
+      "type": "object",
+      "value": {
+        "addSslProfile": "[concat('az network application-gateway ssl-profile add --resource-group ', parameters('resourceGroupName'), ' --gateway-name ', parameters('applicationGatewayName'), ' --name ', parameters('sslProfileName'), ' --policy-type Predefined --policy-name AppGwSslPolicy20220101S --client-auth-configuration verify-client-cert-issuer-dn=false')]",
+        "updateListener": "[concat('az network application-gateway http-listener update --resource-group ', parameters('resourceGroupName'), ' --gateway-name ', parameters('applicationGatewayName'), ' --name ', parameters('targetListenerName'), ' --ssl-profile ', parameters('sslProfileName'))]",
+        "rollbackListener": "[concat('az network application-gateway http-listener update --resource-group ', parameters('resourceGroupName'), ' --gateway-name ', parameters('applicationGatewayName'), ' --name ', parameters('targetListenerName'), ' --remove sslProfile')]",
+        "rollbackProfile": "[concat('az network application-gateway ssl-profile delete --resource-group ', parameters('resourceGroupName'), ' --gateway-name ', parameters('applicationGatewayName'), ' --name ', parameters('sslProfileName'))]"
+      }
+    }
+  }
+}
