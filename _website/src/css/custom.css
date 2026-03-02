@@ -396,24 +396,23 @@ div[class*="announcementBar"] kbd {
 }
 
 /* ================================================================== */
-/*  NAVBAR LEARNING HUB BUTTON                                         */
+/*  NAVBAR LEARNING HUB LINK                                           */
 /* ================================================================== */
 
-.navbar-learning-hub button {
-  padding: 5px 14px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #b45309, #d97706);
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
+.navbar-learning-hub {
+  padding: 5px 14px !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, #b45309, #d97706) !important;
+  color: #fff !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  transition: opacity 0.2s !important;
 }
 
-.navbar-learning-hub button:hover {
+.navbar-learning-hub:hover {
   opacity: 0.85;
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 /* ================================================================== */
@@ -421,14 +420,8 @@ div[class*="announcementBar"] kbd {
 /* ================================================================== */
 
 @media (max-width: 480px) {
-  .navbar-learning-hub button {
-    font-size: 0.7rem;
-    padding: 4px 10px;
-  }
-}
-
-@media (max-width: 768px) {
   .navbar-learning-hub {
-    display: none;
+    font-size: 0.7rem !important;
+    padding: 4px 10px !important;
   }
 }

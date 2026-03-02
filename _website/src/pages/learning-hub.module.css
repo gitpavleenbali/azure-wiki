@@ -1,0 +1,248 @@
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* ---- XP Dashboard ---- */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.xpCard {
+  text-align: center;
+  padding: 20px 12px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+  background: var(--ifm-background-surface-color);
+}
+
+.xpNumber {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #6366f1;
+  margin-bottom: 4px;
+}
+
+.xpLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-500);
+}
+
+/* ---- Progress Bar ---- */
+.progressSection {
+  margin-bottom: 40px;
+}
+
+.progressLabel {
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-500);
+  margin-bottom: 6px;
+}
+
+.progressBar {
+  height: 6px;
+  background: var(--ifm-color-emphasis-200);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* ---- Section Titles ---- */
+.sectionTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.sectionSub {
+  font-size: 0.88rem;
+  color: var(--ifm-color-emphasis-500);
+  margin-bottom: 20px;
+}
+
+/* ---- Level Roadmap ---- */
+.levels {
+  margin-bottom: 48px;
+}
+
+.levelGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.levelCard {
+  text-align: center;
+  padding: 14px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.levelUnlocked {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.levelLocked {
+  opacity: 0.45;
+}
+
+.levelMin {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.levelName {
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* ---- Module Grid ---- */
+.kbSection {
+  margin-bottom: 48px;
+}
+
+.moduleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.moduleCard {
+  padding: 20px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+  background: var(--ifm-background-surface-color);
+  transition: border-color 0.2s;
+}
+
+.moduleCard:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.moduleTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.moduleStat {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.statFlash {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6366f1;
+}
+
+.statQuiz {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #059669;
+}
+
+.moduleLink {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #6366f1;
+  text-decoration: none;
+}
+
+.moduleLink:hover {
+  text-decoration: underline;
+}
+
+/* ---- How It Works ---- */
+.howSection {
+  margin-bottom: 32px;
+}
+
+.howGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.howCard {
+  text-align: center;
+  padding: 20px 14px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+}
+
+.howStep {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.howCard h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.howCard p {
+  font-size: 0.82rem;
+  color: var(--ifm-color-emphasis-500);
+  line-height: 1.5;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .levelGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .moduleGrid {
+    grid-template-columns: 1fr;
+  }
+  .howGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .xpNumber {
+    font-size: 1.2rem;
+  }
+  .levelGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .howGrid {
+    grid-template-columns: 1fr;
+  }
+}

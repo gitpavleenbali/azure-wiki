@@ -109,15 +109,15 @@ const config: Config = {
           label: "Monitoring",
         },
         {
+          to: "/learning-hub",
+          label: "★ Learning Hub",
+          position: "right",
+          className: "navbar-learning-hub",
+        },
+        {
           href: "https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7001119707667832832",
           label: "Newsletter",
           position: "right",
-        },
-        {
-          type: "html",
-          position: "right",
-          value: '<button onclick="document.dispatchEvent(new KeyboardEvent(\'keydown\',{altKey:true,key:\'g\'}))">★ Learning Hub</button>',
-          className: "navbar-learning-hub",
         },
         {
           href: "https://github.com/gitpavleenbali/azure-wiki",
