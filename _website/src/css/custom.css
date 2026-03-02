@@ -1,0 +1,376 @@
+/**
+ * Azure Wiki — Premium Theme
+ * Inspired by OpenAI, Anthropic, Stripe documentation design systems
+ * Design DNA: minimal, dark-first, glassmorphism, smooth transitions
+ */
+
+/* ================================================================== */
+/*  ROOT VARIABLES                                                     */
+/* ================================================================== */
+
+:root {
+  /* Brand palette */
+  --aw-indigo-50: #eef2ff;
+  --aw-indigo-100: #e0e7ff;
+  --aw-indigo-400: #818cf8;
+  --aw-indigo-500: #6366f1;
+  --aw-indigo-600: #4f46e5;
+  --aw-indigo-700: #4338ca;
+  --aw-indigo-900: #312e81;
+  --aw-violet-500: #8b5cf6;
+  --aw-violet-600: #7c3aed;
+
+  /* Overrides for Docusaurus */
+  --ifm-color-primary: #6366f1;
+  --ifm-color-primary-dark: #4f46e5;
+  --ifm-color-primary-darker: #4338ca;
+  --ifm-color-primary-darkest: #312e81;
+  --ifm-color-primary-light: #818cf8;
+  --ifm-color-primary-lighter: #a5b4fc;
+  --ifm-color-primary-lightest: #c7d2fe;
+
+  --ifm-font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --ifm-font-family-monospace: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --ifm-heading-font-weight: 700;
+  --ifm-code-font-size: 0.88rem;
+  --ifm-line-height-base: 1.7;
+  --ifm-border-radius: 12px;
+
+  /* Spacing */
+  --ifm-global-radius: 12px;
+  --ifm-navbar-height: 3.75rem;
+}
+
+/* ================================================================== */
+/*  DARK THEME — The Default Experience                                */
+/* ================================================================== */
+
+[data-theme="dark"] {
+  --ifm-background-color: #0a0a0f;
+  --ifm-background-surface-color: #111118;
+  --ifm-color-emphasis-100: #1a1a24;
+  --ifm-color-emphasis-200: #25253a;
+  --ifm-color-emphasis-300: #35355a;
+  --ifm-footer-background-color: #08080d;
+  --ifm-navbar-background-color: rgba(10, 10, 15, 0.85);
+}
+
+/* ================================================================== */
+/*  TYPOGRAPHY — OpenAI-grade readability                              */
+/* ================================================================== */
+
+h1 {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.2 !important;
+}
+
+h2 {
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem !important;
+}
+
+h3 {
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+}
+
+article p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ifm-color-emphasis-800);
+}
+
+/* ================================================================== */
+/*  NAVBAR — Glassmorphism like Anthropic                              */
+/* ================================================================== */
+
+.navbar {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+}
+
+.navbar__title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.navbar__link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.navbar__link:hover {
+  color: var(--aw-indigo-400);
+}
+
+.navbar__link--active {
+  font-weight: 600;
+}
+
+/* ================================================================== */
+/*  SIDEBAR — Clean like Stripe docs                                   */
+/* ================================================================== */
+
+.menu__link {
+  font-size: 0.87rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 6px 12px;
+  transition: all 0.15s;
+}
+
+.menu__link:hover {
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.menu__link--active {
+  background: rgba(99, 102, 241, 0.1) !important;
+  color: var(--aw-indigo-500) !important;
+  font-weight: 600;
+}
+
+.menu__list-item-collapsible .menu__link {
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* ================================================================== */
+/*  TABLE OF CONTENTS — Minimal                                        */
+/* ================================================================== */
+
+.table-of-contents__link {
+  font-size: 0.82rem;
+  transition: color 0.15s;
+}
+
+.table-of-contents__link--active {
+  color: var(--aw-indigo-500);
+  font-weight: 600;
+}
+
+/* ================================================================== */
+/*  CODE BLOCKS — Dark premium with gradient accent                    */
+/* ================================================================== */
+
+pre {
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] pre {
+  background: #0d0d14 !important;
+}
+
+code {
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 0.86rem;
+}
+
+/* ================================================================== */
+/*  TABLES — Card-style like Vercel                                    */
+/* ================================================================== */
+
+table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  font-size: 0.9rem;
+}
+
+table thead tr {
+  background: var(--ifm-color-emphasis-100);
+}
+
+table th {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 12px 16px;
+  color: var(--ifm-color-emphasis-700);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ifm-color-emphasis-100);
+  vertical-align: top;
+}
+
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+/* ================================================================== */
+/*  BLOCKQUOTES — Accent-bordered                                      */
+/* ================================================================== */
+
+blockquote {
+  border-left: 3px solid var(--aw-indigo-500);
+  background: rgba(99, 102, 241, 0.04);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 20px;
+  margin: 20px 0;
+}
+
+blockquote p {
+  font-size: 0.92rem;
+}
+
+/* ================================================================== */
+/*  ADMONITIONS — Modern rounded                                       */
+/* ================================================================== */
+
+.alert {
+  border-radius: 12px;
+  border-width: 1px;
+  border-left-width: 4px;
+}
+
+/* ================================================================== */
+/*  DETAILS / SUMMARY — Quiz answer panels                             */
+/* ================================================================== */
+
+details {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 10px 0;
+  transition: border-color 0.2s;
+}
+
+details:hover {
+  border-color: var(--aw-indigo-400);
+}
+
+details summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--aw-indigo-500);
+  font-size: 0.92rem;
+}
+
+details[open] summary {
+  margin-bottom: 10px;
+}
+
+/* ================================================================== */
+/*  SCROLL PROGRESS BAR                                                */
+/* ================================================================== */
+
+.aw-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.aw-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--aw-indigo-500), var(--aw-violet-500));
+  transition: width 0.12s linear;
+}
+
+/* ================================================================== */
+/*  FOOTER — Dark minimal                                              */
+/* ================================================================== */
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer__title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.footer__link-item {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+/* ================================================================== */
+/*  ANIMATIONS                                                         */
+/* ================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+article .markdown > * {
+  animation: contentFade 0.4s ease;
+}
+
+@keyframes contentFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================================== */
+/*  RESPONSIVE                                                         */
+/* ================================================================== */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem !important;
+  }
+  h2 {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* ================================================================== */
+/*  ANNOUNCEMENT BAR                                                   */
+/* ================================================================== */
+
+div[class*="announcementBar"] {
+  font-size: 0.82rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+div[class*="announcementBar"] kbd {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+/* ================================================================== */
+/*  MERMAID DIAGRAMS — Clean integration                               */
+/* ================================================================== */
+
+.mermaid {
+  margin: 24px 0;
+}
+
+[data-theme="dark"] .mermaid {
+  filter: brightness(0.95);
+}

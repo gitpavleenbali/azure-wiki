@@ -1,2 +1,8 @@
 # Internal working files - not for publishing
 .internal/
+
+# Website build output
+_website/build/
+_website/node_modules/
+_website/.docusaurus/
+_website/.cache-loader/
