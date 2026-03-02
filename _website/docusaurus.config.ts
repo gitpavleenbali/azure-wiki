@@ -114,6 +114,12 @@ const config: Config = {
           position: "right",
         },
         {
+          type: "html",
+          position: "right",
+          value: '<button onclick="document.dispatchEvent(new KeyboardEvent(\'keydown\',{altKey:true,key:\'g\'}))">★ Learning Hub</button>',
+          className: "navbar-learning-hub",
+        },
+        {
           href: "https://github.com/gitpavleenbali/azure-wiki",
           label: "GitHub",
           position: "right",

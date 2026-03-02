@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useLocation } from "@docusaurus/router";
 import styles from "./GamificationBadge.module.css";
 
 /* ---- Persistent State ---- */
@@ -50,6 +51,10 @@ function getNextLevel(xp: number) {
 export default function GamificationBadge(): JSX.Element {
   const [state, setState] = useState<GameState>(loadState);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  // Hide on homepage
+  const isHomepage = location.pathname === "/azure-wiki/" || location.pathname === "/azure-wiki" || location.pathname === "/";
 
   // Track page read on scroll
   useEffect(() => {
@@ -103,10 +108,11 @@ export default function GamificationBadge(): JSX.Element {
 
   return (
     <>
-      <div className={styles.badge} onClick={() => setOpen((o) => !o)} title="Learning Progress (Alt+G)">
-        <span className={styles.xp}>★ {state.xp} XP</span>
-        <span className={styles.level}>· {lvl.name}</span>
-      </div>
+      {!isHomepage && (
+        <div className={styles.badge} onClick={() => setOpen((o) => !o)} title="Learning Progress (Alt+G)">
+          ★ {state.xp} XP
+        </div>
+      )}
 
       {open && (
         <div className={styles.panel}>

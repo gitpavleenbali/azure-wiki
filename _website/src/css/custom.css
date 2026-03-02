@@ -394,3 +394,41 @@ div[class*="announcementBar"] kbd {
 [data-theme="dark"] .mermaid {
   filter: brightness(0.95);
 }
+
+/* ================================================================== */
+/*  NAVBAR LEARNING HUB BUTTON                                         */
+/* ================================================================== */
+
+.navbar-learning-hub button {
+  padding: 5px 14px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #b45309, #d97706);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.navbar-learning-hub button:hover {
+  opacity: 0.85;
+}
+
+/* ================================================================== */
+/*  RESPONSIVE — Mobile / Tablet / Desktop                             */
+/* ================================================================== */
+
+@media (max-width: 480px) {
+  .navbar-learning-hub button {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-learning-hub {
+    display: none;
+  }
+}

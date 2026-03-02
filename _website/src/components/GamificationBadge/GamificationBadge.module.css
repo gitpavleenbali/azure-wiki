@@ -3,12 +3,13 @@
   bottom: 24px;
   left: 24px;
   z-index: 999;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   padding: 9px 18px;
   background: linear-gradient(135deg, #b45309, #d97706);
   color: #fff;
+  border: none;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(217, 119, 6, 0.35);
@@ -16,6 +17,8 @@
   user-select: none;
   font-size: 0.8rem;
   font-weight: 600;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .badge:hover {
@@ -119,13 +122,30 @@
 
 @media (max-width: 480px) {
   .badge {
+    bottom: 12px;
+    left: 12px;
+    padding: 7px 12px;
+    font-size: 0.72rem;
+  }
+  .panel {
+    left: 8px;
+    bottom: 55px;
+    width: calc(100vw - 16px);
+    max-width: 300px;
+    padding: 16px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .badge {
     bottom: 16px;
     left: 16px;
     padding: 8px 14px;
+    font-size: 0.75rem;
   }
   .panel {
-    left: 12px;
-    width: calc(100vw - 24px);
-    max-width: 300px;
+    left: 16px;
+    bottom: 65px;
+    width: 260px;
   }
 }

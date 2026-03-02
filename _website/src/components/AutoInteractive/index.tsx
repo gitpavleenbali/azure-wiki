@@ -33,6 +33,9 @@ export default function AutoInteractive(): JSX.Element | null {
   const flashcards = data?.flashcards || [];
   const quiz = data?.quiz || [];
 
+  // Hide on homepage
+  const isHomepage = location.pathname === "/azure-wiki/" || location.pathname === "/azure-wiki" || location.pathname === "/";
+  if (isHomepage) return null;
   if (flashcards.length === 0 && quiz.length === 0) return null;
 
   return (
