@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none">
   <rect width="36" height="36" rx="8" fill="#6366f1"/>
-  <!-- Upward A -->
-  <path d="M10 26L18 8L26 26" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <line x1="13" y1="20" x2="23" y2="20" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  <!-- Downward W/V intersect -->
-  <path d="M12 10L18 28L24 10" stroke="rgba(165,180,252,0.55)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Upper V dipping down: top-left to center-bottom to top-right -->
+  <path d="M7 8L18 24L29 8" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Lower V pointing up: bottom-left to center-top to bottom-right -->
+  <path d="M7 28L18 12L29 28" stroke="rgba(200,210,255,0.7)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

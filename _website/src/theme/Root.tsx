@@ -1,6 +1,7 @@
 import React from "react";
 import GamificationBadge from "@site/src/components/GamificationBadge";
 import ProgressBar from "@site/src/components/ProgressBar";
+import AutoInteractive from "@site/src/components/AutoInteractive";
 
 interface RootProps {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ export default function Root({ children }: RootProps): JSX.Element {
     <>
       <ProgressBar />
       {children}
+      <AutoInteractive />
       <GamificationBadge />
     </>
   );
