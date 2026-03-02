@@ -25,11 +25,22 @@ export default function AutoInteractive(): JSX.Element | null {
   // Scan DOM after render
   useEffect(() => {
     const timer = setTimeout(() => {
-      // --- Extract flashcards from Key Takeaways ---
+      // --- Extract flashcards from multiple sources ---
       const cards: FlashcardItem[] = [];
+      const seen = new Set<string>();
+
+      const addCard = (front: string, back: string) => {
+        const key = front.slice(0, 40);
+        if (front.length > 8 && back.length > 8 && !seen.has(key)) {
+          seen.add(key);
+          cards.push({ front, back });
+        }
+      };
+
+      // Source 1: Key Takeaways lists
       const headings = document.querySelectorAll("article h2, article h3");
       headings.forEach((h) => {
-        if (/key takeaway/i.test(h.textContent || "")) {
+        if (/key takeaway|takeaway/i.test(h.textContent || "")) {
           let el = h.nextElementSibling;
           while (el && !/^H[1-3]$/.test(el.tagName)) {
             if (el.tagName === "OL" || el.tagName === "UL") {
@@ -37,21 +48,13 @@ export default function AutoInteractive(): JSX.Element | null {
                 const text = (li.textContent || "").trim();
                 if (text.length > 15) {
                   const sepIdx =
-                    text.indexOf("—") > 0
-                      ? text.indexOf("—")
-                      : text.indexOf(":") > 0
-                      ? text.indexOf(":")
-                      : -1;
+                    text.indexOf("—") > 0 ? text.indexOf("—")
+                    : text.indexOf(":") > 0 ? text.indexOf(":")
+                    : -1;
                   if (sepIdx > 0) {
-                    cards.push({
-                      front: text.slice(0, sepIdx).trim(),
-                      back: text.slice(sepIdx + 1).trim(),
-                    });
+                    addCard(text.slice(0, sepIdx).trim(), text.slice(sepIdx + 1).trim());
                   } else {
-                    cards.push({
-                      front: text.length > 70 ? text.slice(0, 70) + "..." : text,
-                      back: text,
-                    });
+                    addCard(text.length > 70 ? text.slice(0, 70) + "..." : text, text);
                   }
                 }
               });
@@ -60,7 +63,50 @@ export default function AutoInteractive(): JSX.Element | null {
           }
         }
       });
-      setFlashcards(cards);
+
+      // Source 2: Tables with Strategy/Description or Optimization columns
+      const tables = document.querySelectorAll("article table");
+      tables.forEach((table) => {
+        const headers = Array.from(table.querySelectorAll("th")).map((th) =>
+          (th.textContent || "").toLowerCase().trim()
+        );
+        // Find columns that make good front/back pairs
+        const termIdx = headers.findIndex((h) =>
+          /strategy|optimization|technique|feature|pattern|tool|metric|driver|category|resource|name|type/i.test(h)
+        );
+        const descIdx = headers.findIndex((h) =>
+          /description|detail|purpose|savings|recommendation|action|best for|use case|use when/i.test(h)
+        );
+        if (termIdx >= 0 && descIdx >= 0) {
+          const rows = table.querySelectorAll("tbody tr");
+          rows.forEach((row) => {
+            const cells = row.querySelectorAll("td");
+            const front = (cells[termIdx]?.textContent || "").trim();
+            const back = (cells[descIdx]?.textContent || "").trim();
+            if (front.length > 3 && back.length > 3) {
+              addCard(front, back);
+            }
+          });
+        }
+      });
+
+      // Source 3: Bold terms in paragraphs (definitions)
+      if (cards.length < 5) {
+        const paras = document.querySelectorAll("article p");
+        paras.forEach((p) => {
+          const strongs = p.querySelectorAll("strong");
+          strongs.forEach((s) => {
+            const term = (s.textContent || "").trim();
+            const context = (p.textContent || "").trim();
+            if (term.length > 3 && term.length < 80 && context.length > 30 && cards.length < 20) {
+              addCard(term, context.length > 200 ? context.slice(0, 200) + "..." : context);
+            }
+          });
+        });
+      }
+
+      // Cap at 25 cards max
+      setFlashcards(cards.slice(0, 25));
 
       // --- Extract quiz items from <details> with Answer summary ---
       const quiz: QuizQuestion[] = [];
@@ -93,7 +139,7 @@ export default function AutoInteractive(): JSX.Element | null {
     setShowQuiz(false);
   }, [flashcards, quizItems]);
 
-  const hasContent = flashcards.length > 0 || quizItems.length >= 3;
+  const hasContent = flashcards.length > 0 || quizItems.length > 0;
   if (!hasContent) return null;
 
   return (
@@ -109,7 +155,7 @@ export default function AutoInteractive(): JSX.Element | null {
             <span style={fabIconStyle}>⚡</span> {flashcards.length} Flashcards
           </button>
         )}
-        {quizItems.length >= 3 && (
+        {quizItems.length > 0 && (
           <button
             style={{ ...fabStyle, background: "linear-gradient(135deg, #059669, #10b981)" }}
             onClick={() => { setShowQuiz(true); setShowFlashcards(false); }}
@@ -259,8 +305,8 @@ function QuizOverlay({
 /* ---- Styles ---- */
 const fabContainerStyle: React.CSSProperties = {
   position: "fixed",
-  bottom: 130,
-  right: 24,
+  bottom: 24,
+  left: 24,
   zIndex: 998,
   display: "flex",
   flexDirection: "column",

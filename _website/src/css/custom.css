@@ -347,6 +347,26 @@ article .markdown > * {
 }
 
 /* ================================================================== */
+/*  MOBILE SIDEBAR FIX — ensure sidebar sits above content             */
+/* ================================================================== */
+
+@media (max-width: 996px) {
+  .navbar-sidebar {
+    z-index: 9999 !important;
+  }
+  .navbar-sidebar__backdrop {
+    z-index: 9998 !important;
+  }
+  aside.theme-doc-sidebar-container {
+    z-index: 100 !important;
+  }
+  nav.menu {
+    z-index: 100 !important;
+    position: relative !important;
+  }
+}
+
+/* ================================================================== */
 /*  ANNOUNCEMENT BAR                                                   */
 /* ================================================================== */
 

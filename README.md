@@ -1,169 +1,97 @@
-# 🌐 Azure Wiki
+# Azure Wiki
 
 <div align="center">
 
-[![Live Site](https://img.shields.io/badge/🌍_Live_Site-gitpavleenbali.github.io/azure--wiki-6366f1?style=for-the-badge)](https://gitpavleenbali.github.io/azure-wiki/)
-![Azure Wiki Banner](https://img.shields.io/badge/Azure-Wiki-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
-[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![Live Site](https://img.shields.io/badge/Live_Site-gitpavleenbali.github.io/azure--wiki-6366f1?style=for-the-badge)](https://gitpavleenbali.github.io/azure-wiki/)
+![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-### **Your One-Stop Azure Knowledge Hub**
-*Beyond documentation — Interactive learning with flashcards, quizzes, gamification, and production-ready code*
+**Interactive Azure learning platform with flashcards, quizzes, and gamification.**
 
-> **📖 [Explore the Interactive Site →](https://gitpavleenbali.github.io/azure-wiki/)** — Dark-themed, React-powered, gamified learning platform
-
-[🚀 Quick Start](#-quick-start) • [📂 Table of Contents](#-table-of-contents) • [🎯 Why Azure Wiki](#-why-azure-wiki) • [🤝 Contribute](#-contribute)
-
-| 📧 Newsletter | 💼 LinkedIn | 🐙 GitHub |
-|:-------------:|:-----------:|:---------:|
-| [Subscribe to Check1Minute](https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7001119707667832832) | [Connect](https://linkedin.com/in/pavleenbali) | [@gitpavleenbali](https://github.com/gitpavleenbali) |
-
----
+[Explore the Site](https://gitpavleenbali.github.io/azure-wiki/) | [LinkedIn](https://linkedin.com/in/pavleenbali) | [Newsletter](https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7001119707667832832)
 
 </div>
 
-## 📂 Table of Contents
+---
 
-| # | Folder | Topic | Description |
-|:-:|--------|-------|-------------|
-| 1 | 📁 [azure-ai-foundry](./azure-ai-foundry/) | **AI & ML** | Azure AI Foundry cross-region architecture patterns |
-| 2 | 📁 [azure-storage](./azure-storage/) | **Storage** | ADLS Gen2 strategy and data lake guidance |
-| 3 | 📁 [devsecops](./devsecops/) | **Security** | DevSecOps best practices and CI/CD security |
-| 4 | 📁 [unified-monitoring-solution](./unified-monitoring-solution/) | **Monitoring** | Enterprise observability and monitoring patterns |
+## What Is This
 
-### 📄 Quick Links to Guides
+An open-source, interactive knowledge base for Azure practitioners. Every doc page automatically generates flashcards from its content and offers quiz modes where applicable. A gamification engine tracks XP, streaks, and levels across your learning journey.
 
-| Guide | Category | Description |
-|-------|----------|-------------|
-| [AI Foundry Cross-Region Architecture](./azure-ai-foundry/AI-Foundry-Cross-Region-Architecture.md) | 🤖 AI/ML | Multi-region AI deployment patterns |
-| [ADLS Gen2 Strategy Guidance](./azure-storage/ADLS-Gen2-Strategy-Guidance.md) | 💾 Storage | Data lake storage best practices |
-| [DevSecOps Best Practices](./devsecops/DEVSECOPS_BEST_PRACTICES_GUIDE.md) | 🔐 Security | Complete security integration guide |
-| [Architecture Overview](./unified-monitoring-solution/01-architecture-overview.md) | 📊 Monitoring | Unified monitoring architecture |
-| [Operations Runbook](./unified-monitoring-solution/02-operations-runbook.md) | 📊 Monitoring | Operational procedures and runbooks |
-| [Advanced Topics](./unified-monitoring-solution/03-advanced-topics.md) | 📊 Monitoring | Advanced monitoring configurations |
-| [Platform Observability Scenarios](./unified-monitoring-solution/04-platform-observability-scenarios.md) | 📊 Monitoring | End-to-end observability scenarios |
+Built with **Docusaurus 3**, **React 18**, **TypeScript**, deployed via **GitHub Actions** to **GitHub Pages**.
 
 ---
 
-## 🎯 Why Azure Wiki?
+## Modules
 
-| Traditional Docs | Azure Wiki |
-|:-----------------|:-----------|
-| 📄 Text-heavy walls | 🎨 **Visual-first** with diagrams |
-| 🔍 Hard to find answers | 📋 **Curated** best practices |
-| 🤔 Theory-focused | 💻 **Code snippets** ready to use |
-| 📚 Scattered resources | 🎯 **One-stop** solution |
-
-```
-+---------------------------------------------------------------------+
-|                          AZURE WIKI                                 |
-+---------------------------------------------------------------------+
-|                                                                     |
-|   +-------------+  +-------------+  +-------------+  +-------------+|
-|   |             |  |             |  |             |  |             ||
-|   |  Diagrams   |  |  Security   |  |     IaC     |  |    Real     ||
-|   |  & Visuals  |  |  Patterns   |  |  Templates  |  |  Examples   ||
-|   |             |  |             |  |             |  |             ||
-|   +-------------+  +-------------+  +-------------+  +-------------+|
-|         |               |                |                |         |
-|         +---------------+----------------+----------------+         |
-|                                |                                    |
-|                                v                                    |
-|                 +-----------------------------+                     |
-|                 |  Production-Ready Knowledge |                     |
-|                 +-----------------------------+                     |
-|                                                                     |
-+---------------------------------------------------------------------+
-```
+| Module | Chapters | What You Learn |
+|--------|:--------:|----------------|
+| [**Cost Optimization**](./cost-optimization/) | 9 | WAF fundamentals, FinOps lifecycle, rate/usage optimization, AI token economics, GPU cost management |
+| [**APIM Best Practices**](./APIM-best-practices/) | 19 | Architecture, security, policies, AI gateway, monetization, capacity planning, troubleshooting |
+| [**Front Door**](./FrontDoor-best-practices/) | 6 | Reliability, security, cost optimization, operational excellence, performance |
+| [**Monitoring**](./unified-monitoring-solution/) | 4 | Unified observability architecture, operations runbook, platform scenarios |
+| [**AI Foundry**](./azure-ai-foundry/) | 1 | Cross-region Azure AI Foundry architecture patterns |
+| [**ADLS Gen2**](./azure-storage/) | 1 | Data lake storage strategy and governance |
+| [**DevSecOps**](./devsecops/) | 1 | CI/CD security integration, shift-left practices |
 
 ---
 
-## 🚀 Quick Start
+## Interactive Features
+
+| Feature | How It Works |
+|---------|-------------|
+| **Flashcards** | Auto-extracted from tables, key takeaways, and bold terms on every page. Click the floating button on the left. |
+| **Quiz Mode** | Self-assessment from Q&A blocks. Reveal answer, score yourself, see results. |
+| **XP & Levels** | Earn XP by reading pages (65% scroll = complete). Track streaks. Level up from Cloud Novice to FinOps Legend. |
+| **Progress Bar** | Scroll-based reading progress on every page. |
+| **Mermaid Diagrams** | Architecture diagrams, decision trees, and flow charts rendered natively. |
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Docusaurus 3 |
+| Components | React 18, TypeScript |
+| Diagrams | Mermaid (native) |
+| Syntax | Prism (PowerShell, Bicep, KQL, Python, C#, HCL) |
+| Design | Dark-first, glassmorphism, indigo/violet palette |
+| CI/CD | GitHub Actions |
+| Hosting | GitHub Pages |
+
+---
+
+## Local Development
 
 ```bash
-# Clone the wiki
 git clone https://github.com/gitpavleenbali/azure-wiki.git
-
-# Navigate to topics
-cd azure-wiki
+cd azure-wiki/_website
+npm install
+npm start        # Dev server at localhost:3000
+npm run build    # Production build
 ```
 
 ---
 
-## 🏗️ Architecture Patterns
+## Contributing
 
-```
-+---------------------------------------------------------------------+
-|                    Azure Solution Architectures                      |
-+---------------------------------------------------------------------+
-|                                                                     |
-|   +-----------+     +-----------+     +-----------+     +-----------+
-|   |           |     |           |     |           |     |           |
-|   |    Web    |---->|    API    |---->|   Data    |---->|    AI     |
-|   |   Apps    |     |   Mgmt    |     |   Layer   |     |    ML     |
-|   |           |     |           |     |           |     |           |
-|   +-----------+     +-----------+     +-----------+     +-----------+
-|        |                 |                 |                 |      |
-|        v                 v                 v                 v      |
-|   +-----------+     +-----------+     +-----------+     +-----------+
-|   |  Static   |     |   Azure   |     |  Cosmos   |     |   Azure   |
-|   |   Web     |     | Functions |     |    DB     |     |    AI     |
-|   |   Apps    |     |  + AKS    |     |  + SQL    |     | Services  |
-|   +-----------+     +-----------+     +-----------+     +-----------+
-|                                                                     |
-+---------------------------------------------------------------------+
-```
+1. Fork the repo
+2. Create a branch (`git checkout -b feature/your-topic`)
+3. Add content following the existing module structure
+4. Submit a pull request
 
----
-
-## 🗺️ Roadmap
-
-| Status | Topic | ETA |
-|:------:|-------|-----|
-| ✅ | DevSecOps Best Practices | Available |
-| ✅ | Azure AI Foundry Architecture | Available |
-| ✅ | ADLS Gen2 Strategy | Available |
-| ✅ | Unified Monitoring Solution | Available |
-| 🔄 | Azure Networking Deep Dive | Coming Soon |
-| 📋 | AKS Production Patterns | Planned |
-| 📋 | Cost Optimization Guide | Planned |
-| 📋 | Disaster Recovery Patterns | Planned |
-
----
-
-## 🤝 Contribute
-
-We welcome contributions! Here's how you can help:
-
-```
-+--------------------------------------------+
-|         Contribution Workflow              |
-+--------------------------------------------+
-|                                            |
-|    [Fork]  --->  [Edit]  --->  [PR]        |
-|                                            |
-|    1. Fork this repository                 |
-|    2. Create your feature branch           |
-|    3. Add your knowledge                   |
-|    4. Submit a pull request                |
-|                                            |
-+--------------------------------------------+
-```
-
-### 📝 Contribution Guidelines
-
-- ✅ Use diagrams and visuals where possible
-- ✅ Include working code snippets
-- ✅ Keep explanations concise and practical
-- ✅ Add real-world examples
-- ✅ Follow the existing structure
+All content uses standard Markdown with Mermaid diagrams. Interactive features (flashcards, quizzes) are auto-generated from content structure — no special markup needed.
 
 ---
 
 <div align="center">
 
-### ⭐ If this helps you, give it a star!
+**[Explore the Site](https://gitpavleenbali.github.io/azure-wiki/)**
 
-**Made with 💙 for the Azure Community**
+Made by [Pavleen Bali](https://linkedin.com/in/pavleenbali) for the Azure community.
+
+</div>
 
 </div>

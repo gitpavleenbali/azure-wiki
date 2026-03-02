@@ -1,6 +1,6 @@
 .badge {
   position: fixed;
-  bottom: 72px;
+  bottom: 24px;
   right: 24px;
   z-index: 999;
   display: flex;
@@ -39,7 +39,7 @@
 /* Panel */
 .panel {
   position: fixed;
-  bottom: 128px;
+  bottom: 80px;
   right: 24px;
   z-index: 1000;
   width: 280px;
