@@ -23,6 +23,13 @@
   margin-bottom: 12px;
 }
 
+.heroLogo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.35));
+}
+
 .heroTitle {
   font-size: 3.2rem;
   font-weight: 800;
@@ -139,7 +146,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-bottom: 64px;
 }
@@ -245,6 +252,31 @@
 /*  RESPONSIVE                                                         */
 /* ================================================================== */
 
+/* ================================================================== */
+/*  DEMO SECTION (live flashcard + quiz)                               */
+/* ================================================================== */
+
+.demoSection {
+  margin-top: 56px;
+}
+
+.demoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .demoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================================== */
+/*  RESPONSIVE                                                         */
+/* ================================================================== */
+
 @media (max-width: 768px) {
   .heroTitle {
     font-size: 2.2rem;
@@ -258,5 +290,8 @@
   }
   .grid {
     grid-template-columns: 1fr;
+  }
+  .featureGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import Flashcard from "@site/src/components/Flashcard";
+import Quiz from "@site/src/components/Quiz";
 import styles from "./index.module.css";
 
 const modules = [
@@ -52,6 +54,11 @@ function HeroBanner(): JSX.Element {
   return (
     <div className={styles.hero}>
       <div className={styles.heroInner}>
+        <img
+          src="/azure-wiki/img/logo.svg"
+          alt="Azure Wiki"
+          className={styles.heroLogo}
+        />
         <p className={styles.heroLabel}>Open-Source Learning Platform</p>
         <h1 className={styles.heroTitle}>Azure Wiki</h1>
         <p className={styles.heroSub}>
@@ -153,6 +160,49 @@ export default function Home(): JSX.Element {
               <div className={styles.featureIcon}>&#9783;</div>
               <h3>Mermaid Diagrams</h3>
               <p>Visual architecture diagrams, decision trees, and flow charts throughout</p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.demoSection}>
+          <h2 className={styles.sectionTitle}>Try It Now</h2>
+          <div className={styles.demoGrid}>
+            <div>
+              <Flashcard
+                title="Cost Optimization Essentials"
+                cards={[
+                  { front: "What are the 3 cloud cost drivers?", back: "Compute (50-70%), Storage (15-25%), and Data Transfer / Egress (5-15%)" },
+                  { front: "What is the #1 AI cost lever?", back: "Model selection — the difference between cheapest and most expensive model for the same task can be 100x" },
+                  { front: "What is FinOps?", back: "A cultural practice that brings financial accountability to cloud spend through collaboration between Engineering, Finance, and Business teams" },
+                  { front: "Reservations vs Savings Plans?", back: "Reservations: fixed SKU + region, up to 72% savings. Savings Plans: flexible across SKUs/regions, up to 65% savings" },
+                  { front: "What is semantic caching?", back: "Caching embeddings of queries — if a semantically similar query was recently answered, return the cached response instead of calling the LLM. Saves 60-80% on token costs" },
+                ]}
+              />
+            </div>
+            <div>
+              <Quiz
+                title="Quick Knowledge Check"
+                questions={[
+                  {
+                    question: "What percentage of cloud waste is typically from idle or over-provisioned resources?",
+                    options: ["20-30%", "40-50%", "72-80%", "90-95%"],
+                    correct: 2,
+                    explanation: "72-80% of cloud waste comes from idle or over-provisioned resources, making usage optimization the single highest-impact lever.",
+                  },
+                  {
+                    question: "How much cheaper is GPT-4o-mini compared to GPT-4o for input tokens?",
+                    options: ["2x cheaper", "5x cheaper", "10x cheaper", "16x cheaper"],
+                    correct: 3,
+                    explanation: "GPT-4o-mini is 16x cheaper than GPT-4o for input tokens ($0.15 vs $2.50 per 1M tokens) and delivers excellent quality for most business tasks.",
+                  },
+                  {
+                    question: "What is the WAF Cost Optimization pillar primarily about?",
+                    options: ["Cutting costs at all costs", "Maximizing value per dollar spent", "Using only free-tier services", "Avoiding cloud entirely"],
+                    correct: 1,
+                    explanation: "Cost optimization is about maximizing business value per unit of cloud spend while meeting performance, reliability, and security requirements.",
+                  },
+                ]}
+              />
             </div>
           </div>
         </section>
