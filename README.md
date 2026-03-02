@@ -2,12 +2,15 @@
 
 <div align="center">
 
+[![Live Site](https://img.shields.io/badge/🌍_Live_Site-gitpavleenbali.github.io/azure--wiki-6366f1?style=for-the-badge)](https://gitpavleenbali.github.io/azure-wiki/)
 ![Azure Wiki Banner](https://img.shields.io/badge/Azure-Wiki-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
 ### **Your One-Stop Azure Knowledge Hub**
-*Beyond documentation — Visual guides, architecture patterns, and production-ready code*
+*Beyond documentation — Interactive learning with flashcards, quizzes, gamification, and production-ready code*
+
+> **📖 [Explore the Interactive Site →](https://gitpavleenbali.github.io/azure-wiki/)** — Dark-themed, React-powered, gamified learning platform
 
 [🚀 Quick Start](#-quick-start) • [📂 Table of Contents](#-table-of-contents) • [🎯 Why Azure Wiki](#-why-azure-wiki) • [🤝 Contribute](#-contribute)
 
