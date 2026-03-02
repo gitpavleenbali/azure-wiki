@@ -334,6 +334,96 @@ article .markdown > * {
 }
 
 /* ================================================================== */
+/*  FLOATING ACTION BUTTONS — unified stack (Quiz, Flash, Learn)       */
+/* ================================================================== */
+
+.aw-fab-stack {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aw-fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 130px;
+  padding: 8px 0;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+  transition: all 0.2s;
+  text-decoration: none;
+  line-height: 1;
+  text-align: center;
+}
+
+.aw-fab:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-decoration: none;
+}
+
+.aw-fab-quiz  { background: linear-gradient(135deg, #059669, #10b981); }
+.aw-fab-flash { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+.aw-fab-learn { background: linear-gradient(135deg, #b45309, #d97706); }
+
+.aw-fab-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.aw-fab-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ---- Tablet ---- */
+@media (min-width: 481px) and (max-width: 768px) {
+  .aw-fab-stack {
+    bottom: 12px;
+    left: 12px;
+  }
+  .aw-fab {
+    width: 115px;
+    padding: 7px 0;
+    font-size: 0.7rem;
+  }
+  .aw-fab-label { font-size: 0.7rem; }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 480px) {
+  .aw-fab-stack {
+    bottom: 10px;
+    left: 10px;
+    gap: 6px;
+  }
+  .aw-fab {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+  }
+  .aw-fab-label {
+    display: none;
+  }
+  .aw-fab-icon {
+    font-size: 1rem;
+  }
+}
+
+/* ================================================================== */
 /*  GLOBAL MOBILE FIX — prevent horizontal scroll                      */
 /* ================================================================== */
 
@@ -486,22 +576,4 @@ div[class*="announcementBar"] kbd {
     font-size: 0.7rem !important;
     padding: 4px 10px !important;
   }
-}
-
-/* ================================================================== */
-/*  MOBILE FLOATING BUTTONS — compact for small screens                */
-/* ================================================================== */
-
-@media (max-width: 480px) {
-  /* Make all fixed-position floating buttons compact circles on mobile */
-  div[style*="position: fixed"][style*="bottom"] button {
-    width: 42px !important;
-    height: 42px !important;
-    padding: 0 !important;
-    border-radius: 50% !important;
-    font-size: 0 !important;
-    overflow: hidden !important;
-    min-width: unset !important;
-  }
-  /* Show only the icon via first-letter or pseudo (fallback: just hide text and show gradient dot) */
 }

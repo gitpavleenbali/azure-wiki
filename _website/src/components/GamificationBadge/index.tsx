@@ -108,45 +108,7 @@ export default function GamificationBadge(): JSX.Element {
 
   return (
     <>
-      {!isHomepage && (
-        <div className={styles.badge} onClick={() => setOpen((o) => !o)} title="Learning Progress (Alt+G)">
-          ★ {state.xp} XP
-        </div>
-      )}
-
-      {open && (
-        <div className={styles.panel}>
-          <div className={styles.panelHeader}>Learning Dashboard</div>
-
-          <div className={styles.stat}>
-            <span>Level</span>
-            <strong>{lvl.name}</strong>
-          </div>
-          <div className={styles.stat}>
-            <span>XP</span>
-            <strong>{state.xp}</strong>
-          </div>
-          <div className={styles.stat}>
-            <span>Pages Read</span>
-            <strong>{state.pagesRead.length}</strong>
-          </div>
-          <div className={styles.stat}>
-            <span>Streak</span>
-            <strong>{state.streak} day{state.streak !== 1 ? "s" : ""}</strong>
-          </div>
-
-          <div className={styles.progressLabel}>
-            {nxt ? `Next: ${nxt.name} (${nxt.min} XP)` : "Max level reached!"}
-          </div>
-          <div className={styles.progressBar}>
-            <div className={styles.progressFill} style={{ width: `${pct}%` }} />
-          </div>
-
-          <button className={styles.closeBtn} onClick={() => setOpen(false)}>
-            Close
-          </button>
-        </div>
-      )}
+      {null /* Badge is now rendered inside AutoInteractive fab stack */}
     </>
   );
 }

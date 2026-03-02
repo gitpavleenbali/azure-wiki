@@ -36,21 +36,30 @@ export default function AutoInteractive(): JSX.Element | null {
   // Hide on homepage
   const isHomepage = location.pathname === "/azure-wiki/" || location.pathname === "/azure-wiki" || location.pathname === "/";
   if (isHomepage) return null;
-  if (flashcards.length === 0 && quiz.length === 0) return null;
+
+  // Show learning button even if no flashcards/quiz
+  const hasFlash = flashcards.length > 0;
+  const hasQuiz = quiz.length > 0;
 
   return (
     <>
-      <div style={fabContainerStyle}>
-        {quiz.length > 0 && (
-          <button style={fabQuizStyle} onClick={() => { setShowQuiz(true); setShowFlashcards(false); }}>
-             Quiz ({quiz.length})
+      <div className="aw-fab-stack">
+        {hasQuiz && (
+          <button className="aw-fab aw-fab-quiz" onClick={() => { setShowQuiz(true); setShowFlashcards(false); }}>
+            <span className="aw-fab-icon" role="img" aria-label="quiz">{"❓"}</span>
+            <span className="aw-fab-label">Quiz ({quiz.length})</span>
           </button>
         )}
-        {flashcards.length > 0 && (
-          <button style={fabFlashStyle} onClick={() => { setShowFlashcards(true); setShowQuiz(false); }}>
-             Flashcards ({flashcards.length})
+        {hasFlash && (
+          <button className="aw-fab aw-fab-flash" onClick={() => { setShowFlashcards(true); setShowQuiz(false); }}>
+            <span className="aw-fab-icon" role="img" aria-label="flashcards">{"🃏"}</span>
+            <span className="aw-fab-label">Flash ({flashcards.length})</span>
           </button>
         )}
+        <a className="aw-fab aw-fab-learn" href="/azure-wiki/learning-hub">
+          <span className="aw-fab-icon" role="img" aria-label="learn">{"📖"}</span>
+          <span className="aw-fab-label">Learn</span>
+        </a>
       </div>
       {showFlashcards && <FlashcardOverlay cards={flashcards} onClose={() => setShowFlashcards(false)} />}
       {showQuiz && <QuizOverlay questions={quiz} onClose={() => setShowQuiz(false)} />}
@@ -189,10 +198,6 @@ function QuizOverlay({ questions, onClose }: { questions: QuizQuestion[]; onClos
 }
 
 /* ---- STYLES ---- */
-const fabContainerStyle: React.CSSProperties = { position: "fixed", bottom: 70, left: 16, zIndex: 998, display: "flex", flexDirection: "column", gap: 8 };
-const fabBase: React.CSSProperties = { padding: "8px 14px", border: "none", borderRadius: 10, color: "#fff", fontSize: "0.75rem", fontWeight: 600, cursor: "pointer", boxShadow: "0 3px 12px rgba(0,0,0,0.18)", transition: "all 0.2s", width: 120, textAlign: "center" as const, lineHeight: "1" };
-const fabFlashStyle: React.CSSProperties = { ...fabBase, background: "linear-gradient(135deg, #6366f1, #8b5cf6)" };
-const fabQuizStyle: React.CSSProperties = { ...fabBase, background: "linear-gradient(135deg, #059669, #10b981)" };
 const overlayStyle: React.CSSProperties = { position: "fixed", inset: 0, zIndex: 10000, display: "flex", justifyContent: "center", alignItems: "center", background: "rgba(0,0,0,0.75)", backdropFilter: "blur(6px)" };
 const modalStyle: React.CSSProperties = { width: "92%", maxWidth: 560, maxHeight: "85vh", overflowY: "auto", padding: 32, borderRadius: 16, background: "var(--ifm-background-color, #fff)", boxShadow: "0 24px 64px rgba(0,0,0,0.3)" };
 const counterStyle: React.CSSProperties = { fontSize: "0.75rem", fontWeight: 600, color: "#6366f1", textTransform: "uppercase", letterSpacing: 1, marginBottom: 16, textAlign: "center" };
