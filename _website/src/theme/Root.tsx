@@ -13,7 +13,9 @@ export default function Root({ children }: RootProps): JSX.Element {
 
   // Scroll to top on every page navigation
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    // Delay to override Docusaurus scroll restoration
+    setTimeout(() => window.scrollTo(0, 0), 0);
+    requestAnimationFrame(() => window.scrollTo(0, 0));
   }, [location.pathname]);
 
   return (
