@@ -149,13 +149,14 @@ article p {
 /*  TABLE OF CONTENTS — Sticky + highlight active                      */
 /* ================================================================== */
 
-/* Desktop TOC right column */
+/* Desktop TOC right column - MUST stay sticky */
 .col.col--3 {
   position: sticky !important;
   top: calc(var(--ifm-navbar-height) + 16px) !important;
   align-self: flex-start !important;
   max-height: calc(100vh - var(--ifm-navbar-height) - 32px) !important;
   overflow-y: auto !important;
+  z-index: 100 !important;
 }
 
 .theme-doc-toc-desktop {
@@ -163,6 +164,15 @@ article p {
   top: calc(var(--ifm-navbar-height) + 16px) !important;
   max-height: calc(100vh - var(--ifm-navbar-height) - 32px) !important;
   overflow-y: auto !important;
+}
+
+/* Override any Docusaurus defaults that might conflict */
+main .col.col--3,
+article ~ .col.col--3,
+.docMainContainer_gTbr .col.col--3 {
+  position: sticky !important;
+  top: calc(var(--ifm-navbar-height) + 16px) !important;
+  align-self: flex-start !important;
 }
 
 .table-of-contents__link {
@@ -296,13 +306,13 @@ details[open] summary {
 
 .aw-progress-bar {
   position: fixed;
-  top: var(--ifm-navbar-height, 60px);
+  top: 0 !important;
   left: 0;
   width: 100%;
   height: 4px;
-  z-index: 999;
+  z-index: 10000 !important;
   pointer-events: none;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .aw-progress-fill {
@@ -310,7 +320,7 @@ details[open] summary {
   width: 0%;
   background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
   transition: width 0.12s linear;
-  box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.7), 0 0 4px rgba(236, 72, 153, 0.5);
 }
 
 /* ================================================================== */

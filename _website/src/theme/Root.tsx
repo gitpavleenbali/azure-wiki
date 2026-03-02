@@ -11,11 +11,18 @@ interface RootProps {
 export default function Root({ children }: RootProps): JSX.Element {
   const location = useLocation();
 
-  // Scroll to top on every page navigation
+  // Scroll to top on every page navigation - AGGRESSIVE approach
   useEffect(() => {
-    // Delay to override Docusaurus scroll restoration
+    // Multiple attempts to override Docusaurus scroll restoration
+    window.scrollTo(0, 0);
     setTimeout(() => window.scrollTo(0, 0), 0);
+    setTimeout(() => window.scrollTo(0, 0), 1);
+    setTimeout(() => window.scrollTo(0, 0), 10);
+    setTimeout(() => window.scrollTo(0, 0), 50);
     requestAnimationFrame(() => window.scrollTo(0, 0));
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => window.scrollTo(0, 0));
+    });
   }, [location.pathname]);
 
   return (
