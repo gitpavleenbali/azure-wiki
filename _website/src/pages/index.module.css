@@ -249,28 +249,45 @@
 }
 
 /* ================================================================== */
-/*  RESPONSIVE                                                         */
+/*  LEARNING HUB CTA                                                   */
 /* ================================================================== */
 
-/* ================================================================== */
-/*  DEMO SECTION (live flashcard + quiz)                               */
-/* ================================================================== */
-
-.demoSection {
-  margin-top: 56px;
+.hubCta {
+  margin-top: 48px;
+  text-align: center;
+  padding: 40px 24px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 16px;
+  background: var(--ifm-background-surface-color);
 }
 
-.demoGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: start;
+.hubDesc {
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 20px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@media (max-width: 900px) {
-  .demoGrid {
-    grid-template-columns: 1fr;
-  }
+.hubButton {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #b45309, #d97706);
+  color: #fff !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.3);
+  transition: all 0.2s;
+}
+
+.hubButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.45);
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 /* ================================================================== */

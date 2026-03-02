@@ -189,8 +189,8 @@ function QuizOverlay({ questions, onClose }: { questions: QuizQuestion[]; onClos
 }
 
 /* ---- STYLES ---- */
-const fabContainerStyle: React.CSSProperties = { position: "fixed", bottom: 80, left: 24, zIndex: 998, display: "flex", flexDirection: "column", gap: 10 };
-const fabBase: React.CSSProperties = { padding: "9px 18px", border: "none", borderRadius: 10, color: "#fff", fontSize: "0.8rem", fontWeight: 600, cursor: "pointer", boxShadow: "0 4px 16px rgba(0,0,0,0.2)", transition: "all 0.2s" };
+const fabContainerStyle: React.CSSProperties = { position: "fixed", bottom: 70, left: 16, zIndex: 998, display: "flex", flexDirection: "column", gap: 8 };
+const fabBase: React.CSSProperties = { padding: "8px 14px", border: "none", borderRadius: 10, color: "#fff", fontSize: "0.75rem", fontWeight: 600, cursor: "pointer", boxShadow: "0 3px 12px rgba(0,0,0,0.18)", transition: "all 0.2s", width: 120, textAlign: "center" as const, lineHeight: "1" };
 const fabFlashStyle: React.CSSProperties = { ...fabBase, background: "linear-gradient(135deg, #6366f1, #8b5cf6)" };
 const fabQuizStyle: React.CSSProperties = { ...fabBase, background: "linear-gradient(135deg, #059669, #10b981)" };
 const overlayStyle: React.CSSProperties = { position: "fixed", inset: 0, zIndex: 10000, display: "flex", justifyContent: "center", alignItems: "center", background: "rgba(0,0,0,0.75)", backdropFilter: "blur(6px)" };

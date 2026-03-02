@@ -1,29 +1,31 @@
 .badge {
   position: fixed;
-  bottom: 24px;
-  left: 24px;
+  bottom: 16px;
+  left: 16px;
   z-index: 999;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 9px 18px;
+  width: 120px;
+  padding: 8px 14px;
   background: linear-gradient(135deg, #b45309, #d97706);
   color: #fff;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.35);
+  box-shadow: 0 3px 12px rgba(217, 119, 6, 0.3);
   transition: all 0.2s;
   user-select: none;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   white-space: nowrap;
   line-height: 1;
+  text-align: center;
 }
 
 .badge:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(217, 119, 6, 0.4);
 }
 
 .xp {
@@ -122,14 +124,18 @@
 
 @media (max-width: 480px) {
   .badge {
-    bottom: 12px;
-    left: 12px;
-    padding: 7px 12px;
-    font-size: 0.72rem;
+    bottom: 10px;
+    left: 10px;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    overflow: hidden;
   }
   .panel {
     left: 8px;
-    bottom: 55px;
+    bottom: 60px;
     width: calc(100vw - 16px);
     max-width: 300px;
     padding: 16px;
@@ -138,14 +144,15 @@
 
 @media (min-width: 481px) and (max-width: 768px) {
   .badge {
-    bottom: 16px;
-    left: 16px;
-    padding: 8px 14px;
-    font-size: 0.75rem;
+    bottom: 12px;
+    left: 12px;
+    width: 110px;
+    padding: 7px 10px;
+    font-size: 0.7rem;
   }
   .panel {
-    left: 16px;
-    bottom: 65px;
+    left: 12px;
+    bottom: 60px;
     width: 260px;
   }
 }
