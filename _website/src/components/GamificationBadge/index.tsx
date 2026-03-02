@@ -104,8 +104,8 @@ export default function GamificationBadge(): JSX.Element {
   return (
     <>
       <div className={styles.badge} onClick={() => setOpen((o) => !o)} title="Learning Progress (Alt+G)">
-        <span className={styles.xp}>{state.xp} XP</span>
-        <span className={styles.level}>{lvl.name}</span>
+        <span className={styles.xp}>★ {state.xp} XP</span>
+        <span className={styles.level}>· {lvl.name}</span>
       </div>
 
       {open && (

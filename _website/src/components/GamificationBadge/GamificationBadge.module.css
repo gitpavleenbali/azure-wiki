@@ -4,36 +4,34 @@
   left: 24px;
   z-index: 999;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 10px 18px;
-  background: linear-gradient(135deg, #312e81, #4338ca);
+  gap: 6px;
+  padding: 9px 18px;
+  background: linear-gradient(135deg, #b45309, #d97706);
   color: #fff;
-  border-radius: 24px;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 8px 24px rgba(67, 56, 202, 0.35);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.35);
+  transition: all 0.2s;
   user-select: none;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .badge:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(67, 56, 202, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.45);
 }
 
 .xp {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
 }
 
 .level {
-  font-size: 0.62rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 /* Panel */
