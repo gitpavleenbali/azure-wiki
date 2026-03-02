@@ -82,6 +82,7 @@ const config: Config = {
       logo: {
         alt: "Azure Wiki",
         src: "img/logo.svg",
+        href: "/azure-wiki/",
       },
       items: [
         {
