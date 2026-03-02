@@ -605,4 +605,5 @@ graph TD
 
 ---
 
-> **Next Module:** [Module 2 — Cost Transparency](./02-Module-Cost-Transparency.md)
+> **Next Module:** [Module 2 — Cost Transparency & Tagging](./02-Module-Cost-Transparency.md)  
+> **Back to Overview:** [README — Cost Optimization](./README.md)

@@ -1000,3 +1000,9 @@ graph TD
 - [WAF CO:08 – Environment costs](https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/optimize-environment-costs)
 - [WAF CO:12 – Scaling costs](https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/optimize-scaling-costs)
 - Knowledge Base: `Module Usage Optimization/` folder
+
+---
+
+> **Previous Module:** [Module 4 — Rate Optimization](./04-Module-Rate-Optimization.md)  
+> **Next Module:** [Module 6 — Workload-Specific Cost Optimization](./06-Module-Workload-Optimization.md)  
+> **Back to Overview:** [README — Cost Optimization](./README.md)

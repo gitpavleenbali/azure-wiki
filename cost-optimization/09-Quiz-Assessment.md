@@ -365,3 +365,8 @@ Use **Lifecycle Management Policies** to automate transitions.
 ---
 
 *These questions can be used as interactive discussion prompts during the delivery or as a post-session assessment.*
+
+---
+
+> **Previous Module:** [Module 8 — Demo Guide](./08-Demo-Guide.md)  
+> **Back to Overview:** [README — Cost Optimization](./README.md)

@@ -709,3 +709,9 @@ graph LR
 - [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/)
 - [VM Selector Tool](https://azure.microsoft.com/en-us/pricing/vm-selector/)
 - [Azure FinOps Guide](https://github.com/dolevshor/azure-finops-guide)
+
+---
+
+> **Previous Module:** [Module 5 — Usage Optimization & Waste Reduction](./05-Module-Usage-Optimization.md)  
+> **Next Module:** [Module 7 — AI Workload Cost Optimization](./07-Module-AI-Cost-Optimization.md)  
+> **Back to Overview:** [README — Cost Optimization](./README.md)

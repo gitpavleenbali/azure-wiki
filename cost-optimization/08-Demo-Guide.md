@@ -457,3 +457,9 @@ Get-AzVM | Where-Object {
 - [Azure Policy Quick Start](https://learn.microsoft.com/en-us/azure/governance/policy/assign-policy-portal)
 - [Azure Advisor Workbooks](https://aka.ms/advisorworkbooks)
 - Knowledge Base: all PowerShell scripts in `Module Usage Optimization/` and ARM templates in `Module Financial Controls/Budgets/`
+
+---
+
+> **Previous Module:** [Module 7 — AI Workload Cost Optimization](./07-Module-AI-Cost-Optimization.md)  
+> **Next Module:** [Module 9 — Quiz & Assessment](./09-Quiz-Assessment.md)  
+> **Back to Overview:** [README — Cost Optimization](./README.md)

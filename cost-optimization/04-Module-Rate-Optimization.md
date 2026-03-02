@@ -778,3 +778,9 @@ graph LR
 - [WAF CO:05 – Get best rates](https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/get-best-rates)
 - [WAF CO:06 – Billing increments](https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/align-usage-to-billing-increments)
 - Knowledge Base: `Module Rate Optimization/` folder
+
+---
+
+> **Previous Module:** [Module 3 — Financial Controls & Budgets](./03-Module-Financial-Controls.md)  
+> **Next Module:** [Module 5 — Usage Optimization & Waste Reduction](./05-Module-Usage-Optimization.md)  
+> **Back to Overview:** [README — Cost Optimization](./README.md)

@@ -988,3 +988,9 @@ Azure Cost Management includes **Microsoft Copilot** integration that allows nat
 - [Resource Locks](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)
 - [Cost Management Best Practices](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-best-practices)
 - Knowledge Base: `Module Financial Controls/Budgets/` folder
+
+---
+
+> **Previous Module:** [Module 2 — Cost Transparency & Tagging](./02-Module-Cost-Transparency.md)  
+> **Next Module:** [Module 4 — Rate Optimization](./04-Module-Rate-Optimization.md)  
+> **Back to Overview:** [README — Cost Optimization](./README.md)

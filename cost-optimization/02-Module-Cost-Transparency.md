@@ -860,3 +860,9 @@ For true chargeback, integrate cost data with financial systems:
 - [Analyze Unexpected Charges](https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/analyze-unexpected-charges)
 - [Cost Management Best Practices](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-best-practices)
 - Knowledge Base: `Module Cost Transparency/` folder
+
+---
+
+> **Previous Module:** [Module 1 — Cost Optimization Fundamentals](./01-Module-Cost-Optimization-Fundamentals.md)  
+> **Next Module:** [Module 3 — Financial Controls & Budgets](./03-Module-Financial-Controls.md)  
+> **Back to Overview:** [README — Cost Optimization](./README.md)
