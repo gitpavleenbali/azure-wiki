@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { useLocation } from "@docusaurus/router";
 
 interface FlashcardItem {
   front: string;
@@ -21,9 +22,16 @@ export default function AutoInteractive(): JSX.Element | null {
   const [quizItems, setQuizItems] = useState<QuizQuestion[]>([]);
   const [showFlashcards, setShowFlashcards] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
+  const location = useLocation();
 
-  // Scan DOM after render
+  // Re-scan DOM on every page navigation
   useEffect(() => {
+    // Reset overlays on navigate
+    setShowFlashcards(false);
+    setShowQuiz(false);
+    setFlashcards([]);
+    setQuizItems([]);
+
     const timer = setTimeout(() => {
       // --- Extract flashcards from multiple sources ---
       const cards: FlashcardItem[] = [];
@@ -131,13 +139,7 @@ export default function AutoInteractive(): JSX.Element | null {
     }, 800); // wait for DOM render
 
     return () => clearTimeout(timer);
-  }, []);
-
-  // Reset on navigation
-  useEffect(() => {
-    setShowFlashcards(false);
-    setShowQuiz(false);
-  }, [flashcards, quizItems]);
+  }, [location.pathname]);
 
   const hasContent = flashcards.length > 0 || quizItems.length > 0;
   if (!hasContent) return null;
@@ -305,7 +307,7 @@ function QuizOverlay({
 /* ---- Styles ---- */
 const fabContainerStyle: React.CSSProperties = {
   position: "fixed",
-  bottom: 24,
+  bottom: 80,
   left: 24,
   zIndex: 998,
   display: "flex",
