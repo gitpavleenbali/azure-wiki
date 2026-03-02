@@ -1,0 +1,132 @@
+{
+  "cost-optimization": {
+    "flashcards": [
+      {"front": "What are the 3 cloud cost drivers?", "back": "Compute (50-70%), Storage (15-25%), and Data Transfer/Egress (5-15%)"},
+      {"front": "What is cost optimization?", "back": "Maximizing business value per unit of cloud spend while meeting performance, reliability, and security requirements — not just cutting costs"},
+      {"front": "What percentage of cloud waste comes from idle resources?", "back": "72-80% of cloud waste is from idle or over-provisioned resources"},
+      {"front": "Azure Reservations vs Savings Plans", "back": "Reservations: fixed SKU + region, up to 72% savings. Savings Plans: flexible across SKUs/regions, up to 65% savings"},
+      {"front": "Azure Hybrid Benefit", "back": "Bring your own Windows Server or SQL Server licenses to Azure. Saves 40-82% on eligible VMs"},
+      {"front": "What are Azure Spot VMs?", "back": "VMs that use spare Azure capacity at up to 90% discount, but can be evicted with 30-second notice. Best for batch, dev/test, interruptible workloads"},
+      {"front": "5 WAF Cost Optimization Principles", "back": "1) Develop cost-management discipline, 2) Design with cost-efficiency mindset, 3) Design for usage optimization, 4) Design for rate optimization, 5) Monitor and optimize over time"},
+      {"front": "What is FinOps?", "back": "A cultural practice bringing financial accountability to cloud spend through collaboration between Engineering, Finance, and Business teams"},
+      {"front": "What are the 5 mandatory cost tags?", "back": "CostCenter, BusinessUnit, WorkloadName, Environment, BudgetApproved"},
+      {"front": "Showback vs Chargeback", "back": "Showback: report costs to teams for awareness. Chargeback: actually bill teams for their consumption. Showback first, chargeback once mature"},
+      {"front": "What is right-sizing?", "back": "Matching VM SKU to actual CPU/memory usage. A VM consistently below 30% CPU should be downsized. Saves 10-50%"},
+      {"front": "Storage lifecycle management", "back": "Automatically move blobs from Hot → Cool → Cold → Archive based on access patterns. Cool is 50% cheaper than Hot, Archive is 90% cheaper"},
+      {"front": "PTU vs Pay-as-you-go (Azure OpenAI)", "back": "PTU: fixed hourly rate for reserved throughput, best for high-volume predictable workloads. PAYG: per-token, best for variable/ramping workloads"},
+      {"front": "GPT-4o vs GPT-4o-mini cost difference", "back": "GPT-4o-mini is 16x cheaper than GPT-4o for input tokens ($0.15 vs $2.50 per 1M tokens) with excellent quality for most business tasks"},
+      {"front": "What is semantic caching?", "back": "Caching embeddings of queries — if a semantically similar query was recently answered, return the cached response. Saves 60-80% on token costs"},
+      {"front": "Model routing pattern", "back": "Use the cheapest model capable of each task. Route simple tasks to nano/mini models, complex reasoning to larger models. Saves 60-80% without quality loss"},
+      {"front": "Budget alert thresholds", "back": "Set alerts at 50% (awareness), 75% (review), 90% (investigate), 100% (action required), 110% (escalation)"},
+      {"front": "What is an orphaned resource?", "back": "A resource no longer attached to any workload — unattached disks, orphan public IPs, idle load balancers. Easy to detect, easy to delete, immediate savings"},
+      {"front": "Dev/Test pricing", "back": "Azure offers discounted rates for dev/test workloads under Enterprise Dev/Test or Pay-As-You-Go Dev/Test subscriptions — no Windows license charges, reduced rates"},
+      {"front": "AKS cost optimization", "back": "Cluster Autoscaler + Spot node pools for non-critical workloads + Start/Stop for non-prod clusters + KEDA for event-driven scaling"}
+    ],
+    "quiz": [
+      {"question": "What percentage of cloud waste is typically from idle or over-provisioned resources?", "options": ["20-30%", "40-50%", "72-80%", "90-95%"], "correct": 2, "explanation": "72-80% of cloud waste comes from idle or over-provisioned resources, making usage optimization the single highest-impact lever."},
+      {"question": "How much cheaper is GPT-4o-mini compared to GPT-4o for input tokens?", "options": ["2x cheaper", "5x cheaper", "10x cheaper", "16x cheaper"], "correct": 3, "explanation": "GPT-4o-mini costs $0.15 per 1M input tokens vs GPT-4o at $2.50 — a 16x difference."},
+      {"question": "What is the primary goal of cost optimization?", "options": ["Cutting costs at all costs", "Maximizing value per dollar spent", "Using only free-tier services", "Avoiding cloud entirely"], "correct": 1, "explanation": "Cost optimization maximizes business value per unit of spend while meeting performance, reliability, and security requirements."},
+      {"question": "Which Azure commitment offers the highest maximum savings?", "options": ["Savings Plans (65%)", "Reservations (72%)", "Spot VMs (90%)", "Dev/Test pricing (50%)"], "correct": 2, "explanation": "Spot VMs offer up to 90% savings, but with eviction risk. Reservations offer up to 72% for stable workloads."},
+      {"question": "What are the 5 recommended mandatory cost tags?", "options": ["Name, Region, Size, OS, SKU", "CostCenter, BusinessUnit, WorkloadName, Environment, BudgetApproved", "Owner, Team, Project, Phase, Priority", "App, Service, Tier, Version, Status"], "correct": 1, "explanation": "CostCenter, BusinessUnit, WorkloadName, Environment, and BudgetApproved are the 5 mandatory tags for cost allocation."},
+      {"question": "What is the break-even threshold for Azure OpenAI PTU vs pay-as-you-go?", "options": ["10M tokens/day", "50-200M tokens/day", "1B tokens/day", "It is always cheaper"], "correct": 1, "explanation": "At 50-200M tokens/day you are near break-even. Above 200M tokens/day, PTU is typically 30-40% cheaper than PAYG."},
+      {"question": "What does semantic caching save on AI workloads?", "options": ["10-20%", "30-40%", "60-80%", "95-99%"], "correct": 2, "explanation": "Semantic caching eliminates redundant LLM calls for similar queries, saving 60-80% of token costs in production."},
+      {"question": "What is the first step in the AI cost optimization framework?", "options": ["Purchase PTU commitments", "Switch all models to GPT-4o-mini", "Measure current token spend", "Implement semantic caching"], "correct": 2, "explanation": "You cannot optimize what you cannot measure. Enable diagnostics and build a token consumption dashboard first."}
+    ]
+  },
+  "APIM-best-practices": {
+    "flashcards": [
+      {"front": "What is Azure API Management?", "back": "A fully managed service to publish, secure, transform, maintain, and monitor APIs. Acts as a gateway between API consumers and backend services"},
+      {"front": "3 APIM components", "back": "API Gateway (processes requests), Developer Portal (documentation for consumers), Management Plane (configuration and policy management)"},
+      {"front": "APIM policy stages", "back": "Inbound (before backend), Backend (forwarding), Outbound (before response), On-Error (exception handling). Policies execute in order within each stage"},
+      {"front": "Rate limiting vs throttling", "back": "Rate limiting (rate-limit-by-key): fixed window counter. Throttling (quota-by-key): cumulative over longer period. Both protect backends from overload"},
+      {"front": "APIM SKU tiers", "back": "Consumption (serverless, pay-per-call), Developer (non-prod), Basic/Standard (prod), Premium (multi-region, VNET), v2 tiers (faster provisioning)"},
+      {"front": "APIM as AI Gateway", "back": "Use APIM to manage Azure OpenAI APIs — token-based rate limiting, load balancing across OpenAI instances, semantic caching, prompt transformation"},
+      {"front": "Self-hosted gateway", "back": "Containerized APIM gateway for hybrid/multi-cloud. Runs on Kubernetes, processes API traffic locally, syncs config with cloud APIM"},
+      {"front": "APIOps", "back": "GitOps for APIs — store API definitions, policies, and configurations in Git. CI/CD pipelines deploy changes to APIM automatically"},
+      {"front": "APIM caching policy", "back": "cache-lookup and cache-store policies. Cache responses by headers, query params, or custom keys. Reduces backend load and latency"},
+      {"front": "Named values in APIM", "back": "Key-value pairs stored centrally and referenced in policies. Can be plain text, secret, or linked to Key Vault. Use for API keys, URLs, configuration"}
+    ],
+    "quiz": [
+      {"question": "What are the 3 main components of Azure API Management?", "options": ["Load Balancer, Firewall, DNS", "Gateway, Developer Portal, Management Plane", "API, SDK, CLI", "Frontend, Backend, Database"], "correct": 1, "explanation": "APIM consists of the API Gateway (request processing), Developer Portal (consumer documentation), and Management Plane (configuration)."},
+      {"question": "What does the APIOps approach use for managing API configurations?", "options": ["Azure Portal only", "ARM templates only", "Git-based CI/CD pipelines", "Manual deployment scripts"], "correct": 2, "explanation": "APIOps treats API definitions and policies as code stored in Git, with CI/CD pipelines deploying changes automatically."},
+      {"question": "Which APIM feature enables it to work as an AI Gateway?", "options": ["WebSocket support", "Token-based rate limiting and load balancing across OpenAI instances", "GraphQL support", "Custom domain configuration"], "correct": 1, "explanation": "APIM can manage Azure OpenAI APIs with token-based rate limiting, load balancing, semantic caching, and prompt transformation policies."},
+      {"question": "What is the self-hosted gateway?", "options": ["A VM running APIM", "A containerized gateway for hybrid/multi-cloud on Kubernetes", "A CDN endpoint", "A DNS resolver"], "correct": 1, "explanation": "The self-hosted gateway is a container that runs locally (Kubernetes), processes traffic at the edge, and syncs configuration with the cloud APIM instance."},
+      {"question": "In what order do APIM policy stages execute?", "options": ["Backend, Inbound, Outbound, On-Error", "Inbound, Backend, Outbound, On-Error", "On-Error, Inbound, Backend, Outbound", "Outbound, Inbound, Backend, On-Error"], "correct": 1, "explanation": "Policies execute: Inbound (before backend), Backend (forwarding), Outbound (before response to client), On-Error (exception handling)."}
+    ]
+  },
+  "FrontDoor-best-practices": {
+    "flashcards": [
+      {"front": "What is Azure Front Door?", "back": "A global load balancer and CDN that provides fast, secure, and scalable delivery of web applications using Microsoft's global edge network"},
+      {"front": "Front Door routing methods", "back": "Latency-based (fastest backend), Priority (primary/secondary), Weighted (traffic distribution), Session affinity (sticky sessions)"},
+      {"front": "Front Door WAF", "back": "Web Application Firewall with managed rule sets (OWASP) and custom rules. Operates in Detection or Prevention mode. Protects against SQL injection, XSS, bots"},
+      {"front": "Front Door caching", "back": "Caches content at edge POPs globally. Configure cache duration, query string behavior, and cache purge. Reduces origin load and latency"},
+      {"front": "Front Door vs Traffic Manager", "back": "Front Door: Layer 7 (HTTP), global LB + CDN + WAF. Traffic Manager: DNS-based (Layer 4), simple failover/geo-routing. Front Door for web apps, TM for non-HTTP"},
+      {"front": "Private Link with Front Door", "back": "Premium tier supports Private Link origins — backend can be in a VNET with no public IP. Front Door connects privately via Microsoft backbone"},
+      {"front": "Front Door health probes", "back": "Configurable HTTP/HTTPS probes to backends. Set interval, path, and protocol. Unhealthy backends automatically removed from rotation"},
+      {"front": "Front Door Standard vs Premium", "back": "Standard: CDN + basic routing + managed WAF. Premium: adds Private Link origins, Bot Protection managed rules, and enhanced WAF analytics"}
+    ],
+    "quiz": [
+      {"question": "What layer does Azure Front Door operate at?", "options": ["Layer 3 (Network)", "Layer 4 (Transport)", "Layer 7 (Application/HTTP)", "Layer 2 (Data Link)"], "correct": 2, "explanation": "Azure Front Door is a Layer 7 (HTTP/HTTPS) global load balancer with CDN and WAF capabilities."},
+      {"question": "What does Front Door Premium add over Standard?", "options": ["Basic caching", "Private Link origins, Bot Protection, enhanced WAF analytics", "DNS routing only", "TCP load balancing"], "correct": 1, "explanation": "Front Door Premium adds Private Link origins (private backend connectivity), Bot Protection managed rules, and enhanced WAF analytics."},
+      {"question": "Which routing method sends traffic to the backend with lowest latency?", "options": ["Priority", "Weighted", "Latency-based", "Round-robin"], "correct": 2, "explanation": "Latency-based routing directs users to the backend with the lowest network latency from the user's location."},
+      {"question": "What is the key difference between Front Door and Traffic Manager?", "options": ["Front Door is cheaper", "Front Door is Layer 7 with CDN+WAF, Traffic Manager is DNS-based Layer 4", "Traffic Manager supports caching", "No difference"], "correct": 1, "explanation": "Front Door operates at Layer 7 (HTTP) with CDN, WAF, and SSL offloading. Traffic Manager is DNS-based (Layer 4) for simple failover and geo-routing."}
+    ]
+  },
+  "unified-monitoring-solution": {
+    "flashcards": [
+      {"front": "Azure Monitor components", "back": "Metrics (numeric time-series), Logs (Log Analytics/KQL), Alerts, Dashboards, Workbooks, Application Insights, Managed Grafana"},
+      {"front": "Log Analytics workspace design", "back": "Centralized workspace for most orgs. Separate workspaces only for data sovereignty, RBAC isolation, or billing separation. Avoid workspace sprawl"},
+      {"front": "KQL basics", "back": "Kusto Query Language for querying Log Analytics. Key operators: where (filter), summarize (aggregate), project (select columns), join, render (visualize)"},
+      {"front": "Application Insights", "back": "APM service for monitoring live applications. Tracks requests, dependencies, exceptions, performance, and availability. Auto-instrumentation available"},
+      {"front": "Azure Monitor Alerts", "back": "Metric alerts (threshold/dynamic), Log alerts (KQL query), Activity log alerts (control plane events). All route to Action Groups for notification/automation"},
+      {"front": "Data Collection Rules (DCR)", "back": "Define what data to collect, how to transform it, and where to send it. Replace legacy agents. Enable filtering at ingestion to reduce costs"},
+      {"front": "Basic vs Analytics logs", "back": "Analytics: full query capability, higher cost. Basic: limited queries (8 days), 60% cheaper ingestion. Use Basic for verbose debug/trace logs"},
+      {"front": "Managed Prometheus for AKS", "back": "Azure-managed Prometheus metrics collection for Kubernetes. Replaces expensive Container Insights full metrics. Paired with Managed Grafana for visualization"}
+    ],
+    "quiz": [
+      {"question": "What query language does Azure Log Analytics use?", "options": ["SQL", "KQL (Kusto Query Language)", "GraphQL", "PowerShell"], "correct": 1, "explanation": "Azure Log Analytics uses KQL (Kusto Query Language) for querying and analyzing log data."},
+      {"question": "What is the cost difference between Basic and Analytics log tiers?", "options": ["Basic is 20% cheaper", "Basic is 40% cheaper", "Basic is 60% cheaper", "They cost the same"], "correct": 2, "explanation": "Basic logs are approximately 60% cheaper for ingestion but have limited query capability (8-day interactive query window)."},
+      {"question": "What replaced legacy monitoring agents in Azure?", "options": ["Application Insights SDK", "Data Collection Rules (DCR)", "Managed Prometheus", "Azure Sentinel"], "correct": 1, "explanation": "Data Collection Rules (DCR) with the Azure Monitor Agent replaced the legacy Log Analytics agent and Diagnostics extension."},
+      {"question": "What is the recommended workspace design for most organizations?", "options": ["One workspace per resource", "One workspace per region", "Centralized single workspace", "One workspace per team"], "correct": 2, "explanation": "A centralized single workspace is recommended for most organizations. Separate only for data sovereignty, strict RBAC isolation, or billing separation."}
+    ]
+  },
+  "azure-ai-foundry": {
+    "flashcards": [
+      {"front": "Azure AI Foundry", "back": "Unified platform for building, evaluating, and deploying AI applications. Formerly Azure AI Studio. Supports prompt flow, evaluation, fine-tuning, and managed endpoints"},
+      {"front": "Cross-region AI architecture", "back": "Deploy AI services across multiple regions for high availability. Use APIM or Front Door to route between regional Azure OpenAI instances with failover"},
+      {"front": "AI model deployment types", "back": "Standard (regional PAYG), Global Standard (Microsoft-routed lowest cost), Provisioned (PTU reserved throughput), Batch (async 50% discount)"},
+      {"front": "Responsible AI", "back": "Microsoft's framework for AI development: fairness, reliability, safety, privacy, inclusiveness, transparency, accountability. Built into Azure AI content filters"}
+    ],
+    "quiz": [
+      {"question": "What was Azure AI Foundry previously called?", "options": ["Azure ML Studio", "Azure Cognitive Services", "Azure AI Studio", "Azure Bot Service"], "correct": 2, "explanation": "Azure AI Foundry was formerly known as Azure AI Studio. It provides a unified platform for building, evaluating, and deploying AI applications."},
+      {"question": "What Azure service can load-balance across multiple regional Azure OpenAI instances?", "options": ["Traffic Manager", "Azure Load Balancer", "APIM or Front Door", "Azure DNS"], "correct": 2, "explanation": "APIM or Azure Front Door can route and load-balance across multiple regional Azure OpenAI deployments with failover capabilities."}
+    ]
+  },
+  "devsecops": {
+    "flashcards": [
+      {"front": "What is DevSecOps?", "back": "Integrating security practices into every phase of the DevOps lifecycle — plan, code, build, test, release, deploy, operate, monitor. Security shifts left"},
+      {"front": "Shift-left security", "back": "Moving security checks earlier in the development lifecycle. Catch vulnerabilities in code/design rather than production. Cheaper and faster to fix"},
+      {"front": "SAST vs DAST", "back": "SAST (Static): analyzes source code without running it. DAST (Dynamic): tests running applications for vulnerabilities. Use both for comprehensive coverage"},
+      {"front": "Infrastructure as Code security", "back": "Scan Bicep/Terraform/ARM templates for misconfigurations before deployment. Tools: Checkov, tfsec, PSRule, Microsoft Defender for DevOps"},
+      {"front": "Secret management", "back": "Never store secrets in code. Use Azure Key Vault with Managed Identity. Rotate secrets automatically. Scan repos for secret leaks with GitHub Advanced Security"},
+      {"front": "Supply chain security", "back": "Vet dependencies, use lock files, scan for CVEs (Dependabot, Snyk), sign artifacts, verify container image provenance. SLSA framework for supply chain integrity"}
+    ],
+    "quiz": [
+      {"question": "What does 'shift-left' mean in DevSecOps?", "options": ["Deploy to production faster", "Move security checks earlier in the development lifecycle", "Use left-aligned infrastructure", "Reduce team size"], "correct": 1, "explanation": "Shift-left means moving security testing and practices earlier in the development lifecycle — catching issues at code/design time rather than in production."},
+      {"question": "What is the difference between SAST and DAST?", "options": ["SAST is faster, DAST is slower", "SAST analyzes source code statically, DAST tests running applications dynamically", "SAST is for containers, DAST is for VMs", "They are the same thing"], "correct": 1, "explanation": "SAST (Static Application Security Testing) analyzes source code without running it. DAST (Dynamic) tests running applications for runtime vulnerabilities."},
+      {"question": "Where should secrets be stored in Azure?", "options": ["In environment variables", "In config files committed to Git", "In Azure Key Vault with Managed Identity", "In application settings only"], "correct": 2, "explanation": "Secrets should be stored in Azure Key Vault and accessed via Managed Identity. Never store secrets in code, config files, or plain environment variables."}
+    ]
+  },
+  "azure-storage": {
+    "flashcards": [
+      {"front": "ADLS Gen2", "back": "Azure Data Lake Storage Gen2 — hierarchical namespace on top of Blob Storage. Combines data lake features (ACLs, directories) with Blob Storage scalability and pricing"},
+      {"front": "Storage access tiers", "back": "Hot (frequent access), Cool (30-day minimum, 50% cheaper), Cold (90-day minimum), Archive (180-day minimum, 90% cheaper). Use lifecycle policies to auto-tier"},
+      {"front": "Hierarchical namespace", "back": "Enables true directory operations (rename, move, delete directories atomically) on Blob Storage. Required for ADLS Gen2. Enables fine-grained ACLs"},
+      {"front": "Storage redundancy options", "back": "LRS (3 copies, 1 datacenter), ZRS (3 zones), GRS (cross-region), GZRS (zones + cross-region). Choose based on durability/availability requirements"}
+    ],
+    "quiz": [
+      {"question": "What does ADLS Gen2 add on top of Blob Storage?", "options": ["SQL query engine", "Hierarchical namespace with directory operations and ACLs", "Automatic backup", "Built-in ETL"], "correct": 1, "explanation": "ADLS Gen2 adds a hierarchical namespace on top of Blob Storage, enabling true directory operations and fine-grained POSIX-like ACLs."},
+      {"question": "Which storage tier is approximately 90% cheaper than Hot?", "options": ["Cool", "Cold", "Archive", "Premium"], "correct": 2, "explanation": "Archive tier is approximately 90% cheaper than Hot for storage, but has a 180-day minimum retention and higher access/rehydration costs."}
+    ]
+  }
+}

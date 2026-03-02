@@ -38,6 +38,34 @@ jobs:
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"
 
+      - name: Verify knowledge base
+        working-directory: _website
+        run: |
+          echo "=== Verifying Flashcard & Quiz Knowledge Base ==="
+          node -e "
+            const kb = require('./src/data/knowledgeBase.json');
+            const modules = Object.keys(kb);
+            let totalCards = 0, totalQuiz = 0, issues = [];
+            modules.forEach(m => {
+              const fc = kb[m].flashcards?.length || 0;
+              const qz = kb[m].quiz?.length || 0;
+              totalCards += fc;
+              totalQuiz += qz;
+              console.log('  ' + m + ': ' + fc + ' flashcards, ' + qz + ' quiz questions');
+              if (fc === 0) issues.push(m + ' has no flashcards');
+              if (qz === 0) issues.push(m + ' has no quiz questions');
+            });
+            console.log('');
+            console.log('Total: ' + totalCards + ' flashcards, ' + totalQuiz + ' quiz questions across ' + modules.length + ' modules');
+            if (issues.length > 0) {
+              console.log('');
+              console.log('⚠ Warnings:');
+              issues.forEach(i => console.log('  - ' + i));
+            }
+            console.log('');
+            console.log('✅ Knowledge base verification complete');
+          "
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
