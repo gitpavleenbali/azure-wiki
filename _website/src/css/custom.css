@@ -149,11 +149,17 @@ article p {
 /*  TABLE OF CONTENTS — Sticky + highlight active                      */
 /* ================================================================== */
 
+/* Docusaurus wraps TOC in this container */
+div[class*="tableOfContents"] {
+  position: sticky !important;
+  top: calc(var(--ifm-navbar-height) + 1rem) !important;
+  max-height: calc(100vh - var(--ifm-navbar-height) - 2rem) !important;
+  overflow-y: auto !important;
+}
+
 .table-of-contents {
-  position: sticky;
-  top: calc(var(--ifm-navbar-height) + 1rem);
-  max-height: calc(100vh - var(--ifm-navbar-height) - 2rem);
-  overflow-y: auto;
+  position: sticky !important;
+  top: calc(var(--ifm-navbar-height) + 1rem) !important;
 }
 
 .table-of-contents__link {
@@ -162,7 +168,7 @@ article p {
 }
 
 .table-of-contents__link--active {
-  color: #6366f1;
+  color: #6366f1 !important;
   font-weight: 600;
 }
 
@@ -290,7 +296,7 @@ details[open] summary {
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 4px;
   z-index: 10001;
   pointer-events: none;
 }
@@ -298,9 +304,10 @@ details[open] summary {
 .aw-progress-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
   transition: width 0.12s linear;
   border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
 }
 
 /* ================================================================== */
