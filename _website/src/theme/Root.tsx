@@ -11,16 +11,21 @@ interface RootProps {
 export default function Root({ children }: RootProps): JSX.Element {
   const location = useLocation();
 
-  // Scroll to top on every page navigation
+  // Force scroll to top on every page navigation.
+  // Uses a persistent interval to override Docusaurus scroll restoration,
+  // which fires asynchronously and can restore saved scroll position AFTER
+  // our initial scrollTo calls.
   useEffect(() => {
     window.scrollTo(0, 0);
-    setTimeout(() => window.scrollTo(0, 0), 0);
-    setTimeout(() => window.scrollTo(0, 0), 10);
-    setTimeout(() => window.scrollTo(0, 0), 50);
-    requestAnimationFrame(() => window.scrollTo(0, 0));
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => window.scrollTo(0, 0));
-    });
+
+    // Keep forcing scroll to top for 600ms to beat Docusaurus scroll restore
+    const interval = setInterval(() => window.scrollTo(0, 0), 16); // every frame
+    const cleanup = setTimeout(() => clearInterval(interval), 600);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(cleanup);
+    };
   }, [location.pathname]);
 
   // Intercept logo/title click: ALWAYS scroll to top, even if already on homepage
@@ -29,7 +34,6 @@ export default function Root({ children }: RootProps): JSX.Element {
       const link = (e.target as HTMLElement).closest?.("a.navbar__brand");
       if (!link) return;
 
-      // If already on homepage, prevent default nav and just scroll to top
       const isHome =
         location.pathname === "/azure-wiki/" ||
         location.pathname === "/azure-wiki" ||
@@ -37,9 +41,12 @@ export default function Root({ children }: RootProps): JSX.Element {
 
       if (isHome) {
         e.preventDefault();
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
       }
-      // If on another page, the link navigates normally and the pathname useEffect scrolls to top
+
+      // Always force to top — whether same page or navigating
+      window.scrollTo(0, 0);
+      const interval = setInterval(() => window.scrollTo(0, 0), 16);
+      setTimeout(() => clearInterval(interval), 600);
     };
 
     document.addEventListener("click", handleBrandClick, true);
