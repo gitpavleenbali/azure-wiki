@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "@docusaurus/router";
 import Layout from "@theme/Layout";
 import knowledgeBase from "@site/src/data/knowledgeBase.json";
 import styles from "./learning-hub.module.css";
@@ -38,6 +39,7 @@ const MODULE_LABELS: Record<string, string> = {
 };
 
 export default function LearningHub(): JSX.Element {
+  const history = useHistory();
   const [xpState, setXpState] = useState({ xp: 0, pagesRead: [] as string[], streak: 0 });
 
   useEffect(() => {
@@ -58,6 +60,22 @@ export default function LearningHub(): JSX.Element {
   return (
     <Layout title="Learning Hub" description="Centralized learning dashboard — Flashcards, Quizzes, XP Tracking">
       <div className={styles.page}>
+        {/* Close / Back button */}
+        <button
+          className={styles.closeBtn}
+          onClick={() => {
+            if (window.history.length > 1) {
+              history.goBack();
+            } else {
+              window.location.href = "/azure-wiki/";
+            }
+          }}
+          title="Close and go back"
+          aria-label="Close Learning Hub"
+        >
+          ✕
+        </button>
+
         {/* XP Dashboard */}
         <section className={styles.dashboard}>
           <div className={styles.xpCard}>
