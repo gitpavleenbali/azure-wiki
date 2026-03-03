@@ -146,10 +146,26 @@ article p {
 }
 
 /* ================================================================== */
-/*  TABLE OF CONTENTS — Sticky + highlight active                      */
+/*  SIDEBARS & TOC — Both sticky, only middle content scrolls          */
 /* ================================================================== */
 
-/* Desktop TOC right column - MUST stay sticky */
+/* LEFT SIDEBAR — module navigation stays fixed while scrolling */
+.theme-doc-sidebar-container {
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  will-change: transform; /* GPU acceleration */
+}
+
+/* Inner sidebar viewport also sticky */
+.sidebarViewport_aRkj,
+[class*="sidebarViewport"] {
+  position: sticky !important;
+  top: 0 !important;
+}
+
+/* RIGHT TOC column — stays fixed while scrolling */
 .col.col--3 {
   position: sticky !important;
   top: calc(var(--ifm-navbar-height) + 16px) !important;
@@ -159,30 +175,43 @@ article p {
   z-index: 100 !important;
 }
 
-.theme-doc-toc-desktop {
+/* RIGHT TOC inner container */
+.theme-doc-toc-desktop,
+[class*="tableOfContents"] {
   position: sticky !important;
   top: calc(var(--ifm-navbar-height) + 16px) !important;
   max-height: calc(100vh - var(--ifm-navbar-height) - 32px) !important;
   overflow-y: auto !important;
 }
 
-/* Override any Docusaurus defaults that might conflict */
+/* Higher specificity overrides for TOC sticky */
 main .col.col--3,
 article ~ .col.col--3,
-.docMainContainer_gTbr .col.col--3 {
+[class*="docMainContainer"] .col.col--3,
+[class*="docRoot"] .col.col--3 {
   position: sticky !important;
   top: calc(var(--ifm-navbar-height) + 16px) !important;
   align-self: flex-start !important;
 }
 
+/* TOC link styling */
 .table-of-contents__link {
   font-size: 0.82rem;
-  transition: color 0.15s;
+  transition: color 0.2s, font-weight 0.2s;
+  border-left: 2px solid transparent;
+  padding-left: 8px;
 }
 
+/* ACTIVE TOC LINK — purple highlight as you scroll through sections */
 .table-of-contents__link.toc-highlight {
   color: #6366f1 !important;
   font-weight: 600 !important;
+  border-left-color: #6366f1 !important;
+}
+
+/* Nested TOC links that are active */
+.table-of-contents__link.toc-highlight + ul .table-of-contents__link.toc-highlight {
+  color: #818cf8 !important;
 }
 
 /* ================================================================== */
