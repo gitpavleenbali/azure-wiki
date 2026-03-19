@@ -86,6 +86,30 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+
+  aiNexusSidebar: [
+    {
+      type: "category",
+      label: "AI Nexus",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        "ai-nexus/README",
+        "ai-nexus/GenAI-Foundations",
+        "ai-nexus/LLM-Landscape",
+        "ai-nexus/Azure-AI-Foundry",
+        "ai-nexus/Copilot-Ecosystem",
+        "ai-nexus/RAG-Architecture",
+        "ai-nexus/AI-Agents-Deep-Dive",
+        "ai-nexus/Semantic-Kernel",
+        "ai-nexus/Prompt-Engineering",
+        "ai-nexus/AI-Infrastructure",
+        "ai-nexus/Responsible-AI-Safety",
+        "ai-nexus/Quick-Reference-Cards",
+        "ai-nexus/Quiz-Assessment",
+      ],
+    },
+  ],
 };
 
 export default sidebars;

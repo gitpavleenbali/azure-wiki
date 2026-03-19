@@ -44,6 +44,7 @@ const config: Config = {
             "azure-ai-foundry/**/*.md",
             "azure-storage/**/*.md",
             "devsecops/**/*.md",
+            "ai-nexus/**/*.md",
           ],
           exclude: [
             "README.md",
@@ -110,6 +111,12 @@ const config: Config = {
           label: "Monitoring",
         },
         {
+          type: "docSidebar",
+          sidebarId: "aiNexusSidebar",
+          position: "left",
+          label: "AI Nexus",
+        },
+        {
           to: "/learning-hub",
           label: "★ Learning Hub",
           position: "right",
@@ -144,6 +151,7 @@ const config: Config = {
         {
           title: "More Topics",
           items: [
+            { label: "AI Nexus", to: "/ai-nexus/" },
             { label: "AI Foundry", to: "/azure-ai-foundry/AI-Foundry-Cross-Region-Architecture" },
             { label: "ADLS Gen2", to: "/azure-storage/ADLS-Gen2-Strategy-Guidance" },
             { label: "DevSecOps", to: "/devsecops/DEVSECOPS_BEST_PRACTICES_GUIDE" },

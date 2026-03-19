@@ -46,6 +46,13 @@ const modules = [
     tag: "Guide",
     color: "#7c3aed",
   },
+  {
+    title: "AI Nexus",
+    description: "GenAI knowledge forge — LLMs, RAG, agents, Copilot, prompt engineering for cloud architects",
+    link: "/ai-nexus/",
+    tag: "12 Modules",
+    color: "#06b6d4",
+  },
 ];
 
 function HeroBanner(): JSX.Element {
@@ -77,7 +84,7 @@ function HeroBanner(): JSX.Element {
         </div>
         <div className={styles.heroStats}>
           <div className={styles.stat}>
-            <span className={styles.statNum}>40+</span>
+            <span className={styles.statNum}>50+</span>
             <span className={styles.statLabel}>Guides</span>
           </div>
           <div className={styles.stat}>
