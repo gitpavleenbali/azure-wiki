@@ -593,15 +593,60 @@ div[class*="announcementBar"] kbd {
 }
 
 /* ================================================================== */
-/*  MERMAID DIAGRAMS — Clean integration                               */
+/*  MERMAID DIAGRAMS — Transparent background, clean integration       */
 /* ================================================================== */
 
 .mermaid {
   margin: 24px 0;
 }
 
+/* Force transparent backgrounds on all mermaid elements */
+.mermaid svg {
+  background: transparent !important;
+}
+
+.mermaid .cluster rect,
+.mermaid .cluster-alt rect {
+  fill: transparent !important;
+  rx: 12 !important;
+  ry: 12 !important;
+}
+
 [data-theme="dark"] .mermaid {
   filter: brightness(0.95);
+}
+
+[data-theme="dark"] .mermaid svg {
+  background: transparent !important;
+}
+
+/* Mermaid node styling — softer, more modern */
+.mermaid .node rect,
+.mermaid .node polygon,
+.mermaid .node circle {
+  rx: 10 !important;
+  ry: 10 !important;
+}
+
+/* Mermaid label readability */
+.mermaid .nodeLabel,
+.mermaid .edgeLabel,
+.mermaid .label {
+  font-family: var(--ifm-font-family-base) !important;
+  font-size: 0.82rem !important;
+}
+
+/* Timeline diagram transparent */
+.mermaid .timeline-container rect,
+.mermaid .grid rect {
+  fill: transparent !important;
+}
+
+/* Mindmap transparent */
+.mermaid .mindmap-node rect,
+.mermaid .mindmap-node circle {
+  rx: 10 !important;
+  ry: 10 !important;
 }
 
 /* ================================================================== */

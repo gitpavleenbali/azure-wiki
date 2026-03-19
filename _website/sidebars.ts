@@ -87,6 +87,71 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
+  aifrootSidebar: [
+    {
+      type: "category",
+      label: "🌳 AIFROOT — Root to Fruit",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        "aifroot/README",
+        {
+          type: "category",
+          label: "🌱 F — Foundations",
+          items: [
+            "ai-nexus/GenAI-Foundations",
+            "ai-nexus/LLM-Landscape",
+            "aifroot/F3-AI-Glossary-AZ",
+          ],
+        },
+        {
+          type: "category",
+          label: "🪵 R — Reasoning",
+          items: [
+            "ai-nexus/Prompt-Engineering",
+            "ai-nexus/RAG-Architecture",
+            "aifroot/R3-Deterministic-AI",
+          ],
+        },
+        {
+          type: "category",
+          label: "🌿 O — Orchestration",
+          items: [
+            "ai-nexus/Semantic-Kernel",
+            "ai-nexus/AI-Agents-Deep-Dive",
+            "aifroot/O3-MCP-Tools-Functions",
+          ],
+        },
+        {
+          type: "category",
+          label: "🏗️ O — Operations",
+          items: [
+            "ai-nexus/Azure-AI-Foundry",
+            "ai-nexus/AI-Infrastructure",
+            "ai-nexus/Copilot-Ecosystem",
+          ],
+        },
+        {
+          type: "category",
+          label: "🍎 T — Transformation",
+          items: [
+            "aifroot/T1-Fine-Tuning-MLOps",
+            "ai-nexus/Responsible-AI-Safety",
+            "aifroot/T3-Production-Patterns",
+          ],
+        },
+        {
+          type: "category",
+          label: "📋 Reference",
+          items: [
+            "ai-nexus/Quick-Reference-Cards",
+            "ai-nexus/Quiz-Assessment",
+          ],
+        },
+      ],
+    },
+  ],
+
   aiNexusSidebar: [
     {
       type: "category",

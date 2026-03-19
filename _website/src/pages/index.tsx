@@ -47,6 +47,13 @@ const modules = [
     color: "#7c3aed",
   },
   {
+    title: "🌳 AIFROOT",
+    description: "From Root to Fruit — the complete AI knowledge tree. 17 modules covering foundations, reasoning, orchestration, operations & transformation",
+    link: "/aifroot/",
+    tag: "17 Modules · NEW",
+    color: "#10b981",
+  },
+  {
     title: "AI Nexus",
     description: "GenAI knowledge forge — LLMs, RAG, agents, Copilot, prompt engineering for cloud architects",
     link: "/ai-nexus/",
@@ -72,8 +79,8 @@ function HeroBanner(): JSX.Element {
           Built for Cloud Architects, FinOps Practitioners, and AI Engineers.
         </p>
         <div className={styles.heroCta}>
-          <Link className={styles.ctaPrimary} to="/cost-optimization/">
-            Start Learning
+          <Link className={styles.ctaPrimary} to="/aifroot/">
+            Explore AIFROOT
           </Link>
           <Link
             className={styles.ctaSecondary}
@@ -84,12 +91,12 @@ function HeroBanner(): JSX.Element {
         </div>
         <div className={styles.heroStats}>
           <div className={styles.stat}>
-            <span className={styles.statNum}>50+</span>
+            <span className={styles.statNum}>60+</span>
             <span className={styles.statLabel}>Guides</span>
           </div>
           <div className={styles.stat}>
-            <span className={styles.statNum}>9</span>
-            <span className={styles.statLabel}>Cost Modules</span>
+            <span className={styles.statNum}>17</span>
+            <span className={styles.statLabel}>AIFROOT Modules</span>
           </div>
           <div className={styles.stat}>
             <span className={styles.statNum}>19</span>

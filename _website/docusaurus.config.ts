@@ -45,6 +45,7 @@ const config: Config = {
             "azure-storage/**/*.md",
             "devsecops/**/*.md",
             "ai-nexus/**/*.md",
+            "aifroot/**/*.md",
           ],
           exclude: [
             "README.md",
@@ -112,6 +113,12 @@ const config: Config = {
         },
         {
           type: "docSidebar",
+          sidebarId: "aifrootSidebar",
+          position: "left",
+          label: "🌳 AIFROOT",
+        },
+        {
+          type: "docSidebar",
           sidebarId: "aiNexusSidebar",
           position: "left",
           label: "AI Nexus",
@@ -151,6 +158,7 @@ const config: Config = {
         {
           title: "More Topics",
           items: [
+            { label: "🌳 AIFROOT", to: "/aifroot/" },
             { label: "AI Nexus", to: "/ai-nexus/" },
             { label: "AI Foundry", to: "/azure-ai-foundry/AI-Foundry-Cross-Region-Architecture" },
             { label: "ADLS Gen2", to: "/azure-storage/ADLS-Gen2-Strategy-Guidance" },
