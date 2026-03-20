@@ -111,6 +111,12 @@ const config: Config = {
           label: "Monitoring",
         },
         {
+          type: "docSidebar",
+          sidebarId: "aifrootSidebar",
+          position: "left",
+          label: "AI Hub",
+        },
+        {
           to: "/froot-ai",
           label: "🌳 FrootAI",
           position: "right",
