@@ -19,14 +19,14 @@ const layers = [
         title: "GenAI Foundations",
         desc: "Transformers, attention, tokenization, inference, parameters, context windows, embeddings",
         duration: "60–90 min",
-        link: "/ai-nexus/GenAI-Foundations",
+        link: "/aifroot/GenAI-Foundations",
       },
       {
         id: "F2",
         title: "LLM Landscape & Model Selection",
         desc: "GPT, Claude, Llama, Gemini, Phi — benchmarks, open vs proprietary, when to use what",
         duration: "45–60 min",
-        link: "/ai-nexus/LLM-Landscape",
+        link: "/aifroot/LLM-Landscape",
       },
       {
         id: "F3",
@@ -50,14 +50,14 @@ const layers = [
         title: "Prompt Engineering & Grounding",
         desc: "System messages, few-shot, chain-of-thought, structured output, guardrails, function calling",
         duration: "60–90 min",
-        link: "/ai-nexus/Prompt-Engineering",
+        link: "/aifroot/Prompt-Engineering",
       },
       {
         id: "R2",
         title: "RAG Architecture & Retrieval",
         desc: "Chunking, embeddings, vector search, Azure AI Search, semantic ranking, reranking, hybrid search",
         duration: "90–120 min",
-        link: "/ai-nexus/RAG-Architecture",
+        link: "/aifroot/RAG-Architecture",
       },
       {
         id: "R3",
@@ -81,14 +81,14 @@ const layers = [
         title: "Semantic Kernel & Orchestration",
         desc: "Plugins, planners, memory, connectors, comparison with LangChain, when to use SK",
         duration: "60 min",
-        link: "/ai-nexus/Semantic-Kernel",
+        link: "/aifroot/Semantic-Kernel",
       },
       {
         id: "O2",
         title: "AI Agents & Microsoft Agent Framework",
         desc: "Agent concepts, planning, memory, tool use, AutoGen, multi-agent, deterministic agents",
         duration: "90–120 min",
-        link: "/ai-nexus/AI-Agents-Deep-Dive",
+        link: "/aifroot/AI-Agents-Deep-Dive",
       },
       {
         id: "O3",
@@ -112,21 +112,21 @@ const layers = [
         title: "Azure AI Platform & Landing Zones",
         desc: "AI Foundry, Model Catalog, deployments, endpoints, AI Landing Zone, enterprise patterns",
         duration: "60–90 min",
-        link: "/ai-nexus/Azure-AI-Foundry",
+        link: "/aifroot/Azure-AI-Foundry",
       },
       {
         id: "O5",
         title: "AI Infrastructure & Hosting",
         desc: "GPU compute, Container Apps, AKS, App Service, model serving, scaling, cost optimization",
         duration: "60–90 min",
-        link: "/ai-nexus/AI-Infrastructure",
+        link: "/aifroot/AI-Infrastructure",
       },
       {
         id: "O6",
         title: "Copilot Ecosystem & Low-Code AI",
         desc: "M365 Copilot, Copilot Studio, Power Platform AI, GitHub Copilot, extensibility",
         duration: "45–60 min",
-        link: "/ai-nexus/Copilot-Ecosystem",
+        link: "/aifroot/Copilot-Ecosystem",
       },
     ],
   },
@@ -150,7 +150,7 @@ const layers = [
         title: "Responsible AI & Safety",
         desc: "Content safety, red teaming, guardrails, Azure AI Content Safety, evaluation frameworks",
         duration: "45–60 min",
-        link: "/ai-nexus/Responsible-AI-Safety",
+        link: "/aifroot/Responsible-AI-Safety",
       },
       {
         id: "T3",
@@ -223,7 +223,7 @@ function HeroBanner(): JSX.Element {
           <span className={styles.heroAcronymT}>T</span>ransformation
         </p>
         <p className={styles.heroSub}>
-          The complete AI knowledge tree for Cloud Architects.
+          The open glue that binds infrastructure, platform, and application.
           <br />
           From a single token to a production agent fleet.
         </p>
@@ -231,7 +231,7 @@ function HeroBanner(): JSX.Element {
           "The telescope and the microscope for AI architecture"
         </p>
         <div className={styles.heroCta}>
-          <Link className={styles.ctaPrimary} to="/ai-nexus/GenAI-Foundations">
+          <Link className={styles.ctaPrimary} to="/aifroot/GenAI-Foundations">
             Start from the Roots
           </Link>
           <Link className={styles.ctaSecondary} to="/aifroot/">
@@ -399,18 +399,67 @@ export default function FrootAIPage(): JSX.Element {
         <LensSection />
         <PathSection />
 
+        {/* ── Ecosystem: MCP + Integrations ── */}
+        <section className={styles.lensSection}>
+          <h2 className={styles.sectionTitle}>Not Just Docs — An Ecosystem</h2>
+          <p className={styles.sectionSub}>
+            FrootAI is programmable. Connect it to your AI agents, editors, and workflows.
+          </p>
+          <div className={styles.lensGrid}>
+            <div className={styles.lensCard}>
+              <div className={styles.lensEmoji}>🔌</div>
+              <h3 className={styles.lensTitle}>MCP Server</h3>
+              <ul className={styles.lensList}>
+                <li><strong>3 lines to connect:</strong></li>
+                <li><code>cd mcp-server && npm install</code></li>
+                <li><code>node index.js</code></li>
+                <li>Query 17 modules from any AI agent</li>
+                <li>200+ terms via <code>lookup_term</code></li>
+                <li>Architecture patterns on demand</li>
+              </ul>
+            </div>
+            <div className={styles.lensCard}>
+              <div className={styles.lensEmoji}>⚡</div>
+              <h3 className={styles.lensTitle}>5 MCP Tools</h3>
+              <ul className={styles.lensList}>
+                <li><code>list_modules</code> — Browse FROOT layers</li>
+                <li><code>get_module</code> — Read any module (F1–T3)</li>
+                <li><code>lookup_term</code> — AI glossary lookup</li>
+                <li><code>search_knowledge</code> — Full-text search</li>
+                <li><code>get_architecture_pattern</code> — Decision guides</li>
+              </ul>
+            </div>
+          </div>
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <code style={{ 
+              display: "inline-block",
+              padding: "12px 24px", 
+              borderRadius: "10px", 
+              fontSize: "0.85rem",
+              background: "rgba(16, 185, 129, 0.08)",
+              border: "1px solid rgba(16, 185, 129, 0.2)",
+            }}>
+              {`{ "mcpServers": { "frootai": { "command": "node", "args": ["mcp-server/index.js"] } } }`}
+            </code>
+          </div>
+        </section>
+
         <section className={styles.ctaSection}>
           <h2 className={styles.sectionTitle}>
-            Ready to Grow Your AI Knowledge?
+            The Open Glue for AI Architecture
           </h2>
           <p className={styles.ctaDesc}>
-            Start from the roots with GenAI Foundations, or jump to any module
-            that matches your need. Every module is self-contained but
-            connected to the bigger tree.
+            Infrastructure is the soil. Platform is the trunk. Application is the fruit.
+            FrootAI binds them all — read it, search it, query it via MCP, build with it.
           </p>
-          <Link className={styles.ctaButton} to="/ai-nexus/GenAI-Foundations">
-            🌳 Begin the Journey
-          </Link>
+          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+            <Link className={styles.ctaButton} to="/aifroot/GenAI-Foundations">
+              🌱 Start from the Roots
+            </Link>
+            <Link className={styles.ctaButton} to="https://github.com/gitpavleenbali/azure-wiki/tree/master/mcp-server" style={{ background: "linear-gradient(135deg, #6366f1, #7c3aed)" }}>
+              🔌 Get the MCP Server
+            </Link>
+          </div>
         </section>
       </main>
     </Layout>

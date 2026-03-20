@@ -1,6 +1,7 @@
 # FrootAI — From Root to Fruit
 
-> **The telescope and the microscope for AI architecture**
+> **The open glue that binds infrastructure, platform, and application**
+> The telescope and the microscope for AI architecture.
 > See the big picture. Master the tiny details. Design with confidence.
 
 ---
@@ -105,8 +106,8 @@ graph TB
 
 | # | Module | Duration | What You'll Master |
 |---|--------|----------|-------------------|
-| F1 | [GenAI Foundations](../ai-nexus/01-GenAI-Foundations.md) | 60–90 min | Transformers, attention, tokenization, inference, parameters (temperature, top-k, top-p), context windows, embeddings |
-| F2 | [LLM Landscape & Model Selection](../ai-nexus/02-LLM-Landscape.md) | 45–60 min | GPT, Claude, Llama, Gemini, Phi — benchmarks, open vs proprietary, when to use what |
+| F1 | [GenAI Foundations](./01-GenAI-Foundations.md) | 60–90 min | Transformers, attention, tokenization, inference, parameters (temperature, top-k, top-p), context windows, embeddings |
+| F2 | [LLM Landscape & Model Selection](./02-LLM-Landscape.md) | 45–60 min | GPT, Claude, Llama, Gemini, Phi — benchmarks, open vs proprietary, when to use what |
 | F3 | [AI Glossary A–Z](./F3-AI-Glossary-AZ.md) | Reference | **200+ terms** defined — from "ablation" to "zero-shot". The dictionary you keep open in another tab |
 
 ---
@@ -117,8 +118,8 @@ graph TB
 
 | # | Module | Duration | What You'll Master |
 |---|--------|----------|-------------------|
-| R1 | [Prompt Engineering & Grounding](../ai-nexus/08-Prompt-Engineering.md) | 60–90 min | System messages, few-shot, chain-of-thought, structured output, guardrails, function calling |
-| R2 | [RAG Architecture & Retrieval](../ai-nexus/05-RAG-Architecture.md) | 90–120 min | Chunking, embeddings, vector search, Azure AI Search, semantic ranking, reranking, hybrid search |
+| R1 | [Prompt Engineering & Grounding](./08-Prompt-Engineering.md) | 60–90 min | System messages, few-shot, chain-of-thought, structured output, guardrails, function calling |
+| R2 | [RAG Architecture & Retrieval](./05-RAG-Architecture.md) | 90–120 min | Chunking, embeddings, vector search, Azure AI Search, semantic ranking, reranking, hybrid search |
 | R3 | [Making AI Deterministic & Reliable](./R3-Deterministic-AI.md) | 60–90 min | Hallucination reduction, grounding techniques, temperature vs top-p tuning, evaluation metrics, guardrails |
 
 ---
@@ -129,8 +130,8 @@ graph TB
 
 | # | Module | Duration | What You'll Master |
 |---|--------|----------|-------------------|
-| O1 | [Semantic Kernel & Orchestration](../ai-nexus/07-Semantic-Kernel.md) | 60 min | Plugins, planners, memory, connectors, comparison with LangChain, when to use SK |
-| O2 | [AI Agents & Microsoft Agent Framework](../ai-nexus/06-AI-Agents-Deep-Dive.md) | 90–120 min | Agent concepts, planning, memory, tool use, AutoGen, multi-agent, deterministic agents |
+| O1 | [Semantic Kernel & Orchestration](./07-Semantic-Kernel.md) | 60 min | Plugins, planners, memory, connectors, comparison with LangChain, when to use SK |
+| O2 | [AI Agents & Microsoft Agent Framework](./06-AI-Agents-Deep-Dive.md) | 90–120 min | Agent concepts, planning, memory, tool use, AutoGen, multi-agent, deterministic agents |
 | O3 | [MCP, Tools & Function Calling](./O3-MCP-Tools-Functions.md) | 60–90 min | Model Context Protocol, tool schemas, function calling patterns, A2A, MCP servers, registry |
 
 ---
@@ -141,9 +142,9 @@ graph TB
 
 | # | Module | Duration | What You'll Master |
 |---|--------|----------|-------------------|
-| O4 | [Azure AI Platform & Landing Zones](../ai-nexus/03-Azure-AI-Foundry.md) | 60–90 min | AI Foundry, Model Catalog, deployments, endpoints, AI Landing Zone, enterprise patterns |
-| O5 | [AI Infrastructure & Hosting](../ai-nexus/09-AI-Infrastructure.md) | 60–90 min | GPU compute, Container Apps, AKS, App Service, model serving, scaling, cost optimization |
-| O6 | [Copilot Ecosystem & Low-Code AI](../ai-nexus/04-Copilot-Ecosystem.md) | 45–60 min | M365 Copilot, Copilot Studio, Power Platform AI, GitHub Copilot, extensibility |
+| O4 | [Azure AI Platform & Landing Zones](./03-Azure-AI-Foundry.md) | 60–90 min | AI Foundry, Model Catalog, deployments, endpoints, AI Landing Zone, enterprise patterns |
+| O5 | [AI Infrastructure & Hosting](./09-AI-Infrastructure.md) | 60–90 min | GPU compute, Container Apps, AKS, App Service, model serving, scaling, cost optimization |
+| O6 | [Copilot Ecosystem & Low-Code AI](./04-Copilot-Ecosystem.md) | 45–60 min | M365 Copilot, Copilot Studio, Power Platform AI, GitHub Copilot, extensibility |
 
 ---
 
@@ -154,7 +155,7 @@ graph TB
 | # | Module | Duration | What You'll Master |
 |---|--------|----------|-------------------|
 | T1 | [Fine-Tuning & Model Customization](./T1-Fine-Tuning-MLOps.md) | 60–90 min | When to fine-tune vs RAG, LoRA, QLoRA, RLHF, DPO, evaluation, MLOps lifecycle |
-| T2 | [Responsible AI & Safety](../ai-nexus/10-Responsible-AI-Safety.md) | 45–60 min | Content safety, red teaming, guardrails, Azure AI Content Safety, evaluation frameworks |
+| T2 | [Responsible AI & Safety](./10-Responsible-AI-Safety.md) | 45–60 min | Content safety, red teaming, guardrails, Azure AI Content Safety, evaluation frameworks |
 | T3 | [Production Architecture Patterns](./T3-Production-Patterns.md) | 60–90 min | Multi-agent hosting, API gateway for AI, latency optimization, cost control, monitoring |
 
 ---
@@ -163,8 +164,8 @@ graph TB
 
 | # | Module | Duration | Purpose |
 |---|--------|----------|---------|
-| REF | [Quick Reference Cards](../ai-nexus/11-Quick-Reference-Cards.md) | Reference | One-page cheat sheets for every concept — pin them to your wall |
-| QUIZ | [Quiz & Assessment](../ai-nexus/12-Quiz-Assessment.md) | 20 min | 25 questions covering the full FrootAI curriculum |
+| REF | [Quick Reference Cards](./11-Quick-Reference-Cards.md) | Reference | One-page cheat sheets for every concept — pin them to your wall |
+| QUIZ | [Quiz & Assessment](./12-Quiz-Assessment.md) | 20 min | 25 questions covering the full FrootAI curriculum |
 
 ---
 
@@ -347,8 +348,8 @@ By the time you've worked through FrootAI, you will be able to:
 
 **🌱 F**
 
-[F1: GenAI Foundations](../ai-nexus/01-GenAI-Foundations.md)
-[F2: LLM Landscape](../ai-nexus/02-LLM-Landscape.md)
+[F1: GenAI Foundations](./01-GenAI-Foundations.md)
+[F2: LLM Landscape](./02-LLM-Landscape.md)
 [F3: AI Glossary A-Z](./F3-AI-Glossary-AZ.md)
 
 </td>
@@ -356,8 +357,8 @@ By the time you've worked through FrootAI, you will be able to:
 
 **🪵 R**
 
-[R1: Prompts](../ai-nexus/08-Prompt-Engineering.md)
-[R2: RAG](../ai-nexus/05-RAG-Architecture.md)
+[R1: Prompts](./08-Prompt-Engineering.md)
+[R2: RAG](./05-RAG-Architecture.md)
 [R3: Determinism](./R3-Deterministic-AI.md)
 
 </td>
@@ -365,8 +366,8 @@ By the time you've worked through FrootAI, you will be able to:
 
 **🌿 O**
 
-[O1: Semantic Kernel](../ai-nexus/07-Semantic-Kernel.md)
-[O2: AI Agents](../ai-nexus/06-AI-Agents-Deep-Dive.md)
+[O1: Semantic Kernel](./07-Semantic-Kernel.md)
+[O2: AI Agents](./06-AI-Agents-Deep-Dive.md)
 [O3: MCP & Tools](./O3-MCP-Tools-Functions.md)
 
 </td>
@@ -374,9 +375,9 @@ By the time you've worked through FrootAI, you will be able to:
 
 **🏗️ O**
 
-[O4: Azure AI](../ai-nexus/03-Azure-AI-Foundry.md)
-[O5: Infrastructure](../ai-nexus/09-AI-Infrastructure.md)
-[O6: Copilot](../ai-nexus/04-Copilot-Ecosystem.md)
+[O4: Azure AI](./03-Azure-AI-Foundry.md)
+[O5: Infrastructure](./09-AI-Infrastructure.md)
+[O6: Copilot](./04-Copilot-Ecosystem.md)
 
 </td>
 <td width="20%" align="center">
@@ -384,7 +385,7 @@ By the time you've worked through FrootAI, you will be able to:
 **🍎 T**
 
 [T1: Fine-Tuning](./T1-Fine-Tuning-MLOps.md)
-[T2: Responsible AI](../ai-nexus/10-Responsible-AI-Safety.md)
+[T2: Responsible AI](./10-Responsible-AI-Safety.md)
 [T3: Production](./T3-Production-Patterns.md)
 
 </td>
@@ -393,5 +394,26 @@ By the time you've worked through FrootAI, you will be able to:
 
 ---
 
-> **FrootAI** — *From Root to Fruit. See the whole tree.*
+## 🔌 FrootAI MCP Server
+
+FrootAI is not just documentation — it's a **programmable knowledge base**. Connect it to any MCP-compatible AI agent:
+
+```json
+{
+  "mcpServers": {
+    "frootai": {
+      "command": "node",
+      "args": ["mcp-server/index.js"]
+    }
+  }
+}
+```
+
+**5 tools available:** `list_modules` · `get_module` · `lookup_term` · `search_knowledge` · `get_architecture_pattern`
+
+See [mcp-server/README.md](../mcp-server/README.md) for full setup instructions.
+
+---
+
+> **FrootAI** — *The open glue for AI architecture. From root to fruit.*
 > Built with 🌳 by [Pavleen Bali](https://linkedin.com/in/pavleenbali) for the Azure community.

@@ -4,7 +4,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Azure Wiki",
-  tagline: "Interactive Azure learning — Visual guides, architecture patterns, gamified learning",
+  tagline: "The open glue — binding infrastructure, platform, and application for AI architecture",
   favicon: "img/favicon.ico",
 
   url: "https://gitpavleenbali.github.io",
@@ -44,7 +44,6 @@ const config: Config = {
             "azure-ai-foundry/**/*.md",
             "azure-storage/**/*.md",
             "devsecops/**/*.md",
-            "ai-nexus/**/*.md",
             "aifroot/**/*.md",
           ],
           exclude: [
@@ -112,12 +111,6 @@ const config: Config = {
           label: "Monitoring",
         },
         {
-          type: "docSidebar",
-          sidebarId: "aiNexusSidebar",
-          position: "left",
-          label: "AI Nexus",
-        },
-        {
           to: "/froot-ai",
           label: "🌳 FrootAI",
           position: "right",
@@ -159,7 +152,6 @@ const config: Config = {
           title: "More Topics",
           items: [
             { label: "🌳 FrootAI", to: "/froot-ai" },
-            { label: "AI Nexus", to: "/ai-nexus/" },
             { label: "AI Foundry", to: "/azure-ai-foundry/AI-Foundry-Cross-Region-Architecture" },
             { label: "ADLS Gen2", to: "/azure-storage/ADLS-Gen2-Strategy-Guidance" },
             { label: "DevSecOps", to: "/devsecops/DEVSECOPS_BEST_PRACTICES_GUIDE" },

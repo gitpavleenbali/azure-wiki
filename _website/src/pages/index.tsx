@@ -53,13 +53,6 @@ const modules = [
     tag: "17 Modules · NEW",
     color: "#10b981",
   },
-  {
-    title: "AI Nexus",
-    description: "GenAI knowledge forge — LLMs, RAG, agents, Copilot, prompt engineering for cloud architects",
-    link: "/ai-nexus/",
-    tag: "12 Modules",
-    color: "#06b6d4",
-  },
 ];
 
 function HeroBanner(): JSX.Element {
@@ -71,12 +64,12 @@ function HeroBanner(): JSX.Element {
           alt="Azure Wiki"
           className={styles.heroLogo}
         />
-        <p className={styles.heroLabel}>Open-Source Learning Platform</p>
+        <p className={styles.heroLabel}>The Open Glue for AI Architecture</p>
         <h1 className={styles.heroTitle}>Azure Wiki</h1>
         <p className={styles.heroSub}>
-          Interactive guides, architecture patterns, and production-ready code.
+          The open glue that binds infrastructure, platform, and application.
           <br />
-          Built for Cloud Architects, FinOps Practitioners, and AI Engineers.
+          From the bedrock of infra to the fruit of AI agents.
         </p>
         <div className={styles.heroCta}>
           <Link className={styles.ctaPrimary} to="/froot-ai">
