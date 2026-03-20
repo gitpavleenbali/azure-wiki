@@ -90,7 +90,7 @@ const sidebars: SidebarsConfig = {
   aifrootSidebar: [
     {
       type: "category",
-      label: "🌳 AIFROOT — Root to Fruit",
+      label: "🌳 FrootAI — Root to Fruit",
       collapsible: true,
       collapsed: false,
       items: [

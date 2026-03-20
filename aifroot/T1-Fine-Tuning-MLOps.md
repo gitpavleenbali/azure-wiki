@@ -462,4 +462,4 @@ graph TB
 
 ---
 
-> **AIFROOT T1** — *Fine-tuning is the art of teaching a model your language. LoRA made it accessible. QLoRA made it affordable. Good data makes it work.*
+> **FrootAI T1** — *Fine-tuning is the art of teaching a model your language. LoRA made it accessible. QLoRA made it affordable. Good data makes it work.*

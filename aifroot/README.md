@@ -1,4 +1,4 @@
-# AIFROOT — From Root to Fruit
+# FrootAI — From Root to Fruit
 
 > **The telescope and the microscope for AI architecture**
 > See the big picture. Master the tiny details. Design with confidence.
@@ -30,13 +30,13 @@
 
 ---
 
-## What is AIFROOT?
+## What is FrootAI?
 
-**AIFROOT** = **A**I **F**oundations · **R**easoning · **O**rchestration · **O**perations · **T**ransformation
+**FrootAI** = **A**I **F**oundations · **R**easoning · **O**rchestration · **O**perations · **T**ransformation
 
 You are a cloud architect. You build platforms that host workloads. But the workloads have changed. Every application is becoming AI-native — language models, retrieval pipelines, autonomous agents, copilot integrations. You need to understand the entire tree, from the **roots** (how a token becomes a thought) to the **fruit** (a production agent that serves millions).
 
-AIFROOT gives you **both lenses**:
+FrootAI gives you **both lenses**:
 
 | 🔭 Telescope (Big Picture) | 🔬 Microscope (Tiny Details) |
 |---|---|
@@ -51,7 +51,7 @@ AIFROOT gives you **both lenses**:
 
 ## The FROOT Framework
 
-AIFROOT organizes **everything** in the GenAI world into five layers — each building on the last, each essential to the whole:
+FrootAI organizes **everything** in the GenAI world into five layers — each building on the last, each essential to the whole:
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1a1a2e', 'primaryTextColor': '#e0e0e0', 'primaryBorderColor': '#6366f1', 'lineColor': '#818cf8', 'secondaryColor': '#111118', 'tertiaryColor': '#0a0a0f', 'background': 'transparent'}}}%%
@@ -164,7 +164,7 @@ graph TB
 | # | Module | Duration | Purpose |
 |---|--------|----------|---------|
 | REF | [Quick Reference Cards](../ai-nexus/11-Quick-Reference-Cards.md) | Reference | One-page cheat sheets for every concept — pin them to your wall |
-| QUIZ | [Quiz & Assessment](../ai-nexus/12-Quiz-Assessment.md) | 20 min | 25 questions covering the full AIFROOT curriculum |
+| QUIZ | [Quiz & Assessment](../ai-nexus/12-Quiz-Assessment.md) | 20 min | 25 questions covering the full FrootAI curriculum |
 
 ---
 
@@ -237,7 +237,7 @@ flowchart LR
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1a1a2e', 'primaryTextColor': '#e0e0e0', 'primaryBorderColor': '#6366f1', 'lineColor': '#818cf8', 'background': 'transparent'}}}%%
 mindmap
-  root((AIFROOT))
+  root((FrootAI))
     Cloud Architects
       AI Landing Zones
       GPU Capacity Planning
@@ -313,9 +313,9 @@ F1 → F2 → F3 → R1 → R2 → R3 → O1 → O2 → O3 → O4 → O5 → O6 
 
 ---
 
-## The AIFROOT Promise
+## The FrootAI Promise
 
-By the time you've worked through AIFROOT, you will be able to:
+By the time you've worked through FrootAI, you will be able to:
 
 ✅ **Explain** how a transformer turns tokens into intelligence — in 60 seconds, to any audience
 
@@ -393,5 +393,5 @@ By the time you've worked through AIFROOT, you will be able to:
 
 ---
 
-> **AIFROOT** — *From Root to Fruit. See the whole tree.*
+> **FrootAI** — *From Root to Fruit. See the whole tree.*
 > Built with 🌳 by [Pavleen Bali](https://linkedin.com/in/pavleenbali) for the Azure community.

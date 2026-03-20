@@ -113,15 +113,15 @@ const config: Config = {
         },
         {
           type: "docSidebar",
-          sidebarId: "aifrootSidebar",
-          position: "left",
-          label: "🌳 AIFROOT",
-        },
-        {
-          type: "docSidebar",
           sidebarId: "aiNexusSidebar",
           position: "left",
           label: "AI Nexus",
+        },
+        {
+          to: "/froot-ai",
+          label: "🌳 FrootAI",
+          position: "right",
+          className: "navbar-frootai",
         },
         {
           to: "/learning-hub",
@@ -158,7 +158,7 @@ const config: Config = {
         {
           title: "More Topics",
           items: [
-            { label: "🌳 AIFROOT", to: "/aifroot/" },
+            { label: "🌳 FrootAI", to: "/froot-ai" },
             { label: "AI Nexus", to: "/ai-nexus/" },
             { label: "AI Foundry", to: "/azure-ai-foundry/AI-Foundry-Cross-Region-Architecture" },
             { label: "ADLS Gen2", to: "/azure-storage/ADLS-Gen2-Strategy-Guidance" },

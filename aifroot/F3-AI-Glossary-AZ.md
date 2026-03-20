@@ -503,4 +503,4 @@ quadrantChart
 ---
 
 > **Tip:** Bookmark this page. You'll come back to it constantly.
-> **AIFROOT** — *From Root to Fruit*
+> **FrootAI** — *From Root to Fruit*

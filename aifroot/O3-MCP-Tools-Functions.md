@@ -601,5 +601,5 @@ flowchart TB
 
 ---
 
-> **AIFROOT O3** — *Tools are how AI gets things done. MCP is how we standardize it.*
+> **FrootAI O3** — *Tools are how AI gets things done. MCP is how we standardize it.*
 > Connect the brain to the body, safely and scalably.

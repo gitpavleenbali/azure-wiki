@@ -525,4 +525,4 @@ Before going live, verify every item:
 
 ---
 
-> **AIFROOT T3** — *Production AI is where engineering meets intelligence. Build it like infrastructure. Monitor it like a service. Budget it like a business.*
+> **FrootAI T3** — *Production AI is where engineering meets intelligence. Build it like infrastructure. Monitor it like a service. Budget it like a business.*

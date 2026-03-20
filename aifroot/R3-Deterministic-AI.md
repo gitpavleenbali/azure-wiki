@@ -604,5 +604,5 @@ flowchart TB
 
 ---
 
-> **AIFROOT R3** — *Making AI reliable is engineering, not wishful thinking.*
+> **FrootAI R3** — *Making AI reliable is engineering, not wishful thinking.*
 > The telescope shows you the big picture. The microscope shows you where determinism breaks. Use both.

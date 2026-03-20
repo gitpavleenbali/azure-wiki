@@ -47,9 +47,9 @@ const modules = [
     color: "#7c3aed",
   },
   {
-    title: "🌳 AIFROOT",
+    title: "🌳 FrootAI",
     description: "From Root to Fruit — the complete AI knowledge tree. 17 modules covering foundations, reasoning, orchestration, operations & transformation",
-    link: "/aifroot/",
+    link: "/froot-ai",
     tag: "17 Modules · NEW",
     color: "#10b981",
   },
@@ -79,8 +79,8 @@ function HeroBanner(): JSX.Element {
           Built for Cloud Architects, FinOps Practitioners, and AI Engineers.
         </p>
         <div className={styles.heroCta}>
-          <Link className={styles.ctaPrimary} to="/aifroot/">
-            Explore AIFROOT
+          <Link className={styles.ctaPrimary} to="/froot-ai">
+            Explore FrootAI
           </Link>
           <Link
             className={styles.ctaSecondary}

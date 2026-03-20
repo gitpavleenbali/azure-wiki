@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import styles from "./aifroot.module.css";
+import styles from "./froot-ai.module.css";
 
 // ─── FROOT Layer Data ───────────────────────────────────────────────
 
@@ -33,7 +33,7 @@ const layers = [
         title: "AI Glossary A–Z",
         desc: "200+ terms defined — from ablation to zero-shot. The dictionary you keep open in another tab",
         duration: "Reference",
-        link: "/aifroot/AI-Glossary-AZ",
+        link: "/aifroot/F3-AI-Glossary-AZ",
       },
     ],
   },
@@ -64,7 +64,7 @@ const layers = [
         title: "Making AI Deterministic & Reliable",
         desc: "Hallucination reduction, grounding, temperature tuning, evaluation metrics, guardrails",
         duration: "60–90 min",
-        link: "/aifroot/Deterministic-AI",
+        link: "/aifroot/R3-Deterministic-AI",
       },
     ],
   },
@@ -95,7 +95,7 @@ const layers = [
         title: "MCP, Tools & Function Calling",
         desc: "Model Context Protocol, tool schemas, function calling, A2A, MCP servers, registry",
         duration: "60–90 min",
-        link: "/aifroot/MCP-Tools-Functions",
+        link: "/aifroot/O3-MCP-Tools-Functions",
       },
     ],
   },
@@ -143,7 +143,7 @@ const layers = [
         title: "Fine-Tuning & Model Customization",
         desc: "When to fine-tune vs RAG, LoRA, QLoRA, RLHF, DPO, evaluation, MLOps lifecycle",
         duration: "60–90 min",
-        link: "/aifroot/Fine-Tuning-MLOps",
+        link: "/aifroot/T1-Fine-Tuning-MLOps",
       },
       {
         id: "T2",
@@ -157,7 +157,7 @@ const layers = [
         title: "Production Architecture Patterns",
         desc: "Multi-agent hosting, API gateway for AI, latency, cost control, monitoring, resilience",
         duration: "60–90 min",
-        link: "/aifroot/Production-Patterns",
+        link: "/aifroot/T3-Production-Patterns",
       },
     ],
   },
@@ -209,11 +209,11 @@ function HeroBanner(): JSX.Element {
       <div className={styles.heroInner}>
         <img
           src="/azure-wiki/img/aifroot-logo.svg"
-          alt="AIFROOT"
+          alt="FrootAI"
           className={styles.heroLogo}
         />
         <p className={styles.heroLabel}>From Root to Fruit</p>
-        <h1 className={styles.heroTitle}>AIFROOT</h1>
+        <h1 className={styles.heroTitle}>FrootAI</h1>
         <p className={styles.heroAcronym}>
           AI{" "}
           <span className={styles.heroAcronymF}>F</span>oundations ·{" "}
@@ -231,11 +231,11 @@ function HeroBanner(): JSX.Element {
           "The telescope and the microscope for AI architecture"
         </p>
         <div className={styles.heroCta}>
-          <Link className={styles.ctaPrimary} to="/aifroot/">
+          <Link className={styles.ctaPrimary} to="/ai-nexus/GenAI-Foundations">
             Start from the Roots
           </Link>
-          <Link className={styles.ctaSecondary} to="/ai-nexus/">
-            Original AI Nexus
+          <Link className={styles.ctaSecondary} to="/aifroot/">
+            Browse All Modules
           </Link>
         </div>
         <div className={styles.heroStats}>
@@ -375,10 +375,10 @@ function PathSection(): JSX.Element {
 
 // ─── Main Page ─────────────────────────────────────────────────────
 
-export default function AIFROOTPage(): JSX.Element {
+export default function FrootAIPage(): JSX.Element {
   return (
     <Layout
-      title="AIFROOT — From Root to Fruit"
+      title="FrootAI — From Root to Fruit"
       description="The complete AI knowledge tree for Cloud Architects. 17 modules covering foundations to production. The telescope and the microscope for AI architecture."
     >
       <HeroBanner />
@@ -408,7 +408,7 @@ export default function AIFROOTPage(): JSX.Element {
             that matches your need. Every module is self-contained but
             connected to the bigger tree.
           </p>
-          <Link className={styles.ctaButton} to="/aifroot/">
+          <Link className={styles.ctaButton} to="/ai-nexus/GenAI-Foundations">
             🌳 Begin the Journey
           </Link>
         </section>
