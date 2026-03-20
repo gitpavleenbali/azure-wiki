@@ -130,7 +130,7 @@ function HeroBanner(): JSX.Element {
     <div className={styles.hero}>
       <div className={styles.heroInner}>
         <img src="/azure-wiki/img/aifroot-logo.svg" alt="FrootAI" className={styles.heroLogo} />
-        <p className={styles.heroLabel}>The Open Glue for AI Architecture</p>
+        <p className={styles.heroLabel}>From Root to Fruit</p>
         <h1 className={styles.heroTitle}>FrootAI</h1>
         <p className={styles.heroAcronym}>
           AI{" "}
@@ -140,14 +140,29 @@ function HeroBanner(): JSX.Element {
           <span className={styles.heroAcronymO2}>O</span>perations ·{" "}
           <span className={styles.heroAcronymT}>T</span>ransformation
         </p>
-        <p className={styles.heroSub}>
-          The open glue that binds infrastructure, platform, and application.
-          <br />
-          Not just documentation — an <strong>MCP-powered skill set</strong> for your AI agents.
-        </p>
         <p className={styles.heroSlogan}>
-          "The telescope and the microscope for AI architecture"
+          From a single token to a production agent fleet
         </p>
+
+        {/* Visual tiles instead of text blocks */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "12px", margin: "24px auto", maxWidth: "720px" }}>
+          <div style={{ padding: "16px", borderRadius: "12px", border: "1px solid rgba(16, 185, 129, 0.2)", background: "rgba(16, 185, 129, 0.04)", textAlign: "center" }}>
+            <div style={{ fontSize: "1.4rem", marginBottom: "4px" }}>🔗</div>
+            <div style={{ fontWeight: 700, fontSize: "0.82rem", marginBottom: "2px" }}>The Open Glue</div>
+            <div style={{ fontSize: "0.72rem", color: "var(--ifm-color-emphasis-500)" }}>Binds infrastructure, platform & application</div>
+          </div>
+          <div style={{ padding: "16px", borderRadius: "12px", border: "1px solid rgba(99, 102, 241, 0.2)", background: "rgba(99, 102, 241, 0.04)", textAlign: "center" }}>
+            <div style={{ fontSize: "1.4rem", marginBottom: "4px" }}>🔌</div>
+            <div style={{ fontWeight: 700, fontSize: "0.82rem", marginBottom: "2px" }}>MCP Skill Set</div>
+            <div style={{ fontSize: "0.72rem", color: "var(--ifm-color-emphasis-500)" }}>Agent-callable knowledge, not just docs</div>
+          </div>
+          <div style={{ padding: "16px", borderRadius: "12px", border: "1px solid rgba(245, 158, 11, 0.2)", background: "rgba(245, 158, 11, 0.04)", textAlign: "center" }}>
+            <div style={{ fontSize: "1.4rem", marginBottom: "4px" }}>🎓</div>
+            <div style={{ fontWeight: 700, fontSize: "0.82rem", marginBottom: "2px" }}>Knowledge Resource</div>
+            <div style={{ fontSize: "0.72rem", color: "var(--ifm-color-emphasis-500)" }}>Focused diagrams to learn AI architecture fast</div>
+          </div>
+        </div>
+
         <div className={styles.heroCta}>
           <Link className={styles.ctaPrimary} to="/aifroot/">
             🌱 Start from the Roots
@@ -489,7 +504,8 @@ export default function FrootAIPage(): JSX.Element {
             FrootAI removes silos between teams — it's the open glue. Read it, query it via MCP, download the packs, build with it.
           </p>
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link className={styles.ctaButton} to="/aifroot/">
+            <Link className={styles.ctaButton} to="/aifroot/"
+              onClick={() => setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior }), 100)}>
               🌱 Start from the Roots
             </Link>
             <Link className={styles.ctaButton} to="#mcp-tooling" style={{ background: "linear-gradient(135deg, #6366f1, #7c3aed)" }}>
