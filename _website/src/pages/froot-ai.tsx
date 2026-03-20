@@ -378,8 +378,8 @@ function PathSection(): JSX.Element {
 export default function FrootAIPage(): JSX.Element {
   return (
     <Layout
-      title="FrootAI — From Root to Fruit"
-      description="The complete AI knowledge tree for Cloud Architects. 17 modules covering foundations to production. The telescope and the microscope for AI architecture."
+      title="FrootAI — The Open Glue for AI Architecture"
+      description="The open glue that binds infrastructure, platform, and application. 17 modules, 200+ AI terms, MCP server. From root to fruit."
     >
       <HeroBanner />
       <main className={styles.main}>
@@ -401,46 +401,61 @@ export default function FrootAIPage(): JSX.Element {
 
         {/* ── Ecosystem: MCP + Integrations ── */}
         <section className={styles.lensSection}>
-          <h2 className={styles.sectionTitle}>Not Just Docs — An Ecosystem</h2>
+          <h2 className={styles.sectionTitle}>🔌 Add FrootAI to Your Agent — MCP Server</h2>
           <p className={styles.sectionSub}>
-            FrootAI is programmable. Connect it to your AI agents, editors, and workflows.
+            Turn static docs into agent skills. Your AI agent queries FrootAI directly — less tokens burned, zero hallucination, precise answers.
           </p>
           <div className={styles.lensGrid}>
             <div className={styles.lensCard}>
-              <div className={styles.lensEmoji}>🔌</div>
-              <h3 className={styles.lensTitle}>MCP Server</h3>
+              <div className={styles.lensEmoji}>⚡</div>
+              <h3 className={styles.lensTitle}>30-Second Setup</h3>
               <ul className={styles.lensList}>
-                <li><strong>3 lines to connect:</strong></li>
-                <li><code>cd mcp-server && npm install</code></li>
-                <li><code>node index.js</code></li>
-                <li>Query 17 modules from any AI agent</li>
-                <li>200+ terms via <code>lookup_term</code></li>
-                <li>Architecture patterns on demand</li>
+                <li><strong>1.</strong> <code>git clone https://github.com/gitpavleenbali/azure-wiki.git</code></li>
+                <li><strong>2.</strong> <code>cd azure-wiki/mcp-server && npm install</code></li>
+                <li><strong>3.</strong> Add to your Claude Desktop / VS Code / Cursor config:</li>
               </ul>
             </div>
             <div className={styles.lensCard}>
-              <div className={styles.lensEmoji}>⚡</div>
-              <h3 className={styles.lensTitle}>5 MCP Tools</h3>
+              <div className={styles.lensEmoji}>🧠</div>
+              <h3 className={styles.lensTitle}>What Your Agent Gets</h3>
               <ul className={styles.lensList}>
-                <li><code>list_modules</code> — Browse FROOT layers</li>
-                <li><code>get_module</code> — Read any module (F1–T3)</li>
-                <li><code>lookup_term</code> — AI glossary lookup</li>
-                <li><code>search_knowledge</code> — Full-text search</li>
-                <li><code>get_architecture_pattern</code> — Decision guides</li>
+                <li><code>list_modules</code> — Browse 17 modules by FROOT layer</li>
+                <li><code>get_module</code> — Read any module content (F1–T3)</li>
+                <li><code>lookup_term</code> — 200+ AI/ML term definitions</li>
+                <li><code>search_knowledge</code> — Full-text search all modules</li>
+                <li><code>get_architecture_pattern</code> — 7 decision guides</li>
               </ul>
             </div>
           </div>
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
-            <code style={{ 
+          <div style={{ textAlign: "center", marginTop: "24px" }}>
+            <div style={{
               display: "inline-block",
-              padding: "12px 24px", 
-              borderRadius: "10px", 
-              fontSize: "0.85rem",
-              background: "rgba(16, 185, 129, 0.08)",
-              border: "1px solid rgba(16, 185, 129, 0.2)",
+              padding: "16px 24px",
+              borderRadius: "12px",
+              fontSize: "0.82rem",
+              fontFamily: "var(--ifm-font-family-monospace)",
+              background: "rgba(16, 185, 129, 0.06)",
+              border: "1px solid rgba(16, 185, 129, 0.15)",
+              textAlign: "left",
+              maxWidth: "600px",
+              lineHeight: "1.8",
             }}>
-              {`{ "mcpServers": { "frootai": { "command": "node", "args": ["mcp-server/index.js"] } } }`}
-            </code>
+              <div style={{ color: "var(--ifm-color-emphasis-500)", marginBottom: "4px" }}>// claude_desktop_config.json or .vscode/mcp.json</div>
+              <div>{`{`}</div>
+              <div>{`  "mcpServers": {`}</div>
+              <div>{`    "frootai": {`}</div>
+              <div>{`      "command": "node",`}</div>
+              <div>{`      "args": ["/path/to/azure-wiki/mcp-server/index.js"]`}</div>
+              <div>{`    }`}</div>
+              <div>{`  }`}</div>
+              <div>{`}`}</div>
+            </div>
+          </div>
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <p style={{ fontSize: "0.85rem", color: "var(--ifm-color-emphasis-500)", maxWidth: "500px", margin: "0 auto" }}>
+              <strong>Without FrootAI:</strong> Agent → LLM → hallucinate → generic answer<br />
+              <strong>With FrootAI:</strong> Agent → MCP → curated knowledge → precise answer
+            </p>
           </div>
         </section>
 
@@ -449,7 +464,7 @@ export default function FrootAIPage(): JSX.Element {
             The Open Glue for AI Architecture
           </h2>
           <p className={styles.ctaDesc}>
-            Infrastructure is the soil. Platform is the trunk. Application is the fruit.
+            Infrastructure is the bedrock. Platform is the trunk. Application is the fruit.
             FrootAI binds them all — read it, search it, query it via MCP, build with it.
           </p>
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>

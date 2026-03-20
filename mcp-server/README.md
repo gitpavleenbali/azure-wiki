@@ -1,24 +1,23 @@
-# FrootAI MCP Server
+# 🌳 FrootAI MCP Server
 
-> **AI architecture knowledge at your fingertips.**
-> Query 17 modules, 200+ AI terms, and architecture patterns from any MCP-compatible client.
+> **Add AI architecture knowledge to any agent in 30 seconds.**
+> 17 modules, 200+ terms, 7 architecture decision guides — queryable from any MCP client.
 
 ---
 
-## Quick Start
+## Zero-Friction Setup
 
-### 1. Run directly (no install)
+### Option 1: From GitHub (Recommended)
 
 ```bash
-cd mcp-server
+git clone https://github.com/gitpavleenbali/azure-wiki.git
+cd azure-wiki/mcp-server
 npm install
-node index.js
 ```
 
-### 2. Configure in Claude Desktop
+Add to your MCP config:
 
-Add to `claude_desktop_config.json`:
-
+**Claude Desktop** (`claude_desktop_config.json`):
 ```json
 {
   "mcpServers": {
@@ -30,10 +29,7 @@ Add to `claude_desktop_config.json`:
 }
 ```
 
-### 3. Configure in VS Code (GitHub Copilot)
-
-Add to `.vscode/mcp.json`:
-
+**VS Code / GitHub Copilot** (`.vscode/mcp.json`):
 ```json
 {
   "servers": {
@@ -45,58 +41,102 @@ Add to `.vscode/mcp.json`:
 }
 ```
 
+**Cursor / Windsurf / Any MCP Client:**
+```json
+{
+  "mcpServers": {
+    "frootai": {
+      "command": "node",
+      "args": ["/path/to/azure-wiki/mcp-server/index.js"]
+    }
+  }
+}
+```
+
 ---
 
-## Available Tools
+## Why Add FrootAI to Your Agent?
 
-| Tool | Description | Example |
-|------|-------------|---------|
-| `list_modules` | Browse all 17 modules organized by FROOT layer | "Show me the knowledge base structure" |
-| `get_module` | Read a specific module by ID (F1-T3) | "Get module R3 about deterministic AI" |
-| `lookup_term` | Look up any AI/ML term from the 200+ glossary | "What is LoRA?" |
-| `search_knowledge` | Full-text search across all modules | "How to reduce hallucination" |
-| `get_architecture_pattern` | Get decision guides for common scenarios | "Agent hosting pattern" |
+Your agent already has general knowledge. But when a customer asks:
 
-### Architecture Patterns Available
+> *"Should I use Semantic Kernel or Microsoft Agent Framework?"*
+> *"How do I size GPUs for a 70B model?"*
+> *"What's the difference between top-k and top-p?"*
+
+...your agent searches the internet, burns tokens, and gives a generic answer.
+
+**With FrootAI MCP**, your agent gets **precise, curated answers** in milliseconds — from a knowledge base built by architects, for architects.
+
+```
+Without FrootAI:  User → Agent → LLM (hallucinate) → generic answer
+With FrootAI:     User → Agent → FrootAI MCP → precise answer → user
+```
+
+| Benefit | How |
+|---------|-----|
+| **Less token burn** | Pre-written content instead of generating from scratch |
+| **No hallucination** | Answers from curated knowledge, not model imagination |
+| **Always current** | `git pull` for latest — no model retraining |
+| **7 decision guides** | RAG, agents, hosting, cost, determinism, multi-agent, fine-tuning |
+| **200+ glossary terms** | Precise definitions your agent can cite |
+
+---
+
+## 5 Tools Your Agent Gets
+
+| Tool | What It Does | Example Prompt |
+|------|-------------|----------------|
+| `list_modules` | Browse all 17 modules by FROOT layer | "What topics does FrootAI cover?" |
+| `get_module` | Read any module (F1–T3), optionally a section | "Tell me about RAG Architecture" |
+| `lookup_term` | Look up AI/ML terms from 200+ glossary | "What is LoRA?" |
+| `search_knowledge` | Full-text search across all modules | "How to reduce hallucination?" |
+| `get_architecture_pattern` | 7 pre-built decision guides | "Design a RAG pipeline" |
+
+### Architecture Patterns
 
 | Scenario | What You Get |
 |----------|-------------|
-| `rag_pipeline` | RAG pipeline design decisions, Azure services, chunk sizing |
-| `agent_hosting` | Container Apps vs AKS vs App Service decision matrix |
-| `model_selection` | Which model for which use case + parameter guidance |
-| `cost_optimization` | Token economics, caching strategies, cost formulas |
+| `rag_pipeline` | Pipeline design, chunk sizing, Azure services |
+| `agent_hosting` | Container Apps vs AKS vs App Service matrix |
+| `model_selection` | Which model for which use case |
+| `cost_optimization` | Token economics, caching, cost formulas |
 | `deterministic_ai` | 5-layer defense against hallucination |
-| `multi_agent` | Supervisor vs pipeline vs swarm patterns |
-| `fine_tuning_decision` | Fine-tune vs RAG vs prompting decision tree |
+| `multi_agent` | Supervisor vs pipeline vs swarm |
+| `fine_tuning_decision` | Fine-tune vs RAG vs prompting tree |
 
 ---
 
-## Example Conversations
+## How It Works
 
-**User:** "I need to design a RAG pipeline for 10M documents on Azure"
-→ Agent calls `get_architecture_pattern` with `rag_pipeline`, then `get_module` R2 for deep details
+```
+┌──────────────────┐     MCP Protocol      ┌──────────────────┐
+│  Your AI Agent   │ ◄──────────────────► │  FrootAI MCP     │
+│  (Claude, Copilot│     stdio             │  Server          │
+│   Custom Agent)  │                       │                  │
+└──────────────────┘                       │  ┌────────────┐  │
+                                           │  │ 17 Modules │  │
+                                           │  │ 200+ Terms │  │
+                                           │  │ 7 Patterns │  │
+                                           │  └────────────┘  │
+                                           └──────────────────┘
+```
 
-**User:** "What's the difference between temperature and top-p?"
-→ Agent calls `lookup_term` for both terms, gets precise definitions
-
-**User:** "Should I use Semantic Kernel or Microsoft Agent Framework?"
-→ Agent calls `search_knowledge` with "Semantic Kernel vs Agent Framework"
-
-**User:** "How do I make my AI agent stop hallucinating?"
-→ Agent calls `get_architecture_pattern` with `deterministic_ai`
+No API keys. No cloud services. Everything runs locally. The server reads from bundled knowledge (knowledge.json) or live markdown files from the repo.
 
 ---
 
 ## The FROOT Framework
 
 ```
-🌱 F — Foundations     → Tokens, parameters, models, vocabulary
-🪵 R — Reasoning       → Prompts, RAG, grounding, determinism
-🌿 O — Orchestration   → Semantic Kernel, agents, MCP, tools
-🏗️ O — Operations      → Azure AI, infrastructure, Copilot
-🍎 T — Transformation  → Fine-tuning, responsible AI, production
+  🍎  T — Transformation (The Fruit)     Fine-tuning, safety, production
+  🏗️  O — Operations (The Canopy)        Azure AI, hosting, Copilot
+  🌿  O — Orchestration (The Branches)   SK, agents, MCP, tools
+  🪵  R — Reasoning (The Trunk)          Prompts, RAG, determinism
+  🌱  F — Foundations (The Roots)         Tokens, models, glossary
+  ─────────────────────────────────────
+  ⬇️  Infrastructure (The Bedrock)       AI Landing Zones, GPU, networking
 ```
 
 ---
 
-**FrootAI** — *The open glue for AI architecture. From root to fruit.*
+*FrootAI — Static docs become agent skills.*

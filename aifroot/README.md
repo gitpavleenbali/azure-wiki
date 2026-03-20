@@ -9,17 +9,30 @@
 <div align="center">
 
 ```
-          🍎 TRANSFORMATION (Fruit)
-         ╱    ╲
-        🌿 OPERATIONS (Canopy)
-       ╱        ╲
-      🌿 ORCHESTRATION (Branches)
-     ╱              ╲
-    🪵 REASONING (Trunk)
-    ╱                  ╲
-  🌱 FOUNDATIONS (Roots)
-  ━━━━━━━━━━━━━━━━━━━━━━
-       The Platform
+                    🍎
+                 FRUIT
+              Applications
+             Agents · Copilots
+            ─────────────────
+           🏗️  CANOPY
+          Azure AI · Hosting
+         Copilot · Landing Zones
+        ───────────────────────
+       🌿  BRANCHES
+      Semantic Kernel · Agents
+     MCP · Tools · Orchestration
+    ─────────────────────────────
+   🪵  TRUNK
+  Prompts · RAG · Grounding
+ Determinism · Evaluation
+──────────────────────────────────
+🌱  ROOTS
+Tokens · Parameters · Models
+Transformers · Embeddings · Glossary
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⬇️  THE BEDROCK
+Infrastructure · AI Landing Zones
+GPU · Networking · Security · Identity
 ```
 
 </div>

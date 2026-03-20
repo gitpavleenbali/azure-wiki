@@ -32,7 +32,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // ─── Knowledge Base Loader ─────────────────────────────────────────
+// Two modes:
+//   1. BUNDLED (npx frootai-mcp) — reads from knowledge.json shipped in the package
+//   2. LOCAL (node index.js from repo) — reads .md files from ../aifroot/
 
+const KNOWLEDGE_BUNDLE = join(__dirname, "knowledge.json");
 const KNOWLEDGE_DIR = join(__dirname, "..", "aifroot");
 
 /** Module metadata keyed by FROOT layer */
@@ -90,9 +94,20 @@ const FROOT_MAP = {
 };
 
 /**
- * Load and cache all module content
+ * Load modules — tries bundled JSON first (for npx), falls back to local files (for repo)
  */
 function loadModules() {
+  // Mode 1: Bundled knowledge.json (for npm/npx distribution)
+  if (existsSync(KNOWLEDGE_BUNDLE)) {
+    const bundle = JSON.parse(readFileSync(KNOWLEDGE_BUNDLE, "utf-8"));
+    const modules = {};
+    for (const [modId, mod] of Object.entries(bundle.modules)) {
+      modules[modId] = { ...mod, sections: parseSections(mod.content) };
+    }
+    return modules;
+  }
+
+  // Mode 2: Local markdown files (for development from repo)
   const modules = {};
   for (const [layerKey, layer] of Object.entries(FROOT_MAP)) {
     for (const [modId, mod] of Object.entries(layer.modules)) {
