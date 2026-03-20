@@ -117,7 +117,7 @@ const config: Config = {
           label: "AI Hub",
         },
         {
-          to: "/froot-ai",
+          href: "https://gitpavleenbali.github.io/frootai/",
           label: "🌳 FrootAI",
           position: "right",
           className: "navbar-frootai",
@@ -157,7 +157,7 @@ const config: Config = {
         {
           title: "More Topics",
           items: [
-            { label: "🌳 FrootAI", to: "/froot-ai" },
+            { label: "🌳 FrootAI", href: "https://gitpavleenbali.github.io/frootai/" },
             { label: "AI Foundry", to: "/azure-ai-foundry/AI-Foundry-Cross-Region-Architecture" },
             { label: "ADLS Gen2", to: "/azure-storage/ADLS-Gen2-Strategy-Guidance" },
             { label: "DevSecOps", to: "/devsecops/DEVSECOPS_BEST_PRACTICES_GUIDE" },

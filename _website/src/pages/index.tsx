@@ -49,7 +49,7 @@ const modules = [
   {
     title: "🌳 FrootAI",
     description: "From Root to Fruit — the complete AI knowledge tree. 17 modules covering foundations, reasoning, orchestration, operations & transformation",
-    link: "/froot-ai",
+    link: "https://gitpavleenbali.github.io/frootai/",
     tag: "17 Modules · NEW",
     color: "#10b981",
   },
@@ -72,7 +72,7 @@ function HeroBanner(): JSX.Element {
           From the bedrock of infra to the fruit of AI agents.
         </p>
         <div className={styles.heroCta}>
-          <Link className={styles.ctaPrimary} to="/froot-ai">
+          <Link className={styles.ctaPrimary} to="https://gitpavleenbali.github.io/frootai/">
             Explore FrootAI
           </Link>
           <Link
