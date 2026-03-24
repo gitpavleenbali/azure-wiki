@@ -1,0 +1,408 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "functionAppUrl": {
+        "type": "String",
+        "defaultValue": "@appsetting('FUNCTION_APP_URL')",
+        "metadata": {
+          "description": "Base URL of the Azure Function App (classify-and-route endpoint)"
+        }
+      },
+      "confidenceThreshold": {
+        "type": "Float",
+        "defaultValue": 0.75,
+        "metadata": {
+          "description": "Minimum confidence to route directly (from config/routing.json)"
+        }
+      },
+      "escalationThreshold": {
+        "type": "Float",
+        "defaultValue": 0.50,
+        "metadata": {
+          "description": "Below this confidence, escalate to triage team"
+        }
+      }
+    },
+    "triggers": {
+      "When_a_ticket_is_received": {
+        "type": "Request",
+        "kind": "Http",
+        "inputs": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ticket_id": {
+                "type": "string",
+                "description": "Unique ticket identifier from ITSM system"
+              },
+              "ticket_text": {
+                "type": "string",
+                "description": "Raw ticket description text"
+              },
+              "requester_email": {
+                "type": "string",
+                "description": "Email of the ticket submitter"
+              },
+              "source": {
+                "type": "string",
+                "description": "Source system (e.g., ServiceNow, Jira, Email)"
+              }
+            },
+            "required": [
+              "ticket_text"
+            ]
+          },
+          "method": "POST"
+        },
+        "operationOptions": "EnableSchemaValidation"
+      }
+    },
+    "actions": {
+      "Initialize_Correlation_ID": {
+        "type": "InitializeVariable",
+        "inputs": {
+          "variables": [
+            {
+              "name": "correlationId",
+              "type": "string",
+              "value": "@{guid()}"
+            }
+          ]
+        },
+        "runAfter": {}
+      },
+      "Initialize_Ticket_ID": {
+        "type": "InitializeVariable",
+        "inputs": {
+          "variables": [
+            {
+              "name": "ticketId",
+              "type": "string",
+              "value": "@{coalesce(triggerBody()?['ticket_id'], concat('AUTO-', substring(variables('correlationId'), 0, 8)))}"
+            }
+          ]
+        },
+        "runAfter": {
+          "Initialize_Correlation_ID": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Log_Pipeline_Start": {
+        "type": "Compose",
+        "inputs": {
+          "event": "pipeline_started",
+          "correlation_id": "@variables('correlationId')",
+          "ticket_id": "@variables('ticketId')",
+          "timestamp": "@utcNow()",
+          "source": "@coalesce(triggerBody()?['source'], 'direct')"
+        },
+        "runAfter": {
+          "Initialize_Ticket_ID": [
+            "Succeeded"
+          ]
+        },
+        "trackedProperties": {
+          "correlationId": "@variables('correlationId')",
+          "ticketId": "@variables('ticketId')"
+        }
+      },
+      "Call_Classify_and_Route_API": {
+        "type": "Http",
+        "inputs": {
+          "method": "POST",
+          "uri": "@{parameters('functionAppUrl')}/api/classify-and-route",
+          "headers": {
+            "Content-Type": "application/json",
+            "x-correlation-id": "@variables('correlationId')"
+          },
+          "body": {
+            "ticket_text": "@triggerBody()?['ticket_text']",
+            "ticket_id": "@variables('ticketId')",
+            "include_summary": true
+          },
+          "retryPolicy": {
+            "type": "exponential",
+            "count": 3,
+            "interval": "PT2S",
+            "minimumInterval": "PT2S",
+            "maximumInterval": "PT30S"
+          },
+          "authentication": {
+            "type": "ManagedServiceIdentity"
+          }
+        },
+        "runAfter": {
+          "Log_Pipeline_Start": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Parse_Classification_Result": {
+        "type": "ParseJson",
+        "inputs": {
+          "content": "@body('Call_Classify_and_Route_API')",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ticket_id": { "type": "string" },
+              "classification": {
+                "type": "object",
+                "properties": {
+                  "category": { "type": "string" },
+                  "subcategory": { "type": "string" },
+                  "priority": { "type": "string" },
+                  "confidence": { "type": "number" },
+                  "routing_team": { "type": "string" },
+                  "suggested_actions": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "summary": { "type": "string" }
+                }
+              },
+              "routing": {
+                "type": "object",
+                "properties": {
+                  "routed_to": {
+                    "type": "object",
+                    "properties": {
+                      "team": { "type": "string" },
+                      "email": { "type": "string" },
+                      "teams_channel": { "type": "string" }
+                    }
+                  },
+                  "routing_reason": { "type": "string" },
+                  "sla_hours": { "type": "number" },
+                  "requires_review": { "type": "boolean" },
+                  "escalated": { "type": "boolean" }
+                }
+              },
+              "pipeline": {
+                "type": "object",
+                "properties": {
+                  "correlation_id": { "type": "string" },
+                  "classify_ms": { "type": "integer" },
+                  "route_ms": { "type": "integer" },
+                  "total_ms": { "type": "integer" },
+                  "timestamp": { "type": "string" }
+                }
+              },
+              "summary_text": { "type": "string" }
+            }
+          }
+        },
+        "runAfter": {
+          "Call_Classify_and_Route_API": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Evaluate_Confidence_and_Route": {
+        "type": "Switch",
+        "expression": "@if(greaterOrEquals(body('Parse_Classification_Result')?['classification']?['confidence'], parameters('confidenceThreshold')), 'high_confidence', if(greaterOrEquals(body('Parse_Classification_Result')?['classification']?['confidence'], parameters('escalationThreshold')), 'medium_confidence', 'low_confidence'))",
+        "cases": {
+          "High_Confidence_Direct_Route": {
+            "case": "high_confidence",
+            "actions": {
+              "Route_to_Category_Team": {
+                "type": "Compose",
+                "inputs": {
+                  "action": "direct_route",
+                  "team": "@body('Parse_Classification_Result')?['routing']?['routed_to']?['team']",
+                  "email": "@body('Parse_Classification_Result')?['routing']?['routed_to']?['email']",
+                  "channel": "@body('Parse_Classification_Result')?['routing']?['routed_to']?['teams_channel']",
+                  "sla_hours": "@body('Parse_Classification_Result')?['routing']?['sla_hours']",
+                  "confidence": "@body('Parse_Classification_Result')?['classification']?['confidence']",
+                  "requires_review": false
+                },
+                "runAfter": {}
+              },
+              "Log_Direct_Route": {
+                "type": "Compose",
+                "inputs": {
+                  "event": "ticket_routed_direct",
+                  "correlation_id": "@variables('correlationId')",
+                  "ticket_id": "@variables('ticketId')",
+                  "category": "@body('Parse_Classification_Result')?['classification']?['category']",
+                  "team": "@body('Parse_Classification_Result')?['routing']?['routed_to']?['team']",
+                  "confidence": "@body('Parse_Classification_Result')?['classification']?['confidence']",
+                  "priority": "@body('Parse_Classification_Result')?['classification']?['priority']",
+                  "timestamp": "@utcNow()"
+                },
+                "runAfter": {
+                  "Route_to_Category_Team": [
+                    "Succeeded"
+                  ]
+                },
+                "trackedProperties": {
+                  "correlationId": "@variables('correlationId')",
+                  "routingAction": "direct_route"
+                }
+              }
+            }
+          },
+          "Medium_Confidence_Route_with_Review": {
+            "case": "medium_confidence",
+            "actions": {
+              "Route_with_Review_Flag": {
+                "type": "Compose",
+                "inputs": {
+                  "action": "route_with_review",
+                  "team": "@body('Parse_Classification_Result')?['routing']?['routed_to']?['team']",
+                  "email": "@body('Parse_Classification_Result')?['routing']?['routed_to']?['email']",
+                  "channel": "@body('Parse_Classification_Result')?['routing']?['routed_to']?['teams_channel']",
+                  "sla_hours": "@body('Parse_Classification_Result')?['routing']?['sla_hours']",
+                  "confidence": "@body('Parse_Classification_Result')?['classification']?['confidence']",
+                  "requires_review": true,
+                  "review_reason": "Medium confidence — classification needs human verification"
+                },
+                "runAfter": {}
+              },
+              "Log_Review_Route": {
+                "type": "Compose",
+                "inputs": {
+                  "event": "ticket_routed_review",
+                  "correlation_id": "@variables('correlationId')",
+                  "ticket_id": "@variables('ticketId')",
+                  "category": "@body('Parse_Classification_Result')?['classification']?['category']",
+                  "team": "@body('Parse_Classification_Result')?['routing']?['routed_to']?['team']",
+                  "confidence": "@body('Parse_Classification_Result')?['classification']?['confidence']",
+                  "timestamp": "@utcNow()"
+                },
+                "runAfter": {
+                  "Route_with_Review_Flag": [
+                    "Succeeded"
+                  ]
+                },
+                "trackedProperties": {
+                  "correlationId": "@variables('correlationId')",
+                  "routingAction": "route_with_review"
+                }
+              }
+            }
+          },
+          "Low_Confidence_Escalation": {
+            "case": "low_confidence",
+            "actions": {
+              "Escalate_to_Triage": {
+                "type": "Compose",
+                "inputs": {
+                  "action": "escalate_triage",
+                  "team": "IT Service Desk - Triage",
+                  "email": "servicedesk-triage@contoso.com",
+                  "channel": "IT-Triage",
+                  "confidence": "@body('Parse_Classification_Result')?['classification']?['confidence']",
+                  "requires_review": true,
+                  "escalation_reason": "Low confidence classification — requires manual triage",
+                  "original_category": "@body('Parse_Classification_Result')?['classification']?['category']"
+                },
+                "runAfter": {}
+              },
+              "Log_Escalation": {
+                "type": "Compose",
+                "inputs": {
+                  "event": "ticket_escalated",
+                  "correlation_id": "@variables('correlationId')",
+                  "ticket_id": "@variables('ticketId')",
+                  "attempted_category": "@body('Parse_Classification_Result')?['classification']?['category']",
+                  "confidence": "@body('Parse_Classification_Result')?['classification']?['confidence']",
+                  "escalated_to": "IT Service Desk - Triage",
+                  "timestamp": "@utcNow()"
+                },
+                "runAfter": {
+                  "Escalate_to_Triage": [
+                    "Succeeded"
+                  ]
+                },
+                "trackedProperties": {
+                  "correlationId": "@variables('correlationId')",
+                  "routingAction": "escalation"
+                }
+              }
+            }
+          }
+        },
+        "default": {
+          "actions": {
+            "Fallback_Escalation": {
+              "type": "Compose",
+              "inputs": {
+                "action": "fallback_escalate",
+                "team": "IT Service Desk - Triage",
+                "reason": "Unexpected confidence value — defaulting to triage"
+              },
+              "runAfter": {}
+            }
+          }
+        },
+        "runAfter": {
+          "Parse_Classification_Result": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Build_Final_Response": {
+        "type": "Compose",
+        "inputs": {
+          "ticket_id": "@variables('ticketId')",
+          "correlation_id": "@variables('correlationId')",
+          "status": "routed",
+          "classification": "@body('Parse_Classification_Result')?['classification']",
+          "routing": "@body('Parse_Classification_Result')?['routing']",
+          "pipeline_metrics": "@body('Parse_Classification_Result')?['pipeline']",
+          "processed_at": "@utcNow()"
+        },
+        "runAfter": {
+          "Evaluate_Confidence_and_Route": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Return_Success_Response": {
+        "type": "Response",
+        "kind": "Http",
+        "inputs": {
+          "statusCode": 200,
+          "headers": {
+            "Content-Type": "application/json",
+            "x-correlation-id": "@variables('correlationId')"
+          },
+          "body": "@outputs('Build_Final_Response')"
+        },
+        "runAfter": {
+          "Build_Final_Response": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Handle_Classification_Failure": {
+        "type": "Response",
+        "kind": "Http",
+        "inputs": {
+          "statusCode": 502,
+          "headers": {
+            "Content-Type": "application/json",
+            "x-correlation-id": "@variables('correlationId')"
+          },
+          "body": {
+            "error": "Classification service unavailable. Ticket queued for manual processing.",
+            "ticket_id": "@variables('ticketId')",
+            "correlation_id": "@variables('correlationId')",
+            "timestamp": "@utcNow()"
+          }
+        },
+        "runAfter": {
+          "Call_Classify_and_Route_API": [
+            "Failed",
+            "TimedOut"
+          ]
+        }
+      }
+    },
+    "outputs": {}
+  },
+  "kind": "Stateful"
+}

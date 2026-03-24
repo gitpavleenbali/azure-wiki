@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus2"
+    },
+    "baseName": {
+      "value": "frootai-tickets"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "openAiModelDeployment": {
+      "value": "gpt-4o"
+    },
+    "openAiModelVersion": {
+      "value": "2024-08-06"
+    },
+    "openAiApiVersion": {
+      "value": "2024-10-21"
+    },
+    "classifyTemperature": {
+      "value": "0.1"
+    },
+    "classifyMaxTokens": {
+      "value": "1000"
+    },
+    "owner": {
+      "value": "FrootAI"
+    },
+    "costCenter": {
+      "value": "IT-Operations"
+    }
+  }
+}

@@ -1,10 +1,1 @@
-{
-  "servers": {
-    "frootai": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["${workspaceFolder}/mcp-server/index.js"],
-      "env": {}
-    }
-  }
-}
+{"servers":{"frootai":{"type":"stdio","command":"npx","args":["frootai-mcp"]}}}

@@ -1,0 +1,64 @@
+{
+  "confidence_threshold": 0.75,
+  "escalation_threshold": 0.50,
+  "routing_teams": {
+    "Network": {
+      "team": "Network Operations",
+      "email": "network-ops@contoso.com",
+      "teams_channel": "IT-Network-Ops",
+      "sla_hours": { "P1-Critical": 1, "P2-High": 4, "P3-Medium": 24, "P4-Low": 72 }
+    },
+    "Hardware": {
+      "team": "Desktop Engineering",
+      "email": "desktop-eng@contoso.com",
+      "teams_channel": "IT-Desktop-Eng",
+      "sla_hours": { "P1-Critical": 2, "P2-High": 8, "P3-Medium": 48, "P4-Low": 120 }
+    },
+    "Software": {
+      "team": "Application Support",
+      "email": "app-support@contoso.com",
+      "teams_channel": "IT-App-Support",
+      "sla_hours": { "P1-Critical": 1, "P2-High": 4, "P3-Medium": 24, "P4-Low": 72 }
+    },
+    "Access & Identity": {
+      "team": "Identity & Access Management",
+      "email": "iam-team@contoso.com",
+      "teams_channel": "IT-IAM",
+      "sla_hours": { "P1-Critical": 1, "P2-High": 2, "P3-Medium": 8, "P4-Low": 48 }
+    },
+    "Email & Collaboration": {
+      "team": "Messaging & Collaboration",
+      "email": "collab-team@contoso.com",
+      "teams_channel": "IT-Collaboration",
+      "sla_hours": { "P1-Critical": 1, "P2-High": 4, "P3-Medium": 24, "P4-Low": 72 }
+    },
+    "Security": {
+      "team": "Security Operations Center",
+      "email": "soc@contoso.com",
+      "teams_channel": "IT-SOC",
+      "sla_hours": { "P1-Critical": 0.5, "P2-High": 1, "P3-Medium": 4, "P4-Low": 24 }
+    },
+    "Cloud & Infrastructure": {
+      "team": "Cloud Engineering",
+      "email": "cloud-eng@contoso.com",
+      "teams_channel": "IT-Cloud-Eng",
+      "sla_hours": { "P1-Critical": 1, "P2-High": 4, "P3-Medium": 24, "P4-Low": 72 }
+    },
+    "Other": {
+      "team": "IT Service Desk",
+      "email": "servicedesk@contoso.com",
+      "teams_channel": "IT-Service-Desk",
+      "sla_hours": { "P1-Critical": 2, "P2-High": 8, "P3-Medium": 48, "P4-Low": 120 }
+    }
+  },
+  "escalation_team": {
+    "team": "IT Service Desk - Triage",
+    "email": "servicedesk-triage@contoso.com",
+    "teams_channel": "IT-Triage",
+    "reason": "Low confidence classification requires manual review"
+  },
+  "retry_policy": {
+    "max_retries": 3,
+    "backoff_seconds": [2, 5, 10]
+  }
+}

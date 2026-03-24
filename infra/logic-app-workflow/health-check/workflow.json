@@ -1,0 +1,81 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "functionAppUrl": {
+        "type": "String",
+        "defaultValue": "@appsetting('FUNCTION_APP_URL')"
+      }
+    },
+    "triggers": {
+      "Recurrence": {
+        "type": "Recurrence",
+        "recurrence": {
+          "frequency": "Minute",
+          "interval": 5
+        }
+      }
+    },
+    "actions": {
+      "Check_Function_Health": {
+        "type": "Http",
+        "inputs": {
+          "method": "GET",
+          "uri": "@{parameters('functionAppUrl')}/api/health",
+          "retryPolicy": {
+            "type": "none"
+          },
+          "authentication": {
+            "type": "ManagedServiceIdentity"
+          }
+        },
+        "runAfter": {}
+      },
+      "Evaluate_Health": {
+        "type": "If",
+        "expression": {
+          "and": [
+            {
+              "equals": [
+                "@outputs('Check_Function_Health')['statusCode']",
+                200
+              ]
+            }
+          ]
+        },
+        "actions": {
+          "Log_Healthy": {
+            "type": "Compose",
+            "inputs": {
+              "event": "health_check_passed",
+              "service": "classify-and-route-function",
+              "timestamp": "@utcNow()"
+            }
+          }
+        },
+        "else": {
+          "actions": {
+            "Log_Unhealthy": {
+              "type": "Compose",
+              "inputs": {
+                "event": "health_check_failed",
+                "service": "classify-and-route-function",
+                "status_code": "@outputs('Check_Function_Health')['statusCode']",
+                "timestamp": "@utcNow()"
+              }
+            }
+          }
+        },
+        "runAfter": {
+          "Check_Function_Health": [
+            "Succeeded",
+            "Failed"
+          ]
+        }
+      }
+    },
+    "outputs": {}
+  },
+  "kind": "Stateful"
+}

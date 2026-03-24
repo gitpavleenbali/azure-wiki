@@ -1,0 +1,5 @@
+# Pinned dependency versions — no floating ranges (security.instructions.md)
+azure-functions==1.21.3
+azure-identity==1.19.0
+openai==1.58.1
+opencensus-ext-azure==1.1.14
