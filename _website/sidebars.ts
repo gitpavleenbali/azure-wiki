@@ -83,6 +83,7 @@ const sidebars: SidebarsConfig = {
         "unified-monitoring-solution/operations-runbook",
         "unified-monitoring-solution/advanced-topics",
         "unified-monitoring-solution/platform-observability-scenarios",
+        "unified-monitoring-solution/multi-region-resiliency-BCDR",
       ],
     },
   ],
