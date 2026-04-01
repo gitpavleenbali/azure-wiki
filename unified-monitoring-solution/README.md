@@ -13,6 +13,7 @@
 | 2 | [Operations Runbook](./02-operations-runbook.md) | KQL queries, alert response, troubleshooting, cost optimization, DCR patterns | Operations, SRE, DevOps |
 | 3 | [Advanced Topics](./03-advanced-topics.md) | Audit logs, DR, cost optimization, AIOps roadmap | Architects, Leadership |
 | 4 | [Platform Observability Scenarios](./04-platform-observability-scenarios.md) | Platform vs LZ monitoring, visibility at scale, Service Health | Platform Team, Leadership |
+| 5 | [Multi-Region Resiliency & BCDR](./05-multi-region-resiliency-BCDR.md) | Single vs Per-Region LAW, failover scenarios, SLA/RTO/RPO, cost analysis | Architects, Leadership |
 
 ---
 
