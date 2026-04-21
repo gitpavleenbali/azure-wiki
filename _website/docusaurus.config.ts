@@ -55,7 +55,7 @@ const config: Config = {
             "node_modules/**",
           ],
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://github.com/gitpavleenbali/azure-wiki/tree/master/",
+          editUrl: "https://github.com/frootai/frootai/tree/master/",
         },
         blog: false,
         theme: {
@@ -124,7 +124,7 @@ const config: Config = {
           label: "AI Hub",
         },
         {
-          href: "https://gitpavleenbali.github.io/frootai/",
+          href: "https://www.frootai.dev",
           label: "🌳 FrootAI",
           position: "right",
           className: "navbar-frootai",
@@ -141,7 +141,7 @@ const config: Config = {
           position: "right",
         },
         {
-          href: "https://github.com/gitpavleenbali/azure-wiki",
+          href: "https://github.com/frootai/frootai",
           label: "GitHub",
           position: "right",
         },
@@ -165,7 +165,7 @@ const config: Config = {
         {
           title: "More Topics",
           items: [
-            { label: "🌳 FrootAI", href: "https://gitpavleenbali.github.io/frootai/" },
+            { label: "🌳 FrootAI", href: "https://www.frootai.dev" },
             { label: "AI Foundry", to: "/azure-ai-foundry/AI-Foundry-Cross-Region-Architecture" },
             { label: "ADLS Gen2", to: "/azure-storage/ADLS-Gen2-Strategy-Guidance" },
             { label: "DevSecOps", to: "/devsecops/DEVSECOPS_BEST_PRACTICES_GUIDE" },
@@ -180,7 +180,7 @@ const config: Config = {
             },
             {
               label: "GitHub",
-              href: "https://github.com/gitpavleenbali",
+              href: "https://github.com/frootai/frootai",
             },
             {
               label: "Check1Minute Newsletter",
