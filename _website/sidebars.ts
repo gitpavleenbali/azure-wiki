@@ -88,6 +88,22 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
+  bcdrSidebar: [
+    {
+      type: "category",
+      label: "BCDR",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        "BCDR/README",
+        "BCDR/bcdr-queries",
+        "BCDR/azure-devops-github-queries",
+        "BCDR/foundry-queries",
+        "BCDR/general-queries",
+      ],
+    },
+  ],
+
   aifrootSidebar: [
     {
       type: "category",

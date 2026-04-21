@@ -41,6 +41,7 @@ const config: Config = {
             "APIM-best-practices/**/*.md",
             "FrontDoor-best-practices/**/*.md",
             "unified-monitoring-solution/**/*.md",
+            "BCDR/**/*.md",
             "azure-ai-foundry/**/*.md",
             "azure-storage/**/*.md",
             "devsecops/**/*.md",
@@ -112,6 +113,12 @@ const config: Config = {
         },
         {
           type: "docSidebar",
+          sidebarId: "bcdrSidebar",
+          position: "left",
+          label: "BCDR",
+        },
+        {
+          type: "docSidebar",
           sidebarId: "aifrootSidebar",
           position: "left",
           label: "AI Hub",
@@ -152,6 +159,7 @@ const config: Config = {
             { label: "APIM Best Practices", to: "/APIM-best-practices/" },
             { label: "Front Door", to: "/FrontDoor-best-practices/" },
             { label: "Monitoring", to: "/unified-monitoring-solution/" },
+            { label: "BCDR", to: "/BCDR/" },
           ],
         },
         {
