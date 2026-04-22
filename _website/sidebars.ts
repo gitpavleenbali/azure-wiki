@@ -104,6 +104,19 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
+  iacSidebar: [
+    {
+      type: "category",
+      label: "IaC & Deployment Stacks",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        "iac-deployment-stacks/README",
+        "iac-deployment-stacks/deployment-stacks-guidance",
+      ],
+    },
+  ],
+
   aifrootSidebar: [
     {
       type: "category",

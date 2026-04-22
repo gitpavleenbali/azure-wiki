@@ -42,6 +42,7 @@ const config: Config = {
             "FrontDoor-best-practices/**/*.md",
             "unified-monitoring-solution/**/*.md",
             "BCDR/**/*.md",
+            "iac-deployment-stacks/**/*.md",
             "azure-ai-foundry/**/*.md",
             "azure-storage/**/*.md",
             "devsecops/**/*.md",
@@ -119,6 +120,12 @@ const config: Config = {
         },
         {
           type: "docSidebar",
+          sidebarId: "iacSidebar",
+          position: "left",
+          label: "IaC",
+        },
+        {
+          type: "docSidebar",
           sidebarId: "aifrootSidebar",
           position: "left",
           label: "AI Hub",
@@ -160,6 +167,7 @@ const config: Config = {
             { label: "Front Door", to: "/FrontDoor-best-practices/" },
             { label: "Monitoring", to: "/unified-monitoring-solution/" },
             { label: "BCDR", to: "/BCDR/" },
+            { label: "IaC & Deployment Stacks", to: "/iac-deployment-stacks/" },
           ],
         },
         {

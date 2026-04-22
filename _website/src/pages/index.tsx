@@ -69,6 +69,14 @@ const modules = [
     color: "#0ea5e9",
   },
   {
+    title: "IaC & Deployment Stacks",
+    description: "Bicep + Deployment Stacks architectural guidance — layered model, What-If, CI/CD patterns",
+    link: "/iac-deployment-stacks/",
+    tag: "NEW",
+    icon: "🏗️",
+    color: "#f59e0b",
+  },
+  {
     title: "🌳 FrootAI",
     description: "From Root to Fruit — the complete AI knowledge tree. 17 modules across foundations, reasoning, orchestration, operations & transformation",
     link: "https://www.frootai.dev",
