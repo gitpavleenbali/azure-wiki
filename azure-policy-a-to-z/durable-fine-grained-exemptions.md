@@ -96,7 +96,81 @@ The exception is encoded in the policy rule. Because the tag travels with the wo
 
 Pair with a companion `audit` policy that requires `policyExceptionId`, `exceptionTicket`, and `exceptionExpiry` tags to **all be present together**, so the carve-out cannot be used without ticket + expiry.
 
-Use `modify` to inherit the tag from the resource group where appropriate, so workload templates do not need to stamp it per resource.
+### Scaling Layer 2 — initiatives + tag inheritance
+
+> *"But doesn't every policy need its own `if` block to check the tag?"*
+
+Yes — Azure Policy rules are per-definition, so each policy must include the exception check. But you **standardize once and reuse everywhere** with two mechanisms:
+
+**1. Initiative-level shared parameters.** Group related policies into one initiative. Define `exemptionTagName` and `approvedExemptionIds` as initiative parameters, then map them into each member policy:
+
+```json
+{
+  "properties": {
+    "displayName": "Security Baseline Initiative",
+    "policyType": "Custom",
+    "parameters": {
+      "exemptionTagName": {
+        "type": "String",
+        "defaultValue": "policyExceptionId"
+      },
+      "approvedExemptionIds": {
+        "type": "Array",
+        "defaultValue": []
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/<require-pe-definition>",
+        "parameters": {
+          "exemptionTagName": { "value": "[parameters('exemptionTagName')]" },
+          "approvedExemptionIds": { "value": "[parameters('approvedExemptionIds')]" }
+        }
+      },
+      {
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/<require-tls-definition>",
+        "parameters": {
+          "exemptionTagName": { "value": "[parameters('exemptionTagName')]" },
+          "approvedExemptionIds": { "value": "[parameters('approvedExemptionIds')]" }
+        }
+      }
+    ]
+  }
+}
+```
+
+The approved-ID list is managed **once** in the initiative assignment — not per policy.
+
+**2. Tag inheritance via modify policy.** Use the built-in [Inherit a tag from the resource group if missing](https://learn.microsoft.com/azure/governance/policy/samples/built-in-policies#tags) policy (or the subscription-level variant) so child resources automatically receive the exception tag. The workload only tags the resource group; new and updated resources inherit it on create/update.
+
+```bicep
+// Built-in policy assignment — inherit policyExceptionId from RG
+resource tagInheritance 'Microsoft.Authorization/policyAssignments@2024-04-01' = {
+  name: guid('inherit-policyExceptionId', subscription().id)
+  properties: {
+    policyDefinitionId: '/providers/Microsoft.Authorization/policyDefinitions/ea3f2387-9b95-492a-a190-fcbfef9b601a'
+    displayName: 'Inherit policyExceptionId tag from resource group'
+    parameters: {
+      tagName: { value: 'policyExceptionId' }
+    }
+  }
+  identity: {
+    type: 'SystemAssigned'
+  }
+  location: deployment().location
+}
+```
+
+**Net operational burden:**
+
+| What you manage | Count |
+|---|---|
+| Exception tag name | 1 (`policyExceptionId`) |
+| Approved-ID list | 1 (initiative parameter at assignment time) |
+| Tag inheritance policy | 1 (built-in modify — assign once) |
+| Per-policy `if` block | Identical 3-line boilerplate — templated, not reinvented |
+
+The per-policy `if` block is the same three lines every time. In practice, teams template it in their definition pipeline or EPAC definition files.
 
 ---
 
@@ -233,7 +307,7 @@ PolicyResources
 > The recommended pattern is a four-layer model:
 >
 > 1. Keep `notScopes` / `resourceSelectors` / `overrides` on the policy assignment for permanent platform-wide exclusions (jump-box RG, DMZ, lab subscription).
-> 2. Encode workload-managed exceptions in the policy rule itself using a `policyExceptionId` tag pattern — the tag travels with the IaC and survives any recreation, so no exemption object is required.
+> 2. Encode workload-managed exceptions in the policy rule itself using a `policyExceptionId` tag pattern — the tag travels with the IaC and survives any recreation, so no exemption object is required. Group related policies into an **initiative with shared parameters** so the approved-ID list is managed once, not per policy. Assign a built-in **tag-inheritance modify policy** so child resources automatically inherit the exception tag from the resource group — workload teams tag the RG once; everything else follows.
 > 3. Adopt Enterprise Policy as Code (EPAC) as the source of truth for fine-grained, time-bounded, audited exemptions. A scheduled reconciliation pipeline restores any exemption that workload IaC accidentally removes.
 > 4. For exemptions that must survive redeployment with zero gap, co-locate the `Microsoft.Authorization/policyExemptions` resource in the workload Bicep/Terraform module with a deterministic GUID name so it is recreated atomically with its target.
 >
@@ -246,5 +320,7 @@ PolicyResources
 - [Azure Policy exemption structure](https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure)
 - [Excluded scopes (`notScopes`) on policy assignments](https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure#excluded-scopes)
 - [Resource selectors and overrides](https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure#resource-selectors)
+- [Azure Policy initiative (set) definition structure](https://learn.microsoft.com/azure/governance/policy/concepts/initiative-definition-structure)
+- [Built-in tag policies — Inherit a tag from the resource group](https://learn.microsoft.com/azure/governance/policy/samples/built-in-policies#tags)
 - [Enterprise Policy as Code (EPAC) on GitHub](https://github.com/Azure/enterprise-azure-policy-as-code)
 - [Bicep deployment modes (Complete vs Incremental)](https://learn.microsoft.com/azure/azure-resource-manager/templates/deployment-modes)
