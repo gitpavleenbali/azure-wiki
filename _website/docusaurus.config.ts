@@ -47,6 +47,7 @@ const config: Config = {
             "azure-storage/**/*.md",
             "devsecops/**/*.md",
             "aifroot/**/*.md",
+            "azure-policy-a-to-z/**/*.md",
           ],
           exclude: [
             "README.md",
@@ -126,6 +127,12 @@ const config: Config = {
         },
         {
           type: "docSidebar",
+          sidebarId: "azurePolicyAtoZSidebar",
+          position: "left",
+          label: "Azure Policy A-Z",
+        },
+        {
+          type: "docSidebar",
           sidebarId: "aifrootSidebar",
           position: "left",
           label: "AI Hub",
@@ -168,6 +175,7 @@ const config: Config = {
             { label: "Monitoring", to: "/unified-monitoring-solution/" },
             { label: "BCDR", to: "/BCDR/" },
             { label: "IaC & Deployment Stacks", to: "/iac-deployment-stacks/" },
+            { label: "Azure Policy A-Z", to: "/azure-policy-a-to-z/" },
           ],
         },
         {

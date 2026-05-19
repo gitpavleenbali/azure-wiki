@@ -117,6 +117,19 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
+  azurePolicyAtoZSidebar: [
+    {
+      type: "category",
+      label: "Azure Policy A-Z",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        "azure-policy-a-to-z/README",
+        "azure-policy-a-to-z/durable-fine-grained-exemptions",
+      ],
+    },
+  ],
+
   aifrootSidebar: [
     {
       type: "category",
