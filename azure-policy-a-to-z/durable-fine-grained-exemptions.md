@@ -300,18 +300,18 @@ PolicyResources
 
 ---
 
-## 9. Customer recommendation (paste-ready)
+## 9. Summary
 
-> RG- or resource-scoped Azure Policy exemptions are lifecycle-bound to the target resource hierarchy, so any IaC workflow that destroys + recreates the target removes the exemption. Azure's exemption `resourceSelectors` are limited to location, type, and identity-based selectors and therefore cannot re-bind to a recreated resource. Subscription-scope exemptions remain durable but violate least privilege.
->
-> The recommended pattern is a four-layer model:
->
-> 1. Keep `notScopes` / `resourceSelectors` / `overrides` on the policy assignment for permanent platform-wide exclusions (jump-box RG, DMZ, lab subscription).
-> 2. Encode workload-managed exceptions in the policy rule itself using a `policyExceptionId` tag pattern — the tag travels with the IaC and survives any recreation, so no exemption object is required. Group related policies into an **initiative with shared parameters** so the approved-ID list is managed once, not per policy. Assign a built-in **tag-inheritance modify policy** so child resources automatically inherit the exception tag from the resource group — workload teams tag the RG once; everything else follows.
-> 3. Adopt Enterprise Policy as Code (EPAC) as the source of truth for fine-grained, time-bounded, audited exemptions. A scheduled reconciliation pipeline restores any exemption that workload IaC accidentally removes.
-> 4. For exemptions that must survive redeployment with zero gap, co-locate the `Microsoft.Authorization/policyExemptions` resource in the workload Bicep/Terraform module with a deterministic GUID name so it is recreated atomically with its target.
->
-> Pair the design with three guardrails: a `deny` policy that requires `expiresOn` on every exemption, an `audit` policy that requires an `approvalTicket` in `metadata`, and an Azure Resource Graph workbook for drift visibility. Subscription-scope exemptions can then be retired without weakening compliance.
+RG- or resource-scoped Azure Policy exemptions are lifecycle-bound to the target resource hierarchy, so any IaC workflow that destroys + recreates the target removes the exemption. Azure's exemption `resourceSelectors` are limited to location, type, and identity-based selectors and therefore cannot re-bind to a recreated resource. Subscription-scope exemptions remain durable but violate least privilege.
+
+The recommended pattern is a four-layer model:
+
+1. Keep `notScopes` / `resourceSelectors` / `overrides` on the policy assignment for permanent platform-wide exclusions (jump-box RG, DMZ, lab subscription).
+2. Encode workload-managed exceptions in the policy rule itself using a `policyExceptionId` tag pattern — the tag travels with the IaC and survives any recreation, so no exemption object is required. Group related policies into an **initiative with shared parameters** so the approved-ID list is managed once, not per policy. Assign a built-in **tag-inheritance modify policy** so child resources automatically inherit the exception tag from the resource group — workload teams tag the RG once; everything else follows.
+3. Adopt Enterprise Policy as Code (EPAC) as the source of truth for fine-grained, time-bounded, audited exemptions. A scheduled reconciliation pipeline restores any exemption that workload IaC accidentally removes.
+4. For exemptions that must survive redeployment with zero gap, co-locate the `Microsoft.Authorization/policyExemptions` resource in the workload Bicep/Terraform module with a deterministic GUID name so it is recreated atomically with its target.
+
+Pair the design with three guardrails: a `deny` policy that requires `expiresOn` on every exemption, an `audit` policy that requires an `approvalTicket` in `metadata`, and an Azure Resource Graph workbook for drift visibility. Subscription-scope exemptions can then be retired without weakening compliance.
 
 ---
 
