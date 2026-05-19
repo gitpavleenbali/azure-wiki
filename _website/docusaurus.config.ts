@@ -120,22 +120,26 @@ const config: Config = {
           label: "BCDR",
         },
         {
-          type: "docSidebar",
-          sidebarId: "iacSidebar",
+          type: "dropdown",
+          label: "More",
           position: "left",
-          label: "IaC",
-        },
-        {
-          type: "docSidebar",
-          sidebarId: "azurePolicyAtoZSidebar",
-          position: "left",
-          label: "Azure Policy A-Z",
-        },
-        {
-          type: "docSidebar",
-          sidebarId: "aifrootSidebar",
-          position: "left",
-          label: "AI Hub",
+          items: [
+            {
+              type: "docSidebar",
+              sidebarId: "iacSidebar",
+              label: "IaC & Deployment Stacks",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "azurePolicyAtoZSidebar",
+              label: "Azure Policy A-Z",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "aifrootSidebar",
+              label: "AI Hub",
+            },
+          ],
         },
         {
           href: "https://www.frootai.dev",
