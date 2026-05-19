@@ -190,72 +190,73 @@ article p {
 }
 
 /* ================================================================== */
-/*  SIDEBARS & TOC — Both sticky, only middle content scrolls          */
+/*  SIDEBARS & TOC — Let Docusaurus handle sticky; style only          */
 /* ================================================================== */
 
-/* LEFT SIDEBAR — module navigation stays fixed while scrolling */
-.theme-doc-sidebar-container {
-  position: sticky !important;
-  top: 0 !important;
-  height: 100vh !important;
-  overflow-y: auto !important;
-  will-change: transform; /* GPU acceleration */
+/* LEFT SIDEBAR — scrollable with thin scrollbar */
+.theme-doc-sidebar-container nav.menu {
+  overflow-y: auto;
+  max-height: calc(100vh - var(--ifm-navbar-height) - 16px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.25) transparent;
 }
 
-/* Inner sidebar viewport also sticky */
-.sidebarViewport_aRkj,
-[class*="sidebarViewport"] {
-  position: sticky !important;
-  top: 0 !important;
+.theme-doc-sidebar-container nav.menu::-webkit-scrollbar {
+  width: 4px;
 }
 
-/* RIGHT TOC column — stays fixed while scrolling */
-.col.col--3 {
-  position: sticky !important;
-  top: calc(var(--ifm-navbar-height) + 16px) !important;
-  align-self: flex-start !important;
-  max-height: calc(100vh - var(--ifm-navbar-height) - 32px) !important;
-  overflow-y: auto !important;
-  z-index: 100 !important;
+.theme-doc-sidebar-container nav.menu::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-/* RIGHT TOC inner container */
-.theme-doc-toc-desktop,
-[class*="tableOfContents"] {
-  position: sticky !important;
-  top: calc(var(--ifm-navbar-height) + 16px) !important;
-  max-height: calc(100vh - var(--ifm-navbar-height) - 32px) !important;
-  overflow-y: auto !important;
+.theme-doc-sidebar-container nav.menu::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.25);
+  border-radius: 4px;
 }
 
-/* Higher specificity overrides for TOC sticky */
-main .col.col--3,
-article ~ .col.col--3,
-[class*="docMainContainer"] .col.col--3,
-[class*="docRoot"] .col.col--3 {
-  position: sticky !important;
-  top: calc(var(--ifm-navbar-height) + 16px) !important;
-  align-self: flex-start !important;
+.theme-doc-sidebar-container nav.menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.45);
+}
+
+/* RIGHT TOC — scrollable with thin scrollbar */
+.theme-doc-toc-desktop {
+  max-height: calc(100vh - var(--ifm-navbar-height) - 32px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.25) transparent;
+}
+
+.theme-doc-toc-desktop::-webkit-scrollbar {
+  width: 4px;
+}
+
+.theme-doc-toc-desktop::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.theme-doc-toc-desktop::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.25);
+  border-radius: 4px;
 }
 
 /* TOC link styling */
 .table-of-contents__link {
   font-size: 0.82rem;
-  transition: color 0.2s, font-weight 0.2s;
+  transition: color 0.2s, border-color 0.2s;
   border-left: 2px solid transparent;
   padding-left: 8px;
 }
 
-/* ACTIVE TOC LINK — purple highlight as you scroll through sections */
-.table-of-contents__link.toc-highlight {
-  color: #6366f1 !important;
+/* ACTIVE TOC LINK — Docusaurus native class, highlighted on scroll */
+.table-of-contents__link--active {
+  color: var(--aw-indigo-500) !important;
   font-weight: 600 !important;
-  border-left-color: #6366f1 !important;
+  border-left-color: var(--aw-indigo-500) !important;
 }
 
-/* Nested TOC links that are active */
-.table-of-contents__link.toc-highlight + ul .table-of-contents__link.toc-highlight {
-  color: #818cf8 !important;
+/* Nested active TOC links */
+.table-of-contents__link--active + ul .table-of-contents__link--active {
+  color: var(--aw-indigo-400) !important;
 }
 
 /* ================================================================== */

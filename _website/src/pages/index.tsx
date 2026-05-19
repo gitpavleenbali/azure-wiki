@@ -72,15 +72,31 @@ const modules = [
     title: "IaC & Deployment Stacks",
     description: "Bicep + Deployment Stacks architectural guidance — layered model, What-If, CI/CD patterns",
     link: "/iac-deployment-stacks/",
-    tag: "NEW",
+    tag: "Guide",
     icon: "🏗️",
     color: "#f59e0b",
   },
   {
+    title: "Azure Policy A-Z",
+    description: "Durable, fine-grained policy exemptions — tag-aware definitions, EPAC, initiative patterns",
+    link: "/azure-policy-a-to-z/",
+    tag: "NEW",
+    icon: "📜",
+    color: "#14b8a6",
+  },
+  {
+    title: "AI Hub",
+    description: "17-module AI knowledge tree — GenAI foundations, RAG, agents, Semantic Kernel, responsible AI",
+    link: "/aifroot/",
+    tag: "17 Modules",
+    icon: "🤖",
+    color: "#f472b6",
+  },
+  {
     title: "🌳 FrootAI",
-    description: "From Root to Fruit — the complete AI knowledge tree. 17 modules across foundations, reasoning, orchestration, operations & transformation",
+    description: "From Root to Fruit — the complete AI knowledge tree on its own platform",
     link: "https://www.frootai.dev",
-    tag: "17 Modules · External",
+    tag: "External",
     icon: "",
     color: "#10b981",
   },
@@ -123,7 +139,7 @@ function HeroBanner(): JSX.Element {
           </Link>
           <Link
             className={styles.ctaTertiary}
-            to="https://github.com/frootai/frootai"
+            to="https://github.com/gitpavleenbali/azure-wiki"
           >
             GitHub
           </Link>
@@ -134,7 +150,7 @@ function HeroBanner(): JSX.Element {
             <span className={styles.statLabel}>Guides</span>
           </div>
           <div className={styles.stat}>
-            <span className={styles.statNum}>9</span>
+            <span className={styles.statNum}>12</span>
             <span className={styles.statLabel}>Solution Areas</span>
           </div>
           <div className={styles.stat}>

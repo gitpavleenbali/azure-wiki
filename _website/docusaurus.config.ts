@@ -57,7 +57,7 @@ const config: Config = {
             "node_modules/**",
           ],
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://github.com/frootai/frootai/tree/master/",
+          editUrl: "https://github.com/gitpavleenbali/azure-wiki/tree/master/",
         },
         blog: false,
         theme: {
@@ -159,7 +159,7 @@ const config: Config = {
           position: "right",
         },
         {
-          href: "https://github.com/frootai/frootai",
+          href: "https://github.com/gitpavleenbali/azure-wiki",
           label: "GitHub",
           position: "right",
         },
@@ -200,7 +200,7 @@ const config: Config = {
             },
             {
               label: "GitHub",
-              href: "https://github.com/frootai/frootai",
+              href: "https://github.com/gitpavleenbali/azure-wiki",
             },
             {
               label: "Check1Minute Newsletter",
